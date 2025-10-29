@@ -5,17 +5,21 @@
 
 using namespace LibIO::Keyboard;
 
-class Keyboard {
+namespace LibGame::Io {
+    class Keyboard {
+        Keyboard();
 
-    Keyboard();
+        ~Keyboard();
 
-    ~Keyboard();
+        void Press(std::string key);
 
-    void Press(std::string key);
-    void Hotkey(std::string modifier, std::string key);
-    void Typewrite(std::string text, int interval = 0);
-    void Write(std::string text);
+        void Hotkey(std::string modifier, std::string key);
 
-private:
-   KeyboardControls *Controller = nullptr;
-};
+        void Typewrite(std::string text, int interval = 0);
+
+        void Write(std::string text);
+
+    private:
+        KeyboardControls *Controller = nullptr;
+    };
+}
