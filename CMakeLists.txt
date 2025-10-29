@@ -15,17 +15,20 @@ add_executable(${PROJECT_NAME}
         include/LibGame/Interactions.hpp
         include/LibGame/Mouse.hpp
         include/LibGame/InteractionBase.hpp
-        include/LibGame/io/Mouse.cpp
+
         include/LibGame/io/Mouse.hpp
-        include/LibGame/io/Keyboard.cpp
         include/LibGame/io/Keyboard.hpp
+
+        src/io/Mouse.cpp
+        src/io/Keyboard.cpp
+
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-include(LibGraphics)
-include(LibScreenshots)
+#include(LibGraphics)
+#include(LibScreenshots)
 include(LibIO)
 include(LibOS)

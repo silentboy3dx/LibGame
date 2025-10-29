@@ -1,4 +1,5 @@
-#include "LibGame/io/mouse/Mouse.hpp"
+#include "LibGame/io/Mouse.hpp"
+
 #include <LibIO/LibIO.hpp>
 
 using namespace LibIO;
