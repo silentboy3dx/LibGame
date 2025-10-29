@@ -15,6 +15,10 @@ add_executable(${PROJECT_NAME}
         include/LibGame/Interactions.hpp
         include/LibGame/Mouse.hpp
         include/LibGame/InteractionBase.hpp
+        include/LibGame/io/Mouse.cpp
+        include/LibGame/io/Mouse.hpp
+        include/LibGame/io/Keyboard.cpp
+        include/LibGame/io/Keyboard.hpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

@@ -19,7 +19,6 @@ namespace LibGame {
         std::unordered_map<std::type_index, std::string> _typeMap;
         static Interactions* _instance;
 
-        bool IsGameInForeground()
 
 
         Interactions() = default;
@@ -31,6 +30,9 @@ namespace LibGame {
             }
             return *_instance;
         }
+
+        static bool IsGameInForeground();
+
 
         template<typename T>
         void RegisterInteraction() {
