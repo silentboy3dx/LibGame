@@ -9,12 +9,8 @@ using namespace LibOS;
 namespace LibGame {
     Interactions *Interactions::_instance = nullptr;
 
-
     bool Interactions::IsGameInForeground() {
-
-        std::optional<WindowInfo> info = GetActiveWindow();
-
-        if (info) {
+        if (const std::optional<WindowInfo> info = GetActiveWindow()) {
             return info->title == "3DXChat";
         }
 

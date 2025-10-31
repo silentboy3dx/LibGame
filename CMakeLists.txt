@@ -9,25 +9,35 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # Bouw de executable
 add_executable(${PROJECT_NAME}
-        src/main.cpp
-        src/Interactions.cpp
-        include/LibGame/LibGame.hpp
-        include/LibGame/Interactions.hpp
-        include/LibGame/Mouse.hpp
-        include/LibGame/InteractionBase.hpp
-
-        include/LibGame/io/Mouse.hpp
+        include/LibGame/BaseInteraction.hpp
         include/LibGame/io/Keyboard.hpp
+        include/LibGame/io/Mouse.hpp
+
+        include/LibGame/detect/DArgs.hpp
+        include/LibGame/detect/Detector.hpp
+        include/LibGame/detect/DResult.hpp
+
+        include/LibGame/Interactions.hpp
+        include/LibGame/LibGame.hpp
+
+        src/detect/Detector.cpp
+
+        src/Interactions.cpp
+        src/main.cpp
 
         src/io/Mouse.cpp
         src/io/Keyboard.cpp
+        include/LibGame/detect/Detector.hpp
+        include/LibGame/detect/DResult.hpp
+
+
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-#include(LibGraphics)
-#include(LibScreenshots)
+include(LibGraphics)
+include(LibScreenshots)
 include(LibIO)
 include(LibOS)

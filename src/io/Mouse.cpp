@@ -5,17 +5,16 @@
 using namespace LibIO;
 
 namespace LibGame::Io {
-
-    Mouse::Mouse() {
-        Controller = GetMouseControls();
+    Mouse::Mouse(Interactions *core) : core(core) {
+        controller = GetMouseControls();
     }
 
     Mouse::~Mouse() {
-        delete Controller;
+        delete controller;
     }
 
     void Mouse::Scroll(const int amount, int *x, int *y) const {
-        Controller
+        controller
                 ->Scroll(
                     amount,
                     x,
@@ -23,47 +22,47 @@ namespace LibGame::Io {
     }
 
     void Mouse::ScrollUp(const int amount) const {
-        Controller
+        controller
                 ->ScrollUp(amount);
     }
 
     void Mouse::ScrollDown(const int amount) const {
-        Controller
+        controller
                 ->ScrollDown(amount);
     }
 
     // Click functions
     void Mouse::Click() const {
-        Controller
+        controller
                 ->LeftClick();
     }
 
     void Mouse::RightClick() const {
-        Controller
+        controller
                 ->RightClick();
     }
 
     void Mouse::MoveTo(const int x, const int y) const {
-        Controller
+        controller
                 ->MoveCursor(x, y);
     }
 
     void Mouse::MoveToAndClick(const int x, const int y) const {
-        Controller->MoveAndLeftClick(
+        controller->MoveAndLeftClick(
             x,
             y
         );
     }
 
     void Mouse::MoveToAndRightClick(const int x, const int y) const {
-        Controller->MoveAndRightClick(
+        controller->MoveAndRightClick(
             x,
             y
         );
     }
 
     void Mouse::MoveToAndExit(const int x, const int y, const int exitcode) const {
-        Controller->MoveCursor(x, y);
+        controller->MoveCursor(x, y);
         exit(exitcode);
     }
 }

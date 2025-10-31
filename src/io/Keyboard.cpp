@@ -1,12 +1,15 @@
 #include "LibGame/io/Keyboard.hpp"
 
 #include <LibIO/LibIO.hpp>
+#include <chrono>
+#include <thread>
 
 using namespace LibIO;
+using namespace std::this_thread;
 
 namespace LibGame::Io {
 
-    Keyboard::Keyboard() {
+    Keyboard::Keyboard(Interactions *core) : core(core) {
         Controller = GetKeyboardControls();
     }
 
@@ -14,15 +17,29 @@ namespace LibGame::Io {
         delete Controller;
     }
 
-    void Keyboard::Press(std::string key) {
+    void Keyboard::Press(const char key) const {
+        Press(std::string(1, key));
     }
 
-    void Keyboard::Hotkey(std::string modifier, std::string key) {
+    void Keyboard::Press(const std::string& key) const {
+        Controller->PressKey(key);
     }
 
-    void Keyboard::Typewrite(std::string text, int interval) {
+    void Keyboard::Hotkey(const std::string& modifier, const std::string& key) const {
+        Controller->Hotkey(modifier, key);
     }
 
-    void Keyboard::Write(std::string text) {
+    void Keyboard::Typewrite(const std::string& text, const int interval) const {
+        for (const char c : text) {
+            Press(c);
+
+            sleep_for(std::chrono::milliseconds(interval));
+        }
+    }
+
+    void Keyboard::Write(const std::string& text) const {
+        for (const char c : text) {
+            Press(c);
+        }
     }
 }

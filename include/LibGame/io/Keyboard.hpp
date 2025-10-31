@@ -3,23 +3,29 @@
 
 #include <string>
 
+#include "LibGame/Interactions.hpp"
+
 using namespace LibIO::Keyboard;
 
 namespace LibGame::Io {
-    class Keyboard {
-        Keyboard();
+    class Keyboard : public BaseInteraction {
+    public:
+        explicit Keyboard(Interactions *core);
 
-        ~Keyboard();
+        ~Keyboard() override;
 
-        void Press(std::string key);
+        void Press(char key) const;
 
-        void Hotkey(std::string modifier, std::string key);
+        void Press(const std::string &key) const;
 
-        void Typewrite(std::string text, int interval = 0);
+        void Hotkey(const std::string &modifier, const std::string &key) const;
 
-        void Write(std::string text);
+        void Typewrite(const std::string &text, int interval = 100) const;
+
+        void Write(const std::string &text) const;
 
     private:
         KeyboardControls *Controller = nullptr;
+        Interactions *core;
     };
 }

@@ -1,14 +1,16 @@
 #pragma once
+
 #include "LibIO/mouse/MouseControls.hpp"
+#include "LibGame/BaseInteraction.hpp"
+#include "LibGame/Interactions.hpp"
 
 using LibIO::Mouse::MouseControls;
 
 namespace LibGame::Io {
-    class Mouse {
+    class Mouse final : public BaseInteraction {
     public:
-        Mouse();
-
-        ~Mouse();
+        explicit Mouse(Interactions *core);
+        ~Mouse() override;
 
         void Scroll(int amount, int *x = nullptr, int *y = nullptr) const;
 
@@ -29,6 +31,7 @@ namespace LibGame::Io {
         void MoveToAndExit(int x = 0, int y = 0, int exitcode = 0) const;
 
     private:
-        MouseControls *Controller;
+        MouseControls *controller;
+        Interactions *core;
     };
 }

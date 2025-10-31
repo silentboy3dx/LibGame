@@ -8,23 +8,13 @@
 #include <typeindex>
 #include <typeinfo>
 
-#include "InteractionBase.hpp"
+#include "BaseInteraction.hpp"
 
 
 namespace LibGame {
-
     class Interactions {
-    private:
-        std::unordered_map<std::string, std::shared_ptr<InteractionBase>> _interactions;
-        std::unordered_map<std::type_index, std::string> _typeMap;
-        static Interactions* _instance;
-
-
-
-        Interactions() = default;
-
     public:
-        static Interactions& GetInstance() {
+        static Interactions &GetInstance() {
             if (_instance == nullptr) {
                 _instance = new Interactions();
             }
@@ -50,12 +40,12 @@ namespace LibGame {
         }
 
         template<typename T>
-        T& GetInteraction() {
+        T &GetInteraction() {
             auto typeIdx = std::type_index(typeid(T));
             auto it = _typeMap.find(typeIdx);
 
             if (it != _typeMap.end()) {
-                auto& name = it->second;
+                auto &name = it->second;
                 auto interactionIt = _interactions.find(name);
 
                 if (interactionIt != _interactions.end()) {
@@ -68,5 +58,13 @@ namespace LibGame {
 
             throw std::runtime_error("Interaction not found");
         }
+
+    private:
+        std::unordered_map<std::string, std::shared_ptr<BaseInteraction> > _interactions;
+        std::unordered_map<std::type_index, std::string> _typeMap;
+        static Interactions *_instance;
+
+
+        Interactions() = default;
     };
 }
