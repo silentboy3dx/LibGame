@@ -5,7 +5,7 @@
 using namespace LibIO;
 
 namespace LibGame::Io {
-    Mouse::Mouse(Interactions *core) : core(core) {
+    Mouse::Mouse(Interactions *core) : BaseInteraction(core) {
         controller = GetMouseControls();
     }
 

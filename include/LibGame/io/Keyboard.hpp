@@ -1,9 +1,9 @@
 #pragma once
-#include "LibIO/keyboard/KeyboardControls.hpp"
+#include "LibGame/Interactions.hpp"
 
+#include <LibIO/keyboard/KeyboardControls.hpp>
 #include <string>
 
-#include "LibGame/Interactions.hpp"
 
 using namespace LibIO::Keyboard;
 
@@ -26,6 +26,5 @@ namespace LibGame::Io {
 
     private:
         KeyboardControls *Controller = nullptr;
-        Interactions *core;
     };
 }

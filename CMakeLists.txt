@@ -7,9 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(LIBGRAPHICS_ENABLE_TESTS OFF CACHE BOOL "Disable LibGraphics tests")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-# Bouw de executable
 add_executable(${PROJECT_NAME}
-        include/LibGame/BaseInteraction.hpp
+        include/LibGame/io/Screenshot.hpp
         include/LibGame/io/Keyboard.hpp
         include/LibGame/io/Mouse.hpp
 
@@ -17,20 +16,31 @@ add_executable(${PROJECT_NAME}
         include/LibGame/detect/Detector.hpp
         include/LibGame/detect/DResult.hpp
 
+        include/LibGame/asset/Assets.hpp
+
         include/LibGame/Interactions.hpp
         include/LibGame/LibGame.hpp
+
+
+        include/LibGame/module/BaseModule.hpp
+        include/LibGame/module/Clothing.hpp
+
+
+        src/modules/Clothing.cpp
+
 
         src/detect/Detector.cpp
 
         src/Interactions.cpp
-        src/main.cpp
 
-        src/io/Mouse.cpp
+        src/asset/Assets.cpp
+
+        src/io/Screenshot.cpp
         src/io/Keyboard.cpp
-        include/LibGame/detect/Detector.hpp
-        include/LibGame/detect/DResult.hpp
+        src/io/Mouse.cpp
 
-
+        src/main.cpp
+        include/LibGame/misc/Point.h
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

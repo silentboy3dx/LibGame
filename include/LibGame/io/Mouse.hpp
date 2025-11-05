@@ -1,8 +1,8 @@
 #pragma once
 
-#include "LibIO/mouse/MouseControls.hpp"
-#include "LibGame/BaseInteraction.hpp"
 #include "LibGame/Interactions.hpp"
+
+#include <LibIO/mouse/MouseControls.hpp>
 
 using LibIO::Mouse::MouseControls;
 
@@ -32,6 +32,5 @@ namespace LibGame::Io {
 
     private:
         MouseControls *controller;
-        Interactions *core;
     };
 }

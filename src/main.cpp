@@ -6,27 +6,35 @@
 #include <iostream>
 
 #include "LibGame/Interactions.hpp"
+#include "LibGame/module/Clothing.hpp"
 
-#include "LibGame/io/Mouse.hpp"
-#include "LibGame/io/Keyboard.hpp"
-#include "LibGame/LibGame.hpp"
 
 using namespace LibGame;
-using namespace LibGame::Io;
+using namespace LibGame::Module;
 
 int main() {
     printf("Hello World!\n");
 
     // Get the Interactions instance
-    auto &interactions = LibGame::Interactions::GetInstance();
+    auto &interactions = Interactions::GetInstance();
 
-    interactions.RegisterInteraction<Mouse>();
-    interactions.RegisterInteraction<Keyboard>();
+    interactions.GetInteraction<Assets>().setAssetType(AssetType::TYPE_2K);
 
-    // Use the mouse interaction
-    interactions.GetInteraction<Mouse>().Click();
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
-    Interactions::GetInstance().GetInteraction<Keyboard>().Typewrite("Hello, World!");
+    interactions.GetInteraction<Clothing>().TakeAllOff();
+
+
+    // interactions.RegisterInteraction<Mouse>();
+    // interactions.RegisterInteraction<Keyboard>();
+    //
+    // // Use the mouse interaction
+    // interactions.GetInteraction<Mouse>().Click();
+    //
+    // Interactions::GetInstance().GetInteraction<Keyboard>().Typewrite("Hello, World!");
+    // interactions.GetInteraction<Keyboard>().Typewrite("Hello, World!");
+
+    // auto result = interactions.GetInteraction<Detect::Detector>().Take();
 
     // for (int i = 0; i < 1he0; i++) {
     //     if (interactions.IsGameInForeground()) {

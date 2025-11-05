@@ -5,15 +5,15 @@
 #include <optional>
 
 using namespace LibGraphics;
+using namespace LibGraphics::Match;
 
 namespace LibGame::Detect {
     struct DArgs {;
         bool cacheable = false;
         bool grayscale = false;
-        bool toRealworld = false;
         float confidence = 0.99f;
         std::optional<Region> region = std::nullopt;
-        std::optional<Image> match_template = std::nullopt;
-        Image target;
+        std::optional<Image> match_target; // the big image
+        Image match_template;  // the small image to look for in the target
     };
 }

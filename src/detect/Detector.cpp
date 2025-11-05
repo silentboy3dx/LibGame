@@ -1,11 +1,13 @@
 #include "LibGame/detect/Detector.hpp"
+
+#include <iostream>
+
 #include "LibGame/Interactions.hpp"
 
 #include <LibGame/detect/DResult.hpp>
 
 #include <LibGraphics/match/TemplateMatcher.hpp>
 #include <LibGraphics/match/MatchOptions.hpp>
-#include <LibScreenshots/Screenshot.hpp>
 
 #include "LibScreenshots.hpp"
 #include "LibGraphics/match/Region.hpp"
@@ -14,47 +16,82 @@ using namespace LibGraphics::Match;
 using namespace LibScreenshots;
 
 namespace LibGame::Detect {
-    Detector::Detector(Interactions *core) : core(core) {
+    Detector::Detector(Interactions *core) : BaseInteraction(core) {
         matcher = TemplateMatcher();
     }
 
-    std::optional<DResult> Detector::Single(const DArgs &args) const {
+    std::optional<DResult> Detector::Single(Image& match_template, const DArgs &args) {
         try {
             auto options = MatchOptions();
-            Image match_target = args.target;
-            std::optional<Image> match_template = args.match_template;
+            std::optional<Image> match_target = args.match_target; // target is where to search in
+            // Image match_template = args.match_template; // template is what we search
+            bool toRealworld = false;
 
-            if (!match_template) {
+            if (args.cacheable) {
+#pragma warning("Cache not implemented yet")
+            }
 
+            if (!match_target) {
                 /**
                  * I could have made a crop from the screenshot (Image suports cropping) but i have chosen to
                  * screenshot a region of the screen instead for performance reasons.
                  */
                 const ScreenshotResult screenshot = [&]() -> ScreenshotResult {
-                    if (args.region) {
-                        return takes_screenshot(args.region->X,
-                                                args.region->Y,
-                                                args.region->Width,
-                                                args.region->Height);
+                    if (args.region.has_value()) {
+                        std::cout << "Taking screenshot of the region" << std::endl;
+                        return TakeScreenshot(args.region->X,
+                                              args.region->Y,
+                                              args.region->Width,
+                                              args.region->Height);
                     } else {
-                        return takes_screenshot();
+                        std::cout << "Taking screenshot of whole screen" << std::endl;
+                        return TakeScreenshot();
                     }
                 }();
+
+                match_target = screenshot.image;
             }
+
+            if (args.region.has_value()) {
+                toRealworld = true;
+            }
+
+            if (args.grayscale) {
+                match_target = match_target->toGrayscale();
+                match_template = match_template.toGrayscale();
+            }
+
+            // TODO: Test grayscale by writing an image to disk
+            // TODO: Implement caching mechanism
+            // TODO: Test Region to realworld
+            // TODO: Test Region
 
             options.minConfidence = args.confidence;
 
+            // match_template.show();
+
+            /**
+             * We search for template in target.
+             */
+            auto result = TemplateMatcher::matchTemplateSingle(
+                match_template, // What to search for
+                match_target.value(), // where to look in
+                options
+            );
 
 
-
-            // target is big
-            // template is small
-
-            auto result = matcher.TemplateMatcher(options);
-
+            if (args.region.has_value() && toRealworld) {
+                const auto region = args.region.value();
+                result.X += region.X;
+                result.Y += region.Y;
+            }
 
             // debug score
+            if (args.cacheable) {
+#pragma warning("Cache not implemented yet")
+            }
 
+            return static_cast<DResult>(result);
 
             // Perform detection logic here
         } catch (const std::exception &e) {
@@ -62,9 +99,10 @@ namespace LibGame::Detect {
         }
 
 
-        return result;
+        return std::nullopt;
     }
 
-    std::optional<std::vector<DResult> > Detector::Multiple(DArgs args) const {
+    std::optional<std::vector<DResult> > Detector::Multiple(Image& match_template, const DArgs &args) {
+        return std::nullopt;
     }
 }

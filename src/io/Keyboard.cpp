@@ -9,7 +9,7 @@ using namespace std::this_thread;
 
 namespace LibGame::Io {
 
-    Keyboard::Keyboard(Interactions *core) : core(core) {
+    Keyboard::Keyboard(Interactions *core) : BaseInteraction(core) {
         Controller = GetKeyboardControls();
     }
 
