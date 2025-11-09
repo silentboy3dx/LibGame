@@ -19,8 +19,15 @@ namespace LibGame::Detect {
     Detector::Detector(Interactions *core) : BaseInteraction(core) {
         matcher = TemplateMatcher();
     }
+    void Detector::SetLastTarget(const Image &target) {
+        lastTarget = target;
+    }
 
-    std::optional<DResult> Detector::Single(Image& match_template, const DArgs &args) {
+    Image Detector::GetLastTarget() const {
+        return lastTarget;
+    }
+
+    std::optional<DResult> Detector::Single(Image &match_template, const DArgs &args) {
         try {
             auto options = MatchOptions();
             std::optional<Image> match_target = args.match_target; // target is where to search in
@@ -38,13 +45,11 @@ namespace LibGame::Detect {
                  */
                 const ScreenshotResult screenshot = [&]() -> ScreenshotResult {
                     if (args.region.has_value()) {
-                        std::cout << "Taking screenshot of the region" << std::endl;
                         return TakeScreenshot(args.region->X,
                                               args.region->Y,
                                               args.region->Width,
                                               args.region->Height);
                     } else {
-                        std::cout << "Taking screenshot of whole screen" << std::endl;
                         return TakeScreenshot();
                     }
                 }();
@@ -61,24 +66,29 @@ namespace LibGame::Detect {
                 match_template = match_template.toGrayscale();
             }
 
+            // TODO: Add debug
+
             // TODO: Test grayscale by writing an image to disk
             // TODO: Implement caching mechanism
             // TODO: Test Region to realworld
             // TODO: Test Region
+            // TODO: Test Debug
 
             options.minConfidence = args.confidence;
+
+            SetLastTarget(match_target.value());
 
             // match_template.show();
 
             /**
              * We search for template in target.
              */
+
             auto result = TemplateMatcher::matchTemplateSingle(
                 match_template, // What to search for
                 match_target.value(), // where to look in
                 options
             );
-
 
             if (args.region.has_value() && toRealworld) {
                 const auto region = args.region.value();
@@ -94,6 +104,8 @@ namespace LibGame::Detect {
             return static_cast<DResult>(result);
 
             // Perform detection logic here
+        } catch (const Exceptions::LowConfidenceException &e) {
+            std::cout << match_template.origin << ": Low confidence exception" << e.what() <<  std::endl;
         } catch (const std::exception &e) {
             // Handle exceptions if necessary
         }
@@ -102,7 +114,7 @@ namespace LibGame::Detect {
         return std::nullopt;
     }
 
-    std::optional<std::vector<DResult> > Detector::Multiple(Image& match_template, const DArgs &args) {
+    std::optional<std::vector<DResult> > Detector::Multiple(Image &match_template, const DArgs &args) {
         return std::nullopt;
     }
 }

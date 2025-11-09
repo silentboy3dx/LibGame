@@ -12,7 +12,6 @@ namespace LibGame::Io {
         explicit Screenshot(Interactions *core) : BaseInteraction(core) {};
 
         ScreenshotResult Take();
-
         ScreenshotResult Take(int x, int y, int width, int height);
     };
 }

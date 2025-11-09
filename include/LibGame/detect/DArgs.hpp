@@ -14,6 +14,5 @@ namespace LibGame::Detect {
         float confidence = 0.99f;
         std::optional<Region> region = std::nullopt;
         std::optional<Image> match_target; // the big image
-        Image match_template;  // the small image to look for in the target
     };
 }

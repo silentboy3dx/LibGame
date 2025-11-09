@@ -2,9 +2,6 @@
 
 #include "BaseModule.hpp"
 
-using namespace LibGame::Detect;
-using namespace LibGame::Asset;
-
 namespace LibGame::Module {
     class Clothing final : public BaseModule {
     public:
@@ -13,17 +10,17 @@ namespace LibGame::Module {
 
         ~Clothing() override = default;
 
-        void OpenPanel() const;
-        void ClosePanel() const;
+        bool OpenPanel() const;
+        bool ClosePanel() const;
 
         bool IsWet() const;
         bool IsDry() const;
 
-        void PutAllOn() const;
-        void TakeAllOff() const;
-        void Wet() const;
-        void Dry() const;
-        void ToggleWetness() const;
+        bool PutAllOn() const;
+        bool TakeAllOff() const;
+        bool Wet() const;
+        bool Dry() const;
+        bool ToggleWetness() const;
 
     private:
         bool isPanelOpen() const;

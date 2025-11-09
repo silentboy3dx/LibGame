@@ -14,7 +14,6 @@ namespace LibGame::Asset {
     Image &Assets::AssetFile(const std::string &asset) {
 
         if (cache.contains(asset)) {
-            std::cout << "Cache hit for " << asset << std::endl;
             return cache[asset];
         }
 
@@ -24,14 +23,13 @@ namespace LibGame::Asset {
             throw std::runtime_error("LIBGAME_ASSET_PATH not set");
         }
 
-        std::string fullPath = std::string(assetPath) + "/" + assetType + "/" + asset;
+        const std::string fullPath = std::string(assetPath) + "/" + assetType + "/" + asset;
 
         if (!std::filesystem::exists(fullPath)) {
             throw std::runtime_error("Asset file does not exist: " + fullPath);
         }
 
         if (!cache.contains(asset)) {
-            std::cout << "Cache miss for " << asset << std::endl;
             cache[asset] = Image::load(fullPath);
         }
 

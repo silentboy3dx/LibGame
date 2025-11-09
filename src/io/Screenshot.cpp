@@ -3,7 +3,6 @@
 #include <LibScreenshots.hpp>
 
 namespace LibGame::Io {
-
     ScreenshotResult Screenshot::Take() {
         return TakeScreenshot();
     }

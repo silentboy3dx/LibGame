@@ -9,12 +9,6 @@
 #include <typeindex>
 #include <typeinfo>
 
-// #include "asset/Assets.hpp"
-// #include "detect/Detector.hpp"
-
-// using namespace LibGame::Detect;
-// using namespace LibGame::Asset;
-
 namespace LibGame {
     class Interactions;
 

@@ -3,9 +3,12 @@
 #include "LibGame/io/Mouse.hpp"
 #include "LibGame/io/Keyboard.hpp"
 
+#include "LibGame/module/Clipboard.hpp"
 #include "LibGame/module/Clothing.hpp"
-#include "LibGame/module/Clothing.hpp"
-
+#include "LibGame/module/Actions.hpp"
+#include "LibGame/module/Dances.hpp"
+#include "LibGame/module/Camera.hpp"
+#include "LibGame/module/Chat.hpp"
 #include <LibOS/LibOS.hpp>
 #include <optional>
 
@@ -25,7 +28,12 @@ namespace LibGame {
         RegisterInteraction<Detector>();
         RegisterInteraction<Assets>();
 
+        RegisterModule<Actions>();
         RegisterModule<Clothing>();
+        RegisterModule<Clipboard>();
+        RegisterModule<Dances>();
+        RegisterModule<Camera>();
+        RegisterModule<Chat>();
     }
 
     Interactions &Interactions::GetInstance(){
