@@ -1,6 +1,5 @@
 #include "LibGame/module/Dances.hpp"
 
-#include "LibGame/misc/Point.h"
 #include "LibGame/module/BaseModule.hpp"
 
 namespace LibGame::Module {
