@@ -149,6 +149,7 @@ namespace LibGame::Module {
 
         InitAssets();
 
+
         if (auto result = GetDanceHeader(); result.has_value()) {
             _header = result.value();
             _header.X -= cornerOffset;
