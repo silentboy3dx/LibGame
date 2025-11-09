@@ -18,12 +18,12 @@ int main() {
 
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
-    // interactions.GetInteraction<Chat>().GoToLocal();
-    // bool result = interactions.GetInteraction<Chat>().PlaceCursorInChat();
-    // bool result = interactions.GetInteraction<Chat>().PressSend();
-    interactions.GetInteraction<Dances>().Dance(47);
-    // interactions.GetInteraction<Dances>().ScrollToTop();
+    // interactions.GetInteraction<Idle>().IdleOne();
+    // interactions.GetInteraction<Idle>().IdleTwo();
+    // interactions.GetInteraction<Idle>().IdleThree();
+    // interactions.GetInteraction<Idle>().IdleFour();
+    // interactions.GetInteraction<Idle>().IdleFive();
+    // interactions.GetInteraction<Idle>().IdleSix();
 
-    // interactions.GetInteraction<Chat>().WhipeChat();
     return 0;
 }

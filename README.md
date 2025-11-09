@@ -18,6 +18,9 @@ to the game folder the library uses. You can find the asset repository here: <to
 ## Skipped 
 
 - [ ] Context
+- [ ] Friends
+- [ ] Gift
+- 
 
 
 ## Needing implementation in 3th party libraries

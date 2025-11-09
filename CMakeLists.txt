@@ -32,15 +32,19 @@ add_executable(${PROJECT_NAME}
         include/LibGame/module/Dances.hpp
         include/LibGame/module/Camera.hpp
         include/LibGame/module/Chat.hpp
+        include/LibGame/module/Idle.hpp
+
+        include/LibGame/misc/Point.h
 
         src/modules/Clothing.cpp
         src/modules/Actions.cpp
         src/modules/Chat.cpp
         src/modules/Dances.cpp
+        src/modules/Camera.cpp
+        src/modules/Chat.cpp
+        src/modules/Idle.cpp
 
         src/detect/Detector.cpp
-
-        src/Interactions.cpp
 
         src/asset/Assets.cpp
 
@@ -48,12 +52,8 @@ add_executable(${PROJECT_NAME}
         src/io/Keyboard.cpp
         src/io/Mouse.cpp
 
+        src/Interactions.cpp
         src/main.cpp
-        include/LibGame/misc/Point.h
-        src/modules/Camera.cpp
-        src/modules/Chat.cpp
-        src/modules/Clipboard.cpp
-
 
 )
 

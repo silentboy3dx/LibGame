@@ -9,6 +9,8 @@
 #include "LibGame/module/Dances.hpp"
 #include "LibGame/module/Camera.hpp"
 #include "LibGame/module/Chat.hpp"
+#include "LibGame/module/Idle.hpp"
+
 #include <LibOS/LibOS.hpp>
 #include <optional>
 
@@ -34,6 +36,7 @@ namespace LibGame {
         RegisterModule<Dances>();
         RegisterModule<Camera>();
         RegisterModule<Chat>();
+        RegisterModule<Idle>();
     }
 
     Interactions &Interactions::GetInstance(){
