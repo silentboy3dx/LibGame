@@ -68,7 +68,7 @@ namespace LibGame::Module {
     }
 
     bool Chat::PressSend() const {
-        return ClickInCenterIfVisible("chat/button_send.png", 0.99f, false);
+        return ClickIfVisible("chat/button_send.png", 0.99f, false);
     }
 
     bool Chat::WhipeChat() const {

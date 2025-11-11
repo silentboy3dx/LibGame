@@ -21,9 +21,9 @@ namespace LibGame::Module {
         const int dancesInnerHeight = 147;
         DResult _header;
 
-        std::optional<DResult> GetDanceHeader() const;
-        std::optional<DResult> GetDanceLocation(int dance = 1) const;
-        std::optional<DResult> FindDance(int dance = 1) const;
+        [[nodiscard]] std::optional<DResult> GetDanceHeader() const;
+        [[nodiscard]] std::optional<DResult> GetDanceLocation(int dance = 1) const;
+        [[nodiscard]] std::optional<DResult> FindDance(int dance = 1) const;
 
         void InitAssets() const;
 

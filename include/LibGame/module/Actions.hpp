@@ -11,10 +11,10 @@ namespace LibGame::Module {
 
         ~Actions() override = default;
 
-        bool SitOne() const;
-        bool SitTwo() const;
-        bool LieOne() const;
-        bool LieTwo() const;
+        bool Sit1() const;
+        bool Sit2() const;
+        bool Lie1() const;
+        bool Lie2() const;
         bool Hello() const;
         bool Applause() const;
     };

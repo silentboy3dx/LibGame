@@ -1,8 +1,8 @@
 #pragma once
 
-#include <LibGraphics/match/Region.hpp>
+#include <LibGraphics/type/Region.hpp>
 
-using namespace LibGraphics::Match;
+using namespace LibGraphics::Type;
 
 class Point : public Region {
 public:

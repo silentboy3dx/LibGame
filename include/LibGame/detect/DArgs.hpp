@@ -1,11 +1,11 @@
 #pragma once
 
-#include <LibGraphics/match/Region.hpp>
+#include <LibGraphics/type/Region.hpp>
 #include <LibGraphics/Image.hpp>
 #include <optional>
 
 using namespace LibGraphics;
-using namespace LibGraphics::Match;
+using namespace LibGraphics::Type;
 
 namespace LibGame::Detect {
     struct DArgs {;

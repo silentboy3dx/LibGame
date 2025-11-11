@@ -24,29 +24,56 @@ add_executable(${PROJECT_NAME}
         include/LibGame/Interactions.hpp
         include/LibGame/LibGame.hpp
 
-
+        include/LibGame/module/ImageReader.hpp
+        include/LibGame/module/Moderation.hpp
+        include/LibGame/module/SexActions.hpp
         include/LibGame/module/BaseModule.hpp
+        include/LibGame/module/Slowdance.hpp
         include/LibGame/module/Clipboard.hpp
+        include/LibGame/module/Interface.hpp
         include/LibGame/module/Clothing.hpp
+        include/LibGame/module/Movement.hpp
+        include/LibGame/module/Friends.hpp
+        include/LibGame/module/Context.hpp
+        include/LibGame/module/Strapon.hpp
+        include/LibGame/module/Profile.hpp
         include/LibGame/module/Actions.hpp
         include/LibGame/module/Dances.hpp
         include/LibGame/module/Camera.hpp
         include/LibGame/module/Chat.hpp
         include/LibGame/module/Idle.hpp
+        include/LibGame/module/Item.hpp
+        include/LibGame/module/Gift.hpp
 
-        include/LibGame/misc/Point.h
+        include/LibGame/misc/Point.hpp
 
+        include/LibGame/state/BaseState.hpp
+        include/LibGame/state/JsonFile.hpp
+
+
+        src/modules/ImageReader.cpp
+        src/modules/Moderation.cpp
+        src/modules/SexActions.cpp
+        src/modules/Slowdance.cpp
+        src/modules/Interface.cpp
+        src/modules/Movement.cpp
         src/modules/Clothing.cpp
+        src/modules/Profile.cpp
         src/modules/Actions.cpp
-        src/modules/Chat.cpp
+        src/modules/Context.cpp
+        src/modules/Strapon.cpp
+        src/modules/Friends.cpp
         src/modules/Dances.cpp
         src/modules/Camera.cpp
         src/modules/Chat.cpp
         src/modules/Idle.cpp
+        src/modules/Item.cpp
+        src/modules/Gift.cpp
 
         src/detect/Detector.cpp
-
         src/asset/Assets.cpp
+
+        src/state/JsonFile.cpp
 
         src/io/Screenshot.cpp
         src/io/Keyboard.cpp
@@ -54,6 +81,9 @@ add_executable(${PROJECT_NAME}
 
         src/Interactions.cpp
         src/main.cpp
+
+
+
 
 )
 

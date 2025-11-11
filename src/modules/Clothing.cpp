@@ -1,7 +1,7 @@
 #include "LibGame/module/Clothing.hpp"
 
 #include "LibGame/io/Mouse.hpp"
-#include "LibGame/misc/Point.h"
+#include "LibGame/misc/Point.hpp"
 
 using namespace LibGame::Detect;
 
@@ -11,7 +11,7 @@ namespace LibGame::Module {
     }
 
     bool Clothing::OpenPanel() const {
-        return ClickInCenterIfVisible("clothing/button_clothes.png", 0.98f, false);
+        return ClickIfVisible("clothing/button_clothes.png", 0.98f, false);
     }
 
     bool Clothing::ClosePanel() const {
@@ -52,7 +52,7 @@ namespace LibGame::Module {
         return result.has_value();
     }
 
-    bool Clothing::PutAllOn() const {
+    bool Clothing::DressAll() const {
 
         if (!isPanelOpen()) {
             if (!OpenPanel()) {
@@ -60,7 +60,7 @@ namespace LibGame::Module {
             }
         }
 
-        const bool result = ClickInCenterIfVisible("clothing/button_put_on_all.png", 0.98f, false);
+        const bool result = ClickIfVisible("clothing/button_put_on_all.png", 0.98f, false);
 
         if (!ClosePanel()) {
             return false;
@@ -69,7 +69,7 @@ namespace LibGame::Module {
         return result;
     }
 
-    bool Clothing::TakeAllOff() const {
+    bool Clothing::UnDressAll() const {
 
         if (!isPanelOpen()) {
             if (!OpenPanel()) {
@@ -77,7 +77,7 @@ namespace LibGame::Module {
             }
         }
 
-        const bool result = ClickInCenterIfVisible("clothing/button_put_off_all.png", 0.97f, false);
+        const bool result = ClickIfVisible("clothing/button_put_off_all.png", 0.97f, false);
 
         if (!ClosePanel()) {
             return false;
@@ -94,7 +94,7 @@ namespace LibGame::Module {
             }
         }
 
-        const bool result = ClickInCenterIfVisible("clothing/button_wet.png", 0.97f, false);
+        const bool result = ClickIfVisible("clothing/button_wet.png", 0.97f, false);
 
         if (!ClosePanel()) {
             return false;
@@ -111,7 +111,7 @@ namespace LibGame::Module {
             }
         }
 
-        const bool result = ClickInCenterIfVisible("clothing/button_dry.png", 0.98f, false);
+        const bool result = ClickIfVisible("clothing/button_dry.png", 0.98f, false);
 
         if (!ClosePanel()) {
             return false;

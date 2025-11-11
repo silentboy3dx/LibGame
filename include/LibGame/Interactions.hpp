@@ -1,5 +1,7 @@
 #pragma once
 
+#include "LibGame/state/BaseState.hpp"
+
 #include <unordered_map>
 #include <string>
 #include <memory>
@@ -8,6 +10,8 @@
 
 #include <typeindex>
 #include <typeinfo>
+
+using namespace LibGame::State;
 
 namespace LibGame {
     class Interactions;
@@ -30,6 +34,15 @@ namespace LibGame {
         ~Interactions() = default;
 
         static Interactions &GetInstance();
+        static bool IsGameInForeground();
+
+        void SetState(BaseState* state) {
+            _state = state;
+        }
+
+        BaseState* GetState() {
+            return _state;
+        }
 
         template<typename T>
                 void RegisterInteraction() {
@@ -79,11 +92,12 @@ namespace LibGame {
         }
 
 
-        static bool IsGameInForeground();
 
     private:
+        BaseState* _state = nullptr;
         std::unordered_map<std::string, std::shared_ptr<BaseInteraction> > _interactions;
         std::unordered_map<std::type_index, std::string> _typeMap;
+
         static Interactions *_instance;
     };
 }

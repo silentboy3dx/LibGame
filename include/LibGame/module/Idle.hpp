@@ -9,11 +9,11 @@ namespace LibGame::Module {
 
         ~Idle() override = default;
 
-        bool IdleOne() const;
-        bool IdleTwo() const;
-        bool IdleThree() const;
-        bool IdleFour() const;
-        bool IdleFive() const;
-        bool IdleSix() const;
+        bool One() const;
+        bool Two() const;
+        bool Three() const;
+        bool Four() const;
+        bool Five() const;
+        bool Six() const;
     };
 }

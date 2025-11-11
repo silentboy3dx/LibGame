@@ -10,9 +10,9 @@
 #include <LibGraphics/match/MatchOptions.hpp>
 
 #include "LibScreenshots.hpp"
-#include "LibGraphics/match/Region.hpp"
+#include "LibGraphics/type/Region.hpp"
 
-using namespace LibGraphics::Match;
+using namespace LibGraphics::Type;
 using namespace LibScreenshots;
 
 namespace LibGame::Detect {

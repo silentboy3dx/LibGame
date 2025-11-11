@@ -16,8 +16,8 @@ namespace LibGame::Module {
         bool IsWet() const;
         bool IsDry() const;
 
-        bool PutAllOn() const;
-        bool TakeAllOff() const;
+        bool DressAll() const;
+        bool UnDressAll() const;
         bool Wet() const;
         bool Dry() const;
         bool ToggleWetness() const;
