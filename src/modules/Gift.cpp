@@ -8,6 +8,7 @@
 #include "LibGame/module/Profile.hpp"
 
 using Type::Rect;
+using namespace LibGame::Misc;
 
 namespace LibGame::Module {
     bool Gift::GoToMyGifts() const {

@@ -1,34 +1,64 @@
-#include <cstdio>
-#include <vector>
-#include <map>
-#include <unordered_map>
 #include "LibGame/LibGame.hpp"
+#include "LibGame/io/Clipboard.hpp"
 
-using namespace LibGame;
-using namespace LibGame::Module;
+#include "LibGame/action/primary/SlowDanceStatus.hpp"
 
 #include <thread>
 #include <chrono>
 
+#include "LibGame/action/primary/DanceStatus.hpp"
+#include "LibGame/action/primary/IdlePrimaryStatus.hpp"
+#include "LibGame/action/secondary/MovementSpeedSecondaryStatus.hpp"
+#include "LibGame/action/secondary/NakedSecondaryStatus.hpp"
+#include "LibGame/action/secondary/StraponSecondaryStatus.hpp"
+
 using namespace LibGame;
+using namespace LibGame::Action::Primary;
+using namespace LibGame::Action::Secondary;
 using namespace LibGame::Module;
+using namespace LibGame::Io;
 
 int main() {
-    printf("=== Moderation Module Tests ===\n\n");
 
     auto &interactions = Interactions::GetInstance();
     auto &moderation = interactions.GetInteraction<Moderation>();
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    // std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    //
+    // interactions.GetInteraction<Clothing>().UnDressAll();
+    //
+    // std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    //
+    // interactions.GetInteraction<Clothing>().DressAll();
+    // auto ctx = interactions.GetInteraction<Context>();
 
-    const std::optional<GiftSender> result = interactions.GetInteraction<Gift>().GetLatestGiftFromProfile();
+    //
+    // // Primaire actie
+    // ctx.SetPrimaryAction<SlowDanceStatus>(SlowDanceStatus::Type::Face2Face, "Alice");
+    //
+    // // Secundaire actie
+    // ctx.AddSecondaryAction<EatStatus>(EatStatus::Type::Pizza);
+    //
+    // std::cout << ctx;
 
-    if (result.has_value()) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    // interactions.GetInteraction<Clothing>().DressAll();
 
-        std::cout << "Gift OCR Result: " << result->Message << std::endl;
-    } else {
-        std::cout << "No gift found or OCR failed." << std::endl;
-    }
+    interactions.GetInteraction<Context>().before("=== Start ===")
+       // .SetPrimaryAction<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle3)
+       // .SetPrimaryAction<DanceStatus>(DanceStatus::Type::Dance7)
+       // .AddSecondaryAction<EatStatus>(EatStatus::Type::Pizza)
+       .AddSecondaryAction<MovementSpeedSecondaryStatus>(MovementSpeedSecondaryStatus::Type::Running)
+       .AddSecondaryAction<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Penis)
+       // .AddSecondaryAction<NakedSecondaryStatus>(NakedSecondaryStatus::Type::Undressed)
+       .add("Mood", "Happy")
+       .after("=== End ===");
+
+
+    interactions.GetInteraction<Dances>().Dance(1);
+    // ctx.SetPrimaryAction<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle4);
+
+    std::cout << interactions.GetInteraction<Context>() << "\n";
 
     return 0;
 }

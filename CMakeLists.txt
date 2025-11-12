@@ -11,7 +11,9 @@ set(LIBGRAPHICS_ENABLE_TESTS OFF CACHE BOOL "Disable LibGraphics tests")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 add_executable(${PROJECT_NAME}
+
         include/LibGame/io/Screenshot.hpp
+        include/LibGame/io/Clipboard.hpp
         include/LibGame/io/Keyboard.hpp
         include/LibGame/io/Mouse.hpp
 
@@ -24,12 +26,21 @@ add_executable(${PROJECT_NAME}
         include/LibGame/Interactions.hpp
         include/LibGame/LibGame.hpp
 
+        include/LibGame/action/primary/IdlePrimaryStatus.hpp
+        include/LibGame/action/primary/SlowDanceStatus.hpp
+        include/LibGame/action/primary/DanceStatus.hpp
+        include/LibGame/action/primary/ActionStatus.hpp
+
+        include/LibGame/action/secondary/MovementSpeedSecondaryStatus.hpp
+        include/LibGame/action/secondary/StraponSecondaryStatus.hpp
+        include/LibGame/action/secondary/PartnerSecondaryStatus.hpp
+        include/LibGame/action/secondary/NakedSecondaryStatus.hpp
+
         include/LibGame/module/ImageReader.hpp
         include/LibGame/module/Moderation.hpp
         include/LibGame/module/SexActions.hpp
         include/LibGame/module/BaseModule.hpp
         include/LibGame/module/Slowdance.hpp
-        include/LibGame/module/Clipboard.hpp
         include/LibGame/module/Interface.hpp
         include/LibGame/module/Clothing.hpp
         include/LibGame/module/Movement.hpp
@@ -45,11 +56,11 @@ add_executable(${PROJECT_NAME}
         include/LibGame/module/Item.hpp
         include/LibGame/module/Gift.hpp
 
+        include/LibGame/misc/KvStore.hpp
         include/LibGame/misc/Point.hpp
 
         include/LibGame/state/BaseState.hpp
         include/LibGame/state/JsonFile.hpp
-
 
         src/modules/ImageReader.cpp
         src/modules/Moderation.cpp
@@ -73,18 +84,25 @@ add_executable(${PROJECT_NAME}
         src/detect/Detector.cpp
         src/asset/Assets.cpp
 
+        src/action/primary/IdlePrimaryStatus.cpp
+        src/action/primary/SlowDanceStatus.cpp
+        src/action/primary/ActionStatus.cpp
+        src/action/primary/DanceStatus.cpp
+
+        src/action/secondary/MovementSpeedSecondaryStatus.cpp
+        src/action/secondary/StraponSecondaryStatus.cpp
+        src/action/secondary/PartnerSecondaryStatus.cpp
+        src/action/secondary/NakedSecondaryStatus.cpp
+
         src/state/JsonFile.cpp
 
         src/io/Screenshot.cpp
+        src/io/Clipboard.cpp
         src/io/Keyboard.cpp
         src/io/Mouse.cpp
 
         src/Interactions.cpp
         src/main.cpp
-
-
-
-
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

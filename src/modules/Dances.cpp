@@ -1,6 +1,10 @@
 #include "LibGame/module/Dances.hpp"
 
+#include "LibGame/action/primary/DanceStatus.hpp"
 #include "LibGame/module/BaseModule.hpp"
+#include "LibGame/module/Context.hpp"
+
+using namespace LibGame::Action::Primary;
 
 namespace LibGame::Module {
     std::unordered_map<int, float> Dances::_confidences;
@@ -52,7 +56,7 @@ namespace LibGame::Module {
             {41, 0.95f},
             {42, 0.91f},
             {43, 0.93f},
-            {44, 0.93f},
+            {44, 0.87f},
             {45, 0.93f},
             {46, 0.93f},
             {47, 0.94f}
@@ -163,6 +167,9 @@ namespace LibGame::Module {
                 const auto center = button.Center();
 
                 mouse->MoveToAndClick(_header.X + center.X, _header.Y  + center.Y);
+
+                core->GetInteraction<Context>()
+                .SetPrimaryAction<DanceStatus>(DanceStatus::TypeFromInt(number));
                 return true;
             }
         }

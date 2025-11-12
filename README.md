@@ -6,7 +6,7 @@ LibGame allows SparkleBeat to interact with the 3DXChat ganme world
 - [ ] Add link to asset repository
 - [ ] Fix dances
 - [ ] Interface hide/she interface did not work
-- [ ] Make more ise ClicIfFirstAssetIsVisible like with clothing
+- [ ] Make more ise ClickIfFirstAssetIsVisible like with clothing
 
 ## Asset path
 
@@ -17,21 +17,14 @@ to the game folder the library uses. You can find the asset repository here: <to
 
 ```
 
-## Skipped 
-
-- [ ] Friends
-- [ ] Gift
-- 
-
-
 ## Needing implementation in 3th party libraries
-
-- [ ] Clipboard in LibIO
 
 
 ## Missing context 
 
-- [ ] Clothing
+- [x] Clothing
 - [ ] Actions
 - [ ] Movement
-- 
+- [ ] Dances
+- [ ] Stapon
+- [ ] Idle

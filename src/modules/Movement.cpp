@@ -2,7 +2,7 @@
 
 namespace LibGame::Module {
     bool Movement::Run() const {
-        return ClicIfFirstAssetIsVisible(
+        return ClickIfFirstAssetIsVisible(
             "movement/movement_panel_header.png",
             "movement/button_run.png",
             DArgs{.confidence = 0.99f},
@@ -11,7 +11,7 @@ namespace LibGame::Module {
     }
 
     bool Movement::Walk() const {
-        return ClicIfFirstAssetIsVisible(
+        return ClickIfFirstAssetIsVisible(
             "movement/movement_panel_header.png",
             "movement/button_walk.png",
             DArgs{.confidence = 0.99f},

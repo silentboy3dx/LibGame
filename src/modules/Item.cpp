@@ -2,7 +2,7 @@
 
 namespace LibGame::Module {
     bool Item::Consume() const {
-        return ClicIfFirstAssetIsVisible(
+        return ClickIfFirstAssetIsVisible(
             "item/holding_panel_header.png",
             "item/button_use.png",
             DArgs{.confidence = 0.99f},
@@ -11,7 +11,7 @@ namespace LibGame::Module {
     }
 
     bool Item::PutAway() const {
-        return ClicIfFirstAssetIsVisible(
+        return ClickIfFirstAssetIsVisible(
             "item/holding_panel_header.png",
             "item/button_remove.png",
             DArgs{.confidence = 0.99f},
@@ -20,7 +20,7 @@ namespace LibGame::Module {
     }
 
     bool Item::Drop() const {
-        return ClicIfFirstAssetIsVisible(
+        return ClickIfFirstAssetIsVisible(
             "item/holding_panel_header.png",
             "item/button_throw.png",
             DArgs{.confidence = 0.99f},

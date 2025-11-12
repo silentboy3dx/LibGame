@@ -76,7 +76,7 @@ namespace LibGame::Module {
             return false;
         }
 
-        [[nodiscard]] bool ClicIfFirstAssetIsVisible(const std::string &primary_asset, const std::string &secondary_asset, const DArgs &primary_args, const DArgs &secondary_args) const {
+        [[nodiscard]] bool ClickIfFirstAssetIsVisible(const std::string &primary_asset, const std::string &secondary_asset, const DArgs &primary_args, const DArgs &secondary_args) const {
 
             const std::optional<DResult> primary_result = detector->Single(
                             assets->AssetFile(primary_asset),

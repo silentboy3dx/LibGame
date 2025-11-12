@@ -2,12 +2,11 @@
 
 #include "LibGame/Interactions.hpp"
 #include "LibGame/module/ImageReader.hpp"
+#include "LibGame/module/Moderation.hpp"
 #include "LibGame/module/SexActions.hpp"
 #include "LibGame/module/Slowdance.hpp"
 #include "LibGame/module/Interface.hpp"
-#include "LibGame/module/Clipboard.hpp"
 #include "LibGame/module/Clothing.hpp"
-#include "LibGame/module/Moderation.hpp"
 #include "LibGame/module/Friends.hpp"
 #include "LibGame/module/Movement.hpp"
 #include "LibGame/module/Context.hpp"
@@ -21,3 +20,4 @@
 #include "LibGame/module/Item.hpp"
 #include "LibGame/module/Gift.hpp"
 #include "LibIO/LibIO.hpp"
+

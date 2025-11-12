@@ -2,11 +2,14 @@
 
 #include "LibGame/io/Mouse.hpp"
 #include "LibGame/io/Keyboard.hpp"
+#include "LibGame/io/Clipboard.hpp"
+#include "LibGame/io/Screenshot.hpp"
+#include "LibGame/state/JsonFile.hpp"
+
 
 #include "LibGame/module/ImageReader.hpp"
 #include "LibGame/module/Moderation.hpp"
 #include "LibGame/module/SexActions.hpp"
-#include "LibGame/module/Clipboard.hpp"
 #include "LibGame/module/Slowdance.hpp"
 #include "LibGame/module/Interface.hpp"
 #include "LibGame/module/Clothing.hpp"
@@ -26,9 +29,6 @@
 #include <LibOS/LibOS.hpp>
 #include <optional>
 
-#include "LibGame/io/Screenshot.hpp"
-#include "LibGame/state/JsonFile.hpp"
-
 using namespace LibOS;
 using namespace LibGame::Module;
 using namespace LibGame::Io;
@@ -43,13 +43,13 @@ namespace LibGame {
         RegisterInteraction<Mouse>();
         RegisterInteraction<Keyboard>();
         RegisterInteraction<Screenshot>();
+        RegisterInteraction<Clipboard>();
         RegisterInteraction<Detector>();
         RegisterInteraction<Assets>();
 
         RegisterModule<ImageReader>();
         RegisterModule<Moderation>();
         RegisterModule<SexActions>();
-        RegisterModule<Clipboard>();
         RegisterModule<Slowdance>();
         RegisterModule<Interface>();
         RegisterModule<Clothing>();
