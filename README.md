@@ -3,28 +3,18 @@ LibGame allows SparkleBeat to interact with the 3DXChat ganme world
 
 ## TODO
 
-- [ ] Add link to asset repository
-- [ ] Fix dances
+- [ ] Add Partner name in partner status.
 - [ ] Interface hide/she interface did not work
-- [ ] Make more ise ClickIfFirstAssetIsVisible like with clothing
 
 ## Asset path
 
 You have to set the LIBGAME_ASSET_PATH environment variable this will link 
-to the game folder the library uses. You can find the asset repository here: <todo add link here>
+to the game folder the library uses. You can find the asset repository here: [https://github.com/silentboy3dx/sparkle-assets](https://github.com/silentboy3dx/sparkle-assets)
+
+
 
 ```cmake
 
 ```
 
 ## Needing implementation in 3th party libraries
-
-
-## Missing context 
-
-- [x] Clothing
-- [ ] Actions
-- [ ] Movement
-- [ ] Dances
-- [ ] Stapon
-- [ ] Idle

@@ -10,15 +10,15 @@ namespace LibGame::Action::Secondary {
         enum class Type {
             Off,
             Penis,
-            Strapon1,
-            Strapon2
+            Toy1,
+            Toy2
         };
 
         explicit StraponSecondaryStatus(const Type t);
         ~StraponSecondaryStatus() override;
 
         static std::string GetPrimaryActionName();
-        static std::string GetPrimaryActionValue(const Type action);
+        static std::string GetPrimaryActionValue(Type action);
 
         [[nodiscard]] std::unordered_map<std::string, std::string> getContext() const override;
 

@@ -27,7 +27,6 @@ namespace LibGame::Action::Secondary {
     }
 
     void PartnerSecondaryStatus::fillContext() {
-        add("Action", GetPrimaryActionName());
         add("Partner", GetPrimaryActionValue(type));
     }
 }

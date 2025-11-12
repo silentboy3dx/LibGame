@@ -48,14 +48,18 @@ int main() {
        // .SetPrimaryAction<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle3)
        // .SetPrimaryAction<DanceStatus>(DanceStatus::Type::Dance7)
        // .AddSecondaryAction<EatStatus>(EatStatus::Type::Pizza)
-       .AddSecondaryAction<MovementSpeedSecondaryStatus>(MovementSpeedSecondaryStatus::Type::Running)
-       .AddSecondaryAction<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Penis)
+       // .AddSecondaryAction<MovementSpeedSecondaryStatus>(MovementSpeedSecondaryStatus::Type::Running)
+       // .AddSecondaryAction<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Penis)
        // .AddSecondaryAction<NakedSecondaryStatus>(NakedSecondaryStatus::Type::Undressed)
        .add("Mood", "Happy")
        .after("=== End ===");
 
 
-    interactions.GetInteraction<Dances>().Dance(1);
+    // interactions.GetInteraction<Strapon>().Penis();
+    // interactions.GetInteraction<Strapon>().Toy1();
+    // interactions.GetInteraction<Strapon>().Toy2();
+    interactions.GetInteraction<Movement>().Run();
+
     // ctx.SetPrimaryAction<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle4);
 
     std::cout << interactions.GetInteraction<Context>() << "\n";

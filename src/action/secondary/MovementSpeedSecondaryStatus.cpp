@@ -14,8 +14,8 @@ namespace LibGame::Action::Secondary {
 
     std::string MovementSpeedSecondaryStatus::GetPrimaryActionValue(const Type action) {
         switch(action) {
-            case Type::Walking: return "walking";
-            case Type::Running: return "running";
+            case Type::Walking: return "Walking";
+            case Type::Running: return "Running";
             default:            return "unknown";
         }
     }

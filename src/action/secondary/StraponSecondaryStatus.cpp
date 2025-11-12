@@ -1,7 +1,6 @@
 #include "LibGame/action/secondary/StraponSecondaryStatus.hpp"
 
 namespace LibGame::Action::Secondary {
-
     StraponSecondaryStatus::StraponSecondaryStatus(const Type t) : type(t) {
         fillContext();
     }
@@ -13,12 +12,12 @@ namespace LibGame::Action::Secondary {
     }
 
     std::string StraponSecondaryStatus::GetPrimaryActionValue(const Type action) {
-        switch(action) {
-            case Type::Off:      return "Off";
-            case Type::Penis:    return "Penis";
-            case Type::Strapon1: return "Metallic Purple strapon";
-            case Type::Strapon2: return "Metallic golden strapon";
-            default:             return "unknown type";
+        switch (action) {
+            case Type::Off: return "Off";
+            case Type::Penis: return "Penis";
+            case Type::Toy1: return "Metallic Purple strapon";
+            case Type::Toy2: return "Metallic golden strapon";
+            default: return "unknown type";
         }
     }
 
@@ -27,7 +26,8 @@ namespace LibGame::Action::Secondary {
     }
 
     void StraponSecondaryStatus::fillContext() {
-        add("Strapon type", GetPrimaryActionValue(type));
+        if (type != Type::Off) {
+            add("Strapon type", GetPrimaryActionValue(type));
+        }
     }
-
 }

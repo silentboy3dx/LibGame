@@ -13,8 +13,8 @@ namespace LibGame::Action::Secondary {
 
     std::string NakedSecondaryStatus::GetPrimaryActionValue(const Type action) {
         switch (action) {
-            case Type::Dressed: return "You are dressed.";
-            case Type::Undressed: return "You are undressed.";
+            case Type::Dressed: return "You are dressed";
+            case Type::Undressed: return "You are undressed";
             default: return "unknown";
         }
     }
