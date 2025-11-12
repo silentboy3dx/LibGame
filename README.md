@@ -1,4 +1,4 @@
-<h1 align="center">SparkleBeat Game interaction Code</h1>
+<h1 align="center">SparkleBeat Game Interaction Code</h1>
 
 <p align="center">
     <img src="assets/sparklebeat.png" width="250"  height="250" alt="Picture of DJ SparkleBeat" />
