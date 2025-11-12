@@ -37,7 +37,7 @@ echo "export LIBGAME_ASSET_PATH=$PWD" >> ~/.bashrc
 echo "export LIBGAME_DATA_PATH=/home/silentboy/documents/sparklebeat/data" >> ~/.bashrc
 ```
 
-****Replace .bashrc with .zshrc if you are using zsh.*****
+****Replace .bashrc with .zshrc if you are using zsh.****
 
 
 ## Needing implementation in 3th party libraries
