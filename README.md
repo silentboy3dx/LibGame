@@ -23,31 +23,21 @@ int main() {
 
 
 
-## Asset path
+## Asset path and Data Path
 
 You have to set the LIBGAME_ASSET_PATH environment variable this will link 
 to the game folder the library uses. You can find the asset repository here: [https://github.com/silentboy3dx/sparkle-assets](https://github.com/silentboy3dx/sparkle-assets)
 
-
-
+The moderation module writes data to a json file. You can set the LIBGAME_DATA_PATH environment variable to change the path.
 
 ```bash
 git clone https://github.com/silentboy3dx/sparkle-assets.git assets
 cd assets
 echo "export LIBGAME_ASSET_PATH=$PWD" >> ~/.bashrc
-```
-
-Replace .bashrc with .zshrc if you are using zsh.
-
-## Data Path
-
-The moderation module writes data to a json file. You can set the LIBGAME_DATA_PATH environment variable to change the path.
-
-```bash
-
 echo "export LIBGAME_DATA_PATH=/home/silentboy/documents/sparklebeat/data" >> ~/.bashrc
-
 ```
+
+****Replace .bashrc with .zshrc if you are using zsh.*****
 
 
 ## Needing implementation in 3th party libraries
