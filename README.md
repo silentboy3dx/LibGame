@@ -20,7 +20,7 @@ int main() {
     return 0;
 }
 ```
-# LibGame
+
 
 
 ## Asset path
@@ -30,9 +30,25 @@ to the game folder the library uses. You can find the asset repository here: [ht
 
 
 
-```cmake
+
+```bash
+git clone https://github.com/silentboy3dx/sparkle-assets.git assets
+cd assets
+echo "export LIBGAME_ASSET_PATH=$PWD" >> ~/.bashrc
+```
+
+Replace .bashrc with .zshrc if you are using zsh.
+
+## Data Path
+
+The moderation module writes data to a json file. You can set the LIBGAME_DATA_PATH environment variable to change the path.
+
+```bash
+
+echo "export LIBGAME_DATA_PATH=/home/silentboy/documents/sparklebeat/data" >> ~/.bashrc
 
 ```
+
 
 ## Needing implementation in 3th party libraries
 
