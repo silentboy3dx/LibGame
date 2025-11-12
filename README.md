@@ -1,10 +1,11 @@
+<h1 align="center">SparkleBeat Game interaction Code</h1>
+
+<p align="center">
+    <img src="assets/sparklebeat.png" width="250"  height="250" alt="Picture of DJ SparkleBeat" />
+</p>
+
 # LibGame
 LibGame allows SparkleBeat to interact with the 3DXChat ganme world
-
-## TODO
-
-- [ ] Add Partner name in partner status.
-- [ ] Interface hide/she interface did not work
 
 ## Asset path
 
