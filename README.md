@@ -7,6 +7,24 @@
 LibGame allows SparkleBeat to interact with the 3DXChat game world. You are free to use it for your self, it has a pretty easy api to use.
 The current version is NOT a library yet but this will soon change once all the basic bugs are fixed (see [issues](https://github.com/silentboy3dx/LibGame/issues))
 
+
+### Build and install
+
+```bash
+git clone https://github.com/silentboy3dx/LibGame
+cd LibGame
+mkdir build && cd build
+cmake ..
+make
+make install
+```
+
+## Setting up CMakeLists.txt
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget vulputate neque. Aliquam posuere vel dolor et tristique. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in dictum tellus. Fusce sodales sollicitudin tempus. Mauris rhoncus tempus massa convallis tempus. Nam tristique nisi libero, interdum gravida lectus varius at. Fusce a varius nunc, in ultricies orci. Maecenas varius quam ac libero feugiat pulvinar. Morbi lobortis vehicula turpis nec porta. Fusce semper lacus at eleifend sagittis. Ut venenatis vestibulum mi non commodo. Etiam ac tristique sem. Aenean a eros nec urna ultrices sollicitudin quis vel ipsum. Etiam pharetra, nibh sit amet rutrum pellentesque, orci justo auctor dui, in convallis velit lacus suscipit neque.
+
+## Usage
+
 ```C++
 #include "LibGame/LibGame.hpp"
 
@@ -20,6 +38,9 @@ int main() {
     return 0;
 }
 ```
+
+
+
 
 
 
