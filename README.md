@@ -40,13 +40,6 @@ echo "export LIBGAME_DATA_PATH=/home/silentboy/documents/sparklebeat/data" >> ~/
 ****Replace .bashrc with .zshrc if you are using zsh.****
 
 
-## Dependencies
-
-|----------|-----------------|
-| CMake    | >= 3.22         |
-| Nlohmann  | >= 3.10.0       |
-| Boost     | >= 1.78.0       |
-
 ## License
 
 MIT License
