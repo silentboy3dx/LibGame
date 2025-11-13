@@ -15,4 +15,4 @@ if(NOT LIBIO_INCLUDE_DIRS)
     set(LIBIO_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/../io/include")
 endif()
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${LIBIO_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${LIBIO_INCLUDE_DIRS})
