@@ -10,7 +10,8 @@ set(LIBGRAPHICS_ENABLE_TESTS OFF CACHE BOOL "Disable LibGraphics tests")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-add_executable(${PROJECT_NAME}
+# add_executable
+add_library(${PROJECT_NAME}
 
         include/LibGame/io/Screenshot.hpp
         include/LibGame/io/Clipboard.hpp
