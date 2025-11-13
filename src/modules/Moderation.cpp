@@ -79,7 +79,7 @@ namespace LibGame::Module {
         }
     }
 
-    std::map<std::string, TimeoutRecord> Moderation::GetTimeouts() {
+    std::map<std::string, TimeoutRecord> Moderation::GetTimeouts() const {
         std::map<std::string, TimeoutRecord> result;
 
         if (!_state->Has(TIMEOUTS_KEY)) {
