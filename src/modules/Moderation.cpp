@@ -109,7 +109,7 @@ namespace LibGame::Module {
         return result;
     }
 
-    std::vector<std::string> Moderation::GetBlockList() {
+    std::vector<std::string> Moderation::GetBlockList() const {
         if (!_state->Has(BLOCKS_KEY)) {
             return std::vector<std::string>();  // Return empty vector if key doesn't exist
         }
@@ -121,7 +121,7 @@ namespace LibGame::Module {
         }
     }
 
-    bool Moderation::IsBlocked(const std::string& target) {
+    bool Moderation::IsBlocked(const std::string& target) const {
         auto blocks = GetBlockList();
         return std::find(blocks.begin(), blocks.end(), target) != blocks.end();
     }

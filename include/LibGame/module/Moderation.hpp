@@ -26,9 +26,9 @@ namespace LibGame::Module {
         void RemoveBlock(const std::string& target);
 
         std::map<std::string, TimeoutRecord> GetTimeouts() const;
-        std::vector<std::string> GetBlockList();
+        std::vector<std::string> GetBlockList() const;
 
-        bool IsBlocked(const std::string& target);
+        bool IsBlocked(const std::string& target) const;
         bool IsTimedOut(const std::string& target);
 
     private:
