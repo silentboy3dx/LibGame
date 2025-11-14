@@ -14,4 +14,4 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 message(STATUS "Linking LibOS using includes ${libos_SOURCE_DIR}/include")
 
-target_link_libraries(${PROJECT_NAME} PRIVATE LibOS)
+target_link_libraries(${PROJECT_NAME} PUBLIC LibOS)
