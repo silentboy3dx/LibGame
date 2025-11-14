@@ -36,6 +36,10 @@ namespace LibGame::Asset {
         return cache[asset];
     }
 
+    std::string Assets::getAssetType() const {
+        return assetType;
+    }
+
     void Assets::setAssetType(const std::string &type) {
         assetType = type;
     }

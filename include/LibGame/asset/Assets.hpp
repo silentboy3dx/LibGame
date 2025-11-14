@@ -22,6 +22,7 @@ namespace LibGame::Asset {
         Image &AssetFile(const std::string &asset);
 
         void setAssetType(const std::string &type);
+        std::string getAssetType() const;
 
     private:
         std::string assetType = AssetType::TYPE_2K;
