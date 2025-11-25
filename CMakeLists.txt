@@ -85,6 +85,7 @@ add_library(${PROJECT_NAME}
         src/detect/Detector.cpp
         src/asset/Assets.cpp
 
+
         src/action/primary/IdlePrimaryStatus.cpp
         src/action/primary/SlowDanceStatus.cpp
         src/action/primary/ActionStatus.cpp

@@ -11,13 +11,11 @@ namespace LibGame::Module {
 
         ~Chat() override = default;
 
-        bool PlaceCursorInChat() const;
-        bool GoToLocal() const;
-        bool PressSend() const;
-        bool WhipeChat() const;
+        [[nodiscard]] std::optional<DResult> GetLocalTab() const;
 
-    private:
-        std::optional<DResult> GetLocalTab() const;
-
+        [[nodiscard]] bool PlaceCursorInChat() const;
+        [[nodiscard]] bool GoToLocal() const;
+        [[nodiscard]] bool PressSend() const;
+        [[nodiscard]] bool WipeChat() const;
     };
 }

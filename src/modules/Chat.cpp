@@ -71,7 +71,7 @@ namespace LibGame::Module {
         return ClickIfVisible("chat/button_send.png", 0.99f, false);
     }
 
-    bool Chat::WhipeChat() const {
+    bool Chat::WipeChat() const {
         if (PlaceCursorInChat()) {
 
 #if PLATFORM_LINUX
