@@ -18,7 +18,7 @@ namespace LibGame::Detect {
         ~Detector() override = default;
 
         void SetLastTarget(const Image &target);
-        Image GetLastTarget() const;
+        [[nodiscard]] Image GetLastTarget() const;
 
 
         [[nodiscard]] std::optional<DResult> Single(Image &match_template, const DArgs &args);

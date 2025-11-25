@@ -19,6 +19,7 @@ namespace LibGame::Detect {
     Detector::Detector(Interactions *core) : BaseInteraction(core) {
         matcher = TemplateMatcher();
     }
+
     void Detector::SetLastTarget(const Image &target) {
         lastTarget = target;
     }
@@ -105,7 +106,7 @@ namespace LibGame::Detect {
 
             // Perform detection logic here
         } catch (const Exceptions::LowConfidenceException &e) {
-            std::cout << match_template.origin << ": Low confidence exception" << e.what() <<  std::endl;
+            std::cout << match_template.origin << ": Low confidence exception" << e.what() << std::endl;
         } catch (const std::exception &e) {
             // Handle exceptions if necessary
         }
@@ -115,6 +116,71 @@ namespace LibGame::Detect {
     }
 
     std::optional<std::vector<DResult> > Detector::Multiple(Image &match_template, const DArgs &args) {
+        try {
+            auto options = MatchOptions();
+            std::optional<Image> match_target = args.match_target;
+            bool toRealworld = false;
+
+            if (args.cacheable) {
+#pragma warning("Cache not implemented yet")
+            }
+
+            if (!match_target) {
+                const ScreenshotResult screenshot = [&]() -> ScreenshotResult {
+                    if (args.region.has_value()) {
+                        return TakeScreenshot(args.region->X,
+                                              args.region->Y,
+                                              args.region->Width,
+                                              args.region->Height);
+                    } else {
+                        return TakeScreenshot();
+                    }
+                }();
+                match_target = screenshot.image;
+            }
+
+            if (args.region.has_value()) {
+                toRealworld = true;
+            }
+
+            if (args.grayscale) {
+                match_target = match_target->toGrayscale();
+                match_template = match_template.toGrayscale();
+            }
+
+            options.minConfidence = args.confidence;
+            SetLastTarget(match_target.value());
+
+            // Zoek meerdere matches
+            auto results = TemplateMatcher::matchTemplateMultiple(
+                match_template,
+                match_target.value(),
+                options
+            );
+
+            // Pas regio-offset toe indien nodig
+            if (args.region.has_value() && toRealworld) {
+                const auto region = args.region.value();
+                for (auto &r: results) {
+                    r.X += region.X;
+                    r.Y += region.Y;
+                }
+            }
+
+            if (!results.empty()) {
+                std::vector<DResult> converted;
+                converted.reserve(results.size());
+                for (auto &r: results) {
+                    converted.push_back(static_cast<DResult>(r));
+                }
+                return converted;
+            }
+        } catch (const Exceptions::LowConfidenceException &e) {
+            std::cout << match_template.origin << ": Low confidence exception " << e.what() << std::endl;
+        } catch (const std::exception &e) {
+            // Handle exceptions if necessary
+        }
+
         return std::nullopt;
     }
 }
