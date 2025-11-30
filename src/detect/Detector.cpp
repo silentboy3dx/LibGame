@@ -151,6 +151,7 @@ namespace LibGame::Detect {
             options.minConfidence = args.confidence;
             SetLastTarget(match_target.value());
 
+            // match_template.show();
             // Zoek meerdere matches
             auto results = TemplateMatcher::matchTemplateMultiple(
                 match_template,

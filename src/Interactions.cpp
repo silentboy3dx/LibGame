@@ -75,6 +75,7 @@ namespace LibGame {
     }
 
     bool Interactions::IsGameInForeground() {
+        std::cout << "Checking if game is in foreground" << std::endl;
         if (const std::optional<WindowInfo> info = GetActiveWindow()) {
             return info->title == "3DXChat";
         }
