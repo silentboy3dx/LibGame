@@ -3,6 +3,7 @@
 #include <LibGraphics/type/Rect.hpp>
 
 #include "LibGame/misc/Point.hpp"
+#include "LibGame/misc/Rect.hpp"
 #include "LibGame/module/Friends.hpp"
 #include "LibGame/module/ImageReader.hpp"
 #include "LibGame/module/Profile.hpp"

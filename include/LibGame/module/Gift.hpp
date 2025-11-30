@@ -29,6 +29,5 @@ namespace LibGame::Module {
         const int ProfileMaxHeight = 550;
 
         bool GoToMyGifts() const;
-
     };
 }
