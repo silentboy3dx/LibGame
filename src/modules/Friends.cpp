@@ -64,7 +64,7 @@ namespace LibGame::Module {
                         if (Information::is_white(r, g, b, 5)) {
 
                             int yy = (label.Y + label.Height) + y;
-                            auto name = screenshot.image.crop((label.X + x) - 14, yy, FRIENDS_LIST_WIDTH, FRIENDS_NAME_HEIGHT);
+                            auto name = screenshot.crop((label.X + x) - 14, yy, FRIENDS_LIST_WIDTH, FRIENDS_NAME_HEIGHT);
 
                             auto text = core->GetInteraction<ImageReader>().ImageToText(
                                 name,

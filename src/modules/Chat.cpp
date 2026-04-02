@@ -6,10 +6,10 @@ namespace LibGame::Module {
         auto screenshot = detector->GetLastTarget();
 
         if (!screenshot.isValid()) {
-            if (const auto result = core->GetInteraction<Screenshot>().Take(); result.image.isValid()) {
-                detector->SetLastTarget(result.image);
+            if (const auto result = core->GetInteraction<Screenshot>().Take(); result.isValid()) {
+                detector->SetLastTarget(result);
 
-                screenshot = result.image;
+                screenshot = result;
             }
         }
 

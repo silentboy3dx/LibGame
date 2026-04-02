@@ -44,11 +44,11 @@ namespace LibGame::Module {
         const auto screenshot = core->GetInteraction<Screenshot>().Take();
 
         const auto btn_result = GetAsset("gift/button_my_gifts_highlighted.png",
-                                                 DArgs{.grayscale = false, .confidence = 0.99f, .match_target = screenshot.image});
+                                                 DArgs{.grayscale = false, .confidence = 0.99f, .match_target = screenshot});
 
         GiftSender sender {.Message = "No message found"};
 
-        if (screenshot.image.isValid() && btn_result.has_value()) {
+        if (screenshot.isValid() && btn_result.has_value()) {
             const auto giftbutton = btn_result.value();
             const auto innerToLeft = Point(giftbutton.X - 192, giftbutton.Y + giftbutton.Height);
 
@@ -56,7 +56,7 @@ namespace LibGame::Module {
                 const auto seperator = seperator_result.value();
 
 
-                 auto gift = screenshot.image.crop(innerToLeft.X, innerToLeft.Y, PROFILE_WINDOW_WIDTH - FRIENDS_LIST_WIDTH, seperator.Y - innerToLeft.Y);
+                 auto gift = screenshot.crop(innerToLeft.X, innerToLeft.Y, PROFILE_WINDOW_WIDTH - FRIENDS_LIST_WIDTH, seperator.Y - innerToLeft.Y);
 
                  auto const btnDelete = GetAsset("gift/button_delete.png",
                                                  DArgs{.grayscale = true, .confidence = 0.99f, .match_target = gift});

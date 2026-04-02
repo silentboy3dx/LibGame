@@ -97,7 +97,7 @@ namespace LibGame::Module {
 
     std::optional<DResult> Dances::GetDanceLocation(int dance) const {
 
-        if (const auto shot = screenshots->Take(); shot.image.isValid()) {
+        if (const auto shot = screenshots->Take(); shot.isValid()) {
 
             /**
              * This will cut out only
@@ -106,7 +106,7 @@ namespace LibGame::Module {
             const int x = _header.X;
             const int y = _header.Y;
 
-            const Image crop = shot.image.crop(
+            const Image crop = shot.crop(
                x,
                y,
                dancesInnerWidth,

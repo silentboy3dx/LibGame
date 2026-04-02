@@ -43,7 +43,7 @@ namespace LibGame::Detect {
                  * I could have made a crop from the screenshot (Image suports cropping) but i have chosen to
                  * screenshot a region of the screen instead for performance reasons.
                  */
-                const ScreenshotResult screenshot = [&]() -> ScreenshotResult {
+                const Image screenshot = [&]() -> Image {
                     if (args.region.has_value()) {
                         return TakeScreenshot(args.region->X,
                                               args.region->Y,
@@ -54,7 +54,7 @@ namespace LibGame::Detect {
                     }
                 }();
 
-                match_target = screenshot.image;
+                match_target = screenshot;
             }
 
             if (args.region.has_value()) {
@@ -125,7 +125,7 @@ namespace LibGame::Detect {
             }
 
             if (!match_target) {
-                const ScreenshotResult screenshot = [&]() -> ScreenshotResult {
+                const Image screenshot = [&]() -> Image {
                     if (args.region.has_value()) {
                         return TakeScreenshot(args.region->X,
                                               args.region->Y,
@@ -135,7 +135,7 @@ namespace LibGame::Detect {
                         return TakeScreenshot();
                     }
                 }();
-                match_target = screenshot.image;
+                match_target = screenshot;
             }
 
             if (args.region.has_value()) {
