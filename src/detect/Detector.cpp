@@ -8,9 +8,8 @@
 
 #include <LibGraphics/match/TemplateMatcher.hpp>
 #include <LibGraphics/match/MatchOptions.hpp>
-
-#include "LibScreenshots.hpp"
-#include "LibGraphics/type/Region.hpp"
+#include <LibScreenshots/LibScreenshots.hpp>
+#include <LibGraphics/type/Region.hpp>
 
 using namespace LibGraphics::Type;
 using namespace LibScreenshots;

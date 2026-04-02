@@ -1,8 +1,8 @@
 #pragma once
 
 #include "LibGame/Interactions.hpp"
-
-#include <LibScreenshots.hpp>
+#include <LibScreenshots/LibScreenshots.hpp>
+#include <LibGraphics.hpp>
 
 using namespace LibScreenshots;
 
@@ -11,7 +11,7 @@ namespace LibGame::Io {
     public:
         explicit Screenshot(Interactions *core) : BaseInteraction(core) {};
 
-        ScreenshotResult Take();
-        ScreenshotResult Take(int x, int y, int width, int height);
+        Image Take();
+        Image Take(int x, int y, int width, int height);
     };
 }

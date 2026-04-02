@@ -34,7 +34,7 @@ namespace LibGame::Module {
         const auto screenshot = core->GetInteraction<Screenshot>().Take();
 
 
-        if (screenshot.image.isValid()) {
+        if (screenshot) {
 
             const auto result = GetAsset("friends/label_online_friends.png",
                                          DArgs{.grayscale = true, .confidence = 0.99f});
@@ -44,7 +44,7 @@ namespace LibGame::Module {
                 const auto label = result.value();
                 const int steps = (FRIENDS_MAX_HEIGHT - LABEL_ONLINE_FRIENDS_TOP_OFFSET) / FRIENDS_NAME_HEIGHT;
 
-                Image list = screenshot.image.crop(label.X, (label.Y + label.Height), FRIENDS_LIST_WIDTH,
+                Image list = screenshot.crop(label.X, (label.Y + label.Height), FRIENDS_LIST_WIDTH,
                                                    FRIENDS_MAX_HEIGHT);
 
                 int x = 15;
