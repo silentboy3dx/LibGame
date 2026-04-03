@@ -7,5 +7,3 @@ FetchContent_Declare(LibScreenshots
 
 FetchContent_MakeAvailable(LibScreenshots)
 target_link_libraries(LibGame PUBLIC LibScreenshots)
-
-
