@@ -120,7 +120,7 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     target_compile_definitions(${PROJECT_NAME} PRIVATE PLATFORM_LINUX)
 endif()
 
-include(LibGraphics)
+#include(LibGraphics)
 include(LibScreenshots)
 include(LibIO)
 include(LibOS)
