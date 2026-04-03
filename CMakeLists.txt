@@ -124,3 +124,6 @@ include(LibScreenshots)
 include(LibIO)
 include(LibOS)
 include(JSON)
+
+get_target_property(INC LibScreenshots INTERFACE_INCLUDE_DIRECTORIES)
+message(STATUS "LibGame) @@@@LibScreenshots sees includes: ${INC}")
