@@ -8,11 +8,3 @@ FetchContent_Declare(LibIO
 FetchContent_MakeAvailable(LibIO)
 
 target_link_libraries(LibGame PRIVATE LibIO)
-
-#get_target_property(LIBIO_INCLUDE_DIRS LibIO INTERFACE_INCLUDE_DIRECTORIES)
-#
-#if(NOT LIBIO_INCLUDE_DIRS)
-#    set(LIBIO_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/../io/include")
-#endif()
-
-#target_include_directories(LibGame PUBLIC ${LIBIO_INCLUDE_DIRS})

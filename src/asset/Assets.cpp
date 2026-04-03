@@ -1,6 +1,6 @@
 #include "LibGame/asset/Assets.hpp"
 
-#include <LibGraphics.hpp>
+#include <LibGraphics/LibGraphics.hpp>
 
 #include <filesystem>
 #include <stdexcept>

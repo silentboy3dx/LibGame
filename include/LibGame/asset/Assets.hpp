@@ -2,7 +2,7 @@
 
 #include "LibGame/Interactions.hpp"
 
-#include <LibGraphics.hpp>
+#include <LibGraphics/LibGraphics.hpp>
 #include <string>
 
 using namespace LibGraphics;

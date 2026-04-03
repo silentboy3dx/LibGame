@@ -2,7 +2,7 @@
 
 #include "LibGame/Interactions.hpp"
 #include <LibScreenshots/LibScreenshots.hpp>
-#include <LibGraphics.hpp>
+#include <LibGraphics/LibGraphics.hpp>
 
 using namespace LibScreenshots;
 

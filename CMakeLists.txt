@@ -120,19 +120,9 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     target_compile_definitions(${PROJECT_NAME} PRIVATE PLATFORM_LINUX)
 endif()
 
-#include(LibScreenshots)
-FetchContent_Declare(LibScreenshots
-        GIT_REPOSITORY https://github.com/johnnymast/LibScreenshots.git
-        GIT_TAG master
-)
-
-FetchContent_MakeAvailable(LibScreenshots)
-
-target_link_libraries(LibGame PUBLIC LibScreenshots)
-
+#include(Tesseract)
+include(LibScreenshots)
+include(OpenCV)
 include(LibIO)
 include(LibOS)
 include(JSON)
-
-get_target_property(INC LibScreenshots INTERFACE_INCLUDE_DIRECTORIES)
-message(STATUS "LibGame) @@@@LibScreenshots sees includes: ${INC}")

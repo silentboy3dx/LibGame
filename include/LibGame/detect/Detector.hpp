@@ -2,8 +2,7 @@
 
 #include "LibGame/Interactions.hpp"
 
-#include <LibGraphics.hpp>
-#include <LibGraphics/match/TemplateMatcher.hpp>
+#include <LibGraphics/LibGraphics.hpp>
 #include <LibGame/detect/DResult.hpp>
 #include <LibGame/detect/DArgs.hpp>
 #include <optional>

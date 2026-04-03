@@ -1,9 +1,7 @@
-include(FetchContent)
+find_package(LibGraphics REQUIRED)
+find_package(LibScreenshots REQUIRED)
 
-FetchContent_Declare(LibScreenshots
-        GIT_REPOSITORY https://github.com/johnnymast/LibScreenshots.git
-        GIT_TAG master
+target_link_libraries(${PROJECT_NAME}
+        PRIVATE
+        LibScreenshots::LibScreenshots
 )
-
-FetchContent_MakeAvailable(LibScreenshots)
-target_link_libraries(LibGame PUBLIC LibScreenshots)
