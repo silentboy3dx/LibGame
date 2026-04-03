@@ -5,7 +5,9 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(LIBGRAPHICS_ENABLE_TESTS OFF CACHE BOOL "Disable LibGraphics tests.")
-set(WLROOTS_SCREEN_COPY_SCREENSHOTS OFF CACHE BOOL "Use wayland to take screenshots.")
+option(WLROOTS_SCREEN_COPY_SCREENSHOTS "Build for WlRoots Screencopy Protocol" ON)
+
+
 #set(WAYLAND OFF CACHE BOOL "Disable Wayland portal" FORCE)
 #set(PIPEWIRE ON CACHE BOOL "Enable PipeWire" FORCE)
 

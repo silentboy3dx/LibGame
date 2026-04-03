@@ -1,5 +1,6 @@
 include(FetchContent)
 
+# Fetch LibGraphics
 FetchContent_Declare(LibGraphics
         GIT_REPOSITORY https://github.com/johnnymast/LibGraphics.git
         GIT_TAG master
@@ -7,11 +8,8 @@ FetchContent_Declare(LibGraphics
 
 FetchContent_MakeAvailable(LibGraphics)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC LibGraphics)
-
-get_target_property(LIBGRAPHICS_INCLUDE_DIRS LibGraphics INTERFACE_INCLUDE_DIRECTORIES)
-if(NOT LIBGRAPHICS_INCLUDE_DIRS)
-    set(LIBGRAPHICS_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/../Graphics/include")
-endif()
-
-target_include_directories(${PROJECT_NAME} PUBLIC ${LIBGRAPHICS_INCLUDE_DIRS})
+# Link LibGraphics to LibGame
+target_link_libraries(LibGame
+        PUBLIC
+        LibGraphics
+)
