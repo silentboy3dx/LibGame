@@ -1,10 +1,8 @@
-include(FetchContent)
+find_package(LibIO REQUIRED)
 
-FetchContent_Declare(LibIO
-        GIT_REPOSITORY https://github.com/johnnymast/LibIO.git
-        GIT_TAG master
+target_link_libraries(${PROJECT_NAME}
+        PRIVATE
+        LibIO::LibIO
 )
 
-FetchContent_MakeAvailable(LibIO)
-
-target_link_libraries(LibGame PRIVATE LibIO)
+target_link_libraries(LibGame PUBLIC LibIO::LibIO)
