@@ -8,6 +8,7 @@ if(NOT TARGET nlohmann_json::nlohmann_json)
     )
 
     FetchContent_MakeAvailable(nlohmann_json)
-    target_link_libraries(LibGame PRIVATE nlohmann_json::nlohmann_json)
 endif()
 
+
+target_link_libraries(LibGame PUBLIC nlohmann_json::nlohmann_json)

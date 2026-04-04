@@ -114,7 +114,7 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 endif()
 
 include(LibScreenshots)
-include(OpenCV)
+include(LGOpenCV)
 include(LibIO)
 include(LibOS)
 include(JSON)
