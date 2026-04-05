@@ -1,7 +1,7 @@
 find_package(LibIO REQUIRED)
 
 target_link_libraries(${PROJECT_NAME}
-        PRIVATE
+        PUBLIC
         LibIO::LibIO
 )
 
