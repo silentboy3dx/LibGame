@@ -3,11 +3,12 @@ project(LibGame LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # add_executable
-add_library(${PROJECT_NAME}
+add_library(${PROJECT_NAME} STATIC
 
         include/LibGame/io/Screenshot.hpp
         include/LibGame/io/Clipboard.hpp
