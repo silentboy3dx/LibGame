@@ -1,23 +1,21 @@
-if(CMAKE_TOOLCHAIN_FILE MATCHES "vcpkg.cmake")
-    find_package(OpenCV CONFIG REQUIRED)
-endif()
+message(STATUS "Linking OpenCV")
 
-if(WIN32)
-    set(OpenCV_DIR "C:/opencv/build/x64/vc16/lib")
+if (WIN32)
+    set(OpenCV_ROOT "${VCPKG_INSTALLED_DIR}/x64-windows/share/opencv4")
     find_package(OpenCV REQUIRED)
-endif()
+endif ()
 
-if(UNIX)
+if (UNIX)
     set(CUDAToolkit_ROOT "/opt/cuda")
     find_package(OpenCV REQUIRED)
-endif()
+endif ()
 
-target_include_directories(LibGame
+target_include_directories(LibGraphics
         PUBLIC
         ${OpenCV_INCLUDE_DIRS}
 )
 
-target_link_libraries(LibGame
-        PRIVATE
+target_link_libraries(LibGraphics
+        PUBLIC
         ${OpenCV_LIBRARIES}
 )
