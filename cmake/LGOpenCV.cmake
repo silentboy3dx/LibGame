@@ -18,6 +18,6 @@ target_include_directories(LibGame
 )
 
 target_link_libraries(LibGame
-        PUBLIC
+        PRIVATE
         ${OpenCV_LIBRARIES}
 )
