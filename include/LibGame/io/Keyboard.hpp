@@ -5,7 +5,6 @@
 #include <LibIO/keyboard/KeyboardControls.hpp>
 #include <string>
 
-
 using namespace LibIO::Keyboard;
 
 namespace LibGame::Io {

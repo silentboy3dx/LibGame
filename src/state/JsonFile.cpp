@@ -1,5 +1,10 @@
 #include "LibGame/state/JsonFile.hpp"
 
+
+#if PLATFORM_WINDOWS
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include <fstream>
 #include <map>
 

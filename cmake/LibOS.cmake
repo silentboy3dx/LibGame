@@ -4,4 +4,4 @@ endif()
 
 find_package(LibOS REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE LibOS::LibOS)
+target_link_libraries(LibGame PUBLIC LibOS::LibOS)

@@ -1,7 +1,6 @@
 message(STATUS "Linking OpenCV")
 
 if (WIN32)
-    set(OpenCV_ROOT "${VCPKG_INSTALLED_DIR}/x64-windows/share/opencv4")
     find_package(OpenCV REQUIRED)
 endif ()
 
@@ -10,12 +9,17 @@ if (UNIX)
     find_package(OpenCV REQUIRED)
 endif ()
 
-target_include_directories(LibGraphics
+target_include_directories(LibGame
         PUBLIC
         ${OpenCV_INCLUDE_DIRS}
 )
 
-target_link_libraries(LibGraphics
+target_link_libraries(LibGame
         PUBLIC
-        ${OpenCV_LIBRARIES}
+        opencv_core
+        opencv_imgproc
+        opencv_highgui
+        opencv_imgcodecs
+        opencv_videoio
+        opencv_calib3d
 )
