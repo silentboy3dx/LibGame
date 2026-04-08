@@ -131,7 +131,7 @@ Ga naar de CLion build-map:
 
 Voer uit:
 
-    cmake --install . --prefix "C:/Program Files/LibGame"
+    cmake --install . --config Release --prefix "C:/Program Files/LibGame"
 
 Dit installeert:
 
