@@ -5,7 +5,4 @@ endif()
 find_package(LibGraphics REQUIRED)
 find_package(LibScreenshots REQUIRED)
 
-target_link_libraries(LibGame
-        PUBLIC
-        LibScreenshots::LibScreenshots
-)
+target_link_libraries(LibGame PUBLIC LibScreenshots::LibScreenshots)
