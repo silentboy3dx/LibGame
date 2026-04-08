@@ -122,6 +122,21 @@ include(LibIO)
 include(LibOS)
 include(JSON)
 
+target_link_libraries(LibGame
+        PRIVATE
+            nlohmann_json::nlohmann_json
+            opencv_core
+            opencv_imgproc
+            opencv_highgui
+            opencv_imgcodecs
+            opencv_videoio
+            opencv_calib3d
+        PUBLIC
+            LibIO::LibIO
+            LibOS::LibOS
+            LibScreenshots::LibScreenshots
+)
+
 include(GNUInstallDirs)
 
 install(TARGETS ${PROJECT_NAME}

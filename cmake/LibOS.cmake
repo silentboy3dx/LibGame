@@ -3,5 +3,3 @@ if (WIN32)
 endif()
 
 find_package(LibOS REQUIRED)
-
-target_link_libraries(LibGame PUBLIC LibOS::LibOS)

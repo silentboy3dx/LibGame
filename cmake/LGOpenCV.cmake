@@ -13,13 +13,3 @@ target_include_directories(LibGame
         PUBLIC
         ${OpenCV_INCLUDE_DIRS}
 )
-
-target_link_libraries(LibGame
-        PUBLIC
-        opencv_core
-        opencv_imgproc
-        opencv_highgui
-        opencv_imgcodecs
-        opencv_videoio
-        opencv_calib3d
-)

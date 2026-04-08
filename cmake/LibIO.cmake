@@ -3,5 +3,3 @@ if (WIN32)
 endif()
 
 find_package(LibIO REQUIRED)
-
-target_link_libraries(LibGame PUBLIC LibIO::LibIO)
