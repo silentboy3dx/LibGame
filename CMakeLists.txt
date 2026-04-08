@@ -116,6 +116,7 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     target_compile_definitions(${PROJECT_NAME} PRIVATE PLATFORM_LINUX)
 endif()
 
+include(LibGraphics-LibGame)
 include(LibScreenshots)
 include(LGOpenCV)
 include(LibIO)
@@ -135,6 +136,7 @@ target_link_libraries(LibGame
             LibIO::LibIO
             LibOS::LibOS
             LibScreenshots::LibScreenshots
+            LibGraphics::LibGraphics
 )
 
 include(GNUInstallDirs)
