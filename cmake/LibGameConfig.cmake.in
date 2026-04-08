@@ -5,3 +5,8 @@ include(CMakeFindDependencyMacro)
 
 find_dependency(OpenCV)
 find_dependency(nlohmann_json)
+
+find_dependency(LibIO)
+find_dependency(LibOS)
+find_dependency(LibScreenshots)
+find_dependency(LibGraphics)
