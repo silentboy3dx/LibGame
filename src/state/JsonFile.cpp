@@ -1,18 +1,47 @@
 #include "LibGame/state/JsonFile.hpp"
 
-
-#if PLATFORM_WINDOWS
-#define _CRT_SECURE_NO_WARNINGS
-#endif
-
 #include <fstream>
 #include <map>
+#include <filesystem>
+#include <thread>
+#include <chrono>
+#include <mutex>
+#include <any>
+#include <vector>
+
+#pragma warning("Move GetEnvString to LibOS")
 
 namespace LibGame::State {
+
+    // ------------------------------------------------------------
+    // Portable environment variable reader (Windows + Linux/macOS)
+    // ------------------------------------------------------------
+    static std::string GetEnvString(const char* name) {
+    #if defined(_WIN32)
+        char* buffer = nullptr;
+        size_t size = 0;
+
+        if (_dupenv_s(&buffer, &size, name) == 0 && buffer != nullptr) {
+            std::string value(buffer);
+            free(buffer);
+            return value;
+        }
+        return "";
+    #else
+        const char* val = std::getenv(name);
+        return val ? std::string(val) : "";
+    #endif
+    }
+
+    // ------------------------------------------------------------
+    // Constructor / Destructor
+    // ------------------------------------------------------------
+
     JsonFile::JsonFile() {
-        const char *dataPathEnv = std::getenv("LIBGAME_DATA_PATH");
-        if (dataPathEnv) {
-            _dataFilePath = std::string(dataPathEnv) + "/data.json";
+        std::string dataPathEnv = GetEnvString("LIBGAME_DATA_PATH");
+
+        if (!dataPathEnv.empty()) {
+            _dataFilePath = dataPathEnv + "/data.json";
         } else {
             _dataFilePath = "./data.json";
         }
@@ -27,6 +56,10 @@ namespace LibGame::State {
             _pollingThread.join();
         }
     }
+
+    // ------------------------------------------------------------
+    // Public API
+    // ------------------------------------------------------------
 
     void JsonFile::Set(const std::string &key, const std::any &value) {
         std::lock_guard<std::mutex> lock(_dataMutex);
@@ -47,6 +80,7 @@ namespace LibGame::State {
     }
 
     bool JsonFile::Has(const std::string &key) {
+        std::lock_guard<std::mutex> lock(_dataMutex);
         return _jsonData.contains(key);
     }
 
@@ -63,6 +97,10 @@ namespace LibGame::State {
         std::lock_guard<std::mutex> lock(_dataMutex);
         return _jsonData.dump(4);
     }
+
+    // ------------------------------------------------------------
+    // File IO
+    // ------------------------------------------------------------
 
     void JsonFile::LoadDataFromFile() {
         try {
@@ -87,8 +125,13 @@ namespace LibGame::State {
                 file << _jsonData.dump(4);
             }
         } catch (const std::exception &) {
+            // swallow errors silently
         }
     }
+
+    // ------------------------------------------------------------
+    // Polling thread
+    // ------------------------------------------------------------
 
     void JsonFile::StartPollingThread() {
         _pollingThread = std::thread([this]() {
@@ -109,9 +152,13 @@ namespace LibGame::State {
         }
     }
 
+    // ------------------------------------------------------------
+    // Any → JSON
+    // ------------------------------------------------------------
+
     nlohmann::json JsonFile::AnyToJson(const std::any &value) {
         try {
-            // All integer types -> int
+            // Integer types
             if (value.type() == typeid(int)) {
                 return std::any_cast<int>(value);
             } else if (value.type() == typeid(long)) {
@@ -127,53 +174,48 @@ namespace LibGame::State {
             } else if (value.type() == typeid(unsigned short)) {
                 return static_cast<int>(std::any_cast<unsigned short>(value));
             }
+
             // Float types
             else if (value.type() == typeid(double)) {
                 return std::any_cast<double>(value);
             } else if (value.type() == typeid(float)) {
                 return std::any_cast<float>(value);
             }
+
             // Boolean
             else if (value.type() == typeid(bool)) {
                 return std::any_cast<bool>(value);
             }
+
             // String types
             else if (value.type() == typeid(std::string)) {
                 return std::any_cast<std::string>(value);
             } else if (value.type() == typeid(const char *)) {
                 return std::string(std::any_cast<const char *>(value));
             }
-            // Vector types
+
+            // Vector<int>
             else if (value.type() == typeid(std::vector<int>)) {
                 auto vec = std::any_cast<std::vector<int>>(value);
-                nlohmann::json arr = nlohmann::json::array();
-                for (const auto &item: vec) {
-                    arr.push_back(item);
-                }
-                return arr;
-            } else if (value.type() == typeid(std::vector<std::string>)) {
-                auto vec = std::any_cast<std::vector<std::string>>(value);
-                nlohmann::json arr = nlohmann::json::array();
-                for (const auto &item: vec) {
-                    arr.push_back(item);
-                }
-                return arr;
+                return nlohmann::json(vec);
             }
-            // Map types - ADDED FOR MODERATION
+
+            // Vector<string>
+            else if (value.type() == typeid(std::vector<std::string>)) {
+                auto vec = std::any_cast<std::vector<std::string>>(value);
+                return nlohmann::json(vec);
+            }
+
+            // Map<string, int>
             else if (value.type() == typeid(std::map<std::string, int>)) {
                 auto map = std::any_cast<std::map<std::string, int>>(value);
-                nlohmann::json obj = nlohmann::json::object();
-                for (const auto &[key, val] : map) {
-                    obj[key] = val;
-                }
-                return obj;
-            } else if (value.type() == typeid(std::map<std::string, std::string>)) {
+                return nlohmann::json(map);
+            }
+
+            // Map<string, string>
+            else if (value.type() == typeid(std::map<std::string, std::string>)) {
                 auto map = std::any_cast<std::map<std::string, std::string>>(value);
-                nlohmann::json obj = nlohmann::json::object();
-                for (const auto &[key, val] : map) {
-                    obj[key] = val;
-                }
-                return obj;
+                return nlohmann::json(map);
             }
 
             return nullptr;
@@ -181,6 +223,10 @@ namespace LibGame::State {
             return nullptr;
         }
     }
+
+    // ------------------------------------------------------------
+    // JSON → Any
+    // ------------------------------------------------------------
 
     std::any JsonFile::JsonToAny(const nlohmann::json &json) {
         try {
@@ -196,7 +242,7 @@ namespace LibGame::State {
                 return json.get<std::string>();
             } else if (json.is_array()) {
                 std::vector<std::string> result;
-                for (const auto &item: json) {
+                for (const auto &item : json) {
                     if (item.is_string()) {
                         result.push_back(item.get<std::string>());
                     } else {
@@ -205,11 +251,8 @@ namespace LibGame::State {
                 }
                 return result;
             } else if (json.is_object()) {
-                // Return as a map<string, string> for generic objects
-                // FIXED: Properly handle JSON objects
                 std::map<std::string, std::string> result;
                 for (auto it = json.begin(); it != json.end(); ++it) {
-                    // Convert each value to a string (either get string or dump JSON)
                     if (it.value().is_string()) {
                         result[it.key()] = it.value().get<std::string>();
                     } else {
@@ -218,9 +261,11 @@ namespace LibGame::State {
                 }
                 return result;
             }
+
             return std::any();
         } catch (const nlohmann::json::exception &) {
             return std::any();
         }
     }
-}
+
+} // namespace LibGame::State

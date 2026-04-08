@@ -106,7 +106,7 @@ namespace LibGame::Detect {
             // Perform detection logic here
         } catch (const Exceptions::LowConfidenceException &e) {
             std::cout << match_template.origin << ": Low confidence exception" << e.what() << std::endl;
-        } catch (const std::exception &e) {
+        } catch (const std::exception &) {
             // Handle exceptions if necessary
         }
 
@@ -177,7 +177,7 @@ namespace LibGame::Detect {
             }
         } catch (const Exceptions::LowConfidenceException &e) {
             std::cout << match_template.origin << ": Low confidence exception " << e.what() << std::endl;
-        } catch (const std::exception &e) {
+        } catch (const std::exception &) {
             // Handle exceptions if necessary
         }
 
