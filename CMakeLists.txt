@@ -117,11 +117,11 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 endif()
 
 include(LibGraphics-LibGame)
-include(LibScreenshots)
-include(LGOpenCV)
-include(LibIO)
-include(LibOS)
-include(JSON)
+include(LibScreenshots-LibGame)
+include(OpenCV-LibGame)
+include(LibIO-LibGame)
+include(LibOS-LibGame)
+include(JSON-LibGame)
 
 target_link_libraries(LibGame
         PRIVATE

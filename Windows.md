@@ -1,4 +1,4 @@
-# Windows Build Tutorial (CLion + Visual Studio + vcpkg) — LibGame
+Windows Build Tutorial (CLion + Visual Studio + vcpkg) — LibGame
 
 LibGame heeft één externe dependency (OpenCV4) en linkt met meerdere interne SparkleLibs:
 - LibIO
@@ -19,7 +19,7 @@ C:\Users\jmast\CLionProjects\sparklelibs\sparklelibs\LibGame
 
 Open de Visual Studio Installer en vink slechts één workload aan:
 
-    ✔ Desktop development with C++
+    Desktop development with C++
 
 Dit installeert automatisch:
 
@@ -42,7 +42,7 @@ Installeer OpenCV4:
     vcpkg install opencv4:x64-windows
 
 Belangrijk:
-- Gebruik **opencv4**, niet `opencv`.
+- Gebruik opencv4, niet opencv.
 - Windows gebruikt libs zonder “4”-suffix, dit is normaal.
 
 ============================================================
@@ -115,11 +115,11 @@ Klik:
 
 Je krijgt:
 
-- ✔ OpenCV4 gevonden via vcpkg
-- ✔ MSVC toolchain gevonden
-- ✔ Windows SDK gevonden
-- ✔ Alle SparkleLibs dependencies gevonden
-- ✔ LibGame.dll gebouwd
+- OpenCV4 gevonden via vcpkg
+- MSVC toolchain gevonden
+- Windows SDK gevonden
+- Alle SparkleLibs dependencies gevonden
+- LibGame.dll gebouwd
 
 ============================================================
 8. Installeren (Administrator)
@@ -141,26 +141,52 @@ Dit installeert:
 - C:/Program Files/LibGame/lib/cmake/LibGame/LibGameConfig.cmake
 
 ============================================================
+9. Hoe andere projecten LibGame vinden (CMake package)
+   ============================================================
+
+Na installatie kan elk ander project LibGame vinden via:
+
+    find_package(LibGame REQUIRED)
+
+CMake zoekt standaard in:
+
+    C:/Program Files/LibGame/lib/cmake/LibGame/
+
+Als je op een andere locatie installeert:
+
+    list(APPEND CMAKE_PREFIX_PATH "C:/mijn/libs/LibGame")
+    find_package(LibGame REQUIRED)
+
+De package levert automatisch:
+
+- LibGame::LibGame target
+- include-paths
+- transitive dependencies (LibGraphics, LibIO, LibOS, LibScreenshots)
+- correcte .lib/.dll paden
+
+Je hoeft dus alleen:
+
+    target_link_libraries(MyApp PRIVATE LibGame)
+
+============================================================
 Troubleshooting
 ============================================================
 
-❗ OpenCV libs hebben geen “4”-suffix op Windows  
+OpenCV libs hebben geen “4”-suffix op Windows  
 Dit is normaal:
 
     opencv_core.lib
     opencv_imgproc.lib
     opencv_calib3d.lib
 
-Linux/macOS gebruiken wél “4”-suffixen.
-
-❗ Gemixte builds veroorzaken linkerfouten  
-Als je zowel `opencv` als `opencv4` hebt geïnstalleerd:
+Gemixte builds veroorzaken linkerfouten  
+Als je zowel opencv als opencv4 hebt geïnstalleerd:
 
     vcpkg remove opencv --recurse
     vcpkg remove opencv4 --recurse
     vcpkg install opencv4:x64-windows
 
-❗ CMake vindt verkeerde OpenCV  
+CMake vindt verkeerde OpenCV  
 Gebruik altijd:
 
     find_package(OpenCV CONFIG REQUIRED)
@@ -176,4 +202,4 @@ LibGame vereist:
 - MSVC v143
 - Windows SDK
 
-Wanneer deze voorwaarden zijn voldaan, bouwt LibGame zonder problemen.
+Wanneer deze voorwaarden zijn voldaan, bouwt en installeert LibGame zonder problemen.
