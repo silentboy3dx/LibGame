@@ -14,7 +14,7 @@ namespace LibGame::Io {
         ~Clipboard() override = default;
 
         static void Copy(std::string text) ;
-        static [[nodiscard]] std::string Paste() ;
+        static std::string Paste();
         static void Clear() ;
 
     private:
