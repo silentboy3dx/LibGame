@@ -7,70 +7,42 @@
 using namespace LibGame::Action::Primary;
 
 namespace LibGame::Module {
+
     std::unordered_map<int, float> Dances::_confidences;
     std::unordered_map<int, Image> Dances::_assets;
+    bool Dances::_assetsInitialized = false;
 
-    Dances::Dances(Interactions *core) : BaseModule(core) {
-
+    Dances::Dances(Interactions *core)
+        : BaseModule(core)
+    {
         _confidences = {
-            {1, 0.97f},
-            {2, 0.91f},
-            {3, 0.93f},
-            {4, 0.93f},
-            {5, 0.93f},
-            {6, 0.66f},
-            {7, 0.95f},
-            {8, 0.94f},
-            {9, 0.94f},
-            {10, 0.96f},
-            {11, 0.96f},
-            {12, 0.92f},
-            {13, 0.94f},
-            {14, 0.95f},
-            {15, 0.94f},
-            {16, 0.95f},
-            {17, 0.94f},
-            {18, 0.94f},
-            {19, 0.94f},
-            {20, 0.90f},
-            {21, 0.88f},
-            {22, 0.90f},
-            {23, 0.91f},
-            {24, 0.91f},
-            {25, 0.91f},
-            {26, 0.92f},
-            {27, 0.92f},
-            {28, 0.92f},
-            {29, 0.91f},
-            {30, 0.92f},
-            {31, 0.94f},
-            {32, 0.91f},
-            {33, 0.92f},
-            {34, 0.93f},
-            {35, 0.92f},
-            {36, 0.93f},
-            {37, 0.93f},
-            {38, 0.9333368f},
-            {39, 0.93f},
-            {40, 0.94f},
-            {41, 0.95f},
-            {42, 0.91f},
-            {43, 0.93f},
-            {44, 0.87f},
-            {45, 0.93f},
-            {46, 0.93f},
-            {47, 0.94f}
+            {1, 0.97f}, {2, 0.91f}, {3, 0.93f}, {4, 0.93f}, {5, 0.93f},
+            {6, 0.66f}, {7, 0.95f}, {8, 0.94f}, {9, 0.94f}, {10, 0.96f},
+            {11, 0.96f}, {12, 0.92f}, {13, 0.94f}, {14, 0.95f}, {15, 0.94f},
+            {16, 0.95f}, {17, 0.94f}, {18, 0.94f}, {19, 0.94f}, {20, 0.90f},
+            {21, 0.88f}, {22, 0.90f}, {23, 0.91f}, {24, 0.91f}, {25, 0.91f},
+            {26, 0.92f}, {27, 0.92f}, {28, 0.92f}, {29, 0.91f}, {30, 0.92f},
+            {31, 0.94f}, {32, 0.91f}, {33, 0.92f}, {34, 0.93f}, {35, 0.92f},
+            {36, 0.93f}, {37, 0.93f}, {38, 0.9333368f}, {39, 0.93f}, {40, 0.94f},
+            {41, 0.95f}, {42, 0.91f}, {43, 0.93f}, {44, 0.87f}, {45, 0.93f},
+            {46, 0.93f}, {47, 0.94f}
         };
 
-        InitAssets();
+        // ⚠️ Belangrijk:
+        // InitAssets() wordt NIET in de constructor aangeroepen,
+        // omdat BaseModule::assets nog niet bestaat tijdens constructie.
     }
 
     void Dances::InitAssets() const {
 
-        for (int num = 47; num > 0; num--)
-        {
+        if (_assetsInitialized)
+            return;
+
+        for (int num = 47; num > 0; num--) {
             _assets[num] = assets->AssetFile(std::format("dances/{}.png", num));
         }
+
+        _assetsInitialized = true;
     }
 
     void Dances::ScrollToTop() const {
@@ -80,8 +52,7 @@ namespace LibGame::Module {
 
         mouse->MoveTo(x, y);
 
-        for (int step = 0; step < 7; step++)
-        {
+        for (int step = 0; step < 7; step++) {
             mouse->ScrollUp();
         }
 
@@ -90,27 +61,23 @@ namespace LibGame::Module {
 
     std::optional<DResult> Dances::GetDanceHeader() const {
         return detector->Single(
-                assets->AssetFile("dances/dance_panel_header.png"),
-                DArgs{.cacheable = true, .grayscale = true, .confidence = 0.95f}
-            );
+            assets->AssetFile("dances/dance_panel_header.png"),
+            DArgs{.cacheable = true, .grayscale = true, .confidence = 0.95f}
+        );
     }
 
     std::optional<DResult> Dances::GetDanceLocation(int dance) const {
 
         if (const auto shot = screenshots->Take(); shot.isValid()) {
 
-            /**
-             * This will cut out only
-             * the buttons.
-             */
             const int x = _header.X;
             const int y = _header.Y;
 
             const Image crop = shot.crop(
-               x,
-               y,
-               dancesInnerWidth,
-               dancesInnerHeight
+                x,
+                y,
+                dancesInnerWidth,
+                dancesInnerHeight
             );
 
             if (crop.isValid()) {
@@ -128,10 +95,10 @@ namespace LibGame::Module {
 
         int attempt = 0;
         int amount = 0;
+
         while (attempt <= 10) {
 
-            if (auto result = GetDanceLocation(dance); result.has_value())
-            {
+            if (auto result = GetDanceLocation(dance); result.has_value()) {
                 return result.value();
             }
 
@@ -148,13 +115,13 @@ namespace LibGame::Module {
         return std::nullopt;
     }
 
-
     bool Dances::Dance(const int number) {
 
+        // ✔ Veilig: assets bestaat nu
         InitAssets();
 
-
         if (auto result = GetDanceHeader(); result.has_value()) {
+
             _header = result.value();
             _header.X -= cornerOffset;
 
@@ -166,10 +133,11 @@ namespace LibGame::Module {
                 const DResult button = result.value();
                 const auto center = button.Center();
 
-                mouse->MoveToAndClick(_header.X + center.X, _header.Y  + center.Y);
+                mouse->MoveToAndClick(_header.X + center.X, _header.Y + center.Y);
 
                 core->GetInteraction<Context>()
-                .SetPrimaryAction<DanceStatus>(DanceStatus::TypeFromInt(number));
+                    .SetPrimaryAction<DanceStatus>(DanceStatus::TypeFromInt(number));
+
                 return true;
             }
         }

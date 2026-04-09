@@ -11,11 +11,11 @@ namespace LibGame::Io {
     class Clipboard final : public BaseInteraction {
     public:
         explicit Clipboard(Interactions *core);
-        ~Clipboard() override;
+        ~Clipboard() override = default;
 
-        void Copy(std::string text) const;
-        std::string Paste() const;
-        void Clear() const;
+        static void Copy(std::string text) ;
+        static [[nodiscard]] std::string Paste() ;
+        static void Clear() ;
 
     private:
         ClipboardControls *Controller = nullptr;

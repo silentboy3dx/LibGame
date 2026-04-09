@@ -12,19 +12,16 @@ namespace LibGame::Io {
     public:
         explicit Keyboard(Interactions *core);
 
-        ~Keyboard() override;
+        ~Keyboard() override = default;
 
-        void Press(char key) const;
+        static void Press(char key) ;
 
-        void Press(const std::string &key) const;
+        static void Press(const std::string &key) ;
 
-        void Hotkey(const std::string &modifier, const std::string &key) const;
+        static void Hotkey(const std::string &modifier, const std::string &key) ;
 
-        void Typewrite(const std::string &text, int interval = 100) const;
+        static void Typewrite(const std::string &text, int interval = 100) ;
 
-        void Write(const std::string &text) const;
-
-    private:
-        KeyboardControls *Controller = nullptr;
+        static void Write(const std::string &text) ;
     };
 }

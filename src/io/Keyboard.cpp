@@ -10,26 +10,22 @@ using namespace std::this_thread;
 namespace LibGame::Io {
 
     Keyboard::Keyboard(Interactions *core) : BaseInteraction(core) {
-        Controller = GetKeyboardControls();
+       //
     }
 
-    Keyboard::~Keyboard() {
-        delete Controller;
-    }
-
-    void Keyboard::Press(const char key) const {
+    void Keyboard::Press(const char key) {
         Press(std::string(1, key));
     }
 
-    void Keyboard::Press(const std::string& key) const {
-        Controller->PressKey(key);
+    void Keyboard::Press(const std::string& key) {
+        GetKeyboardControls()->PressKey(key);
     }
 
-    void Keyboard::Hotkey(const std::string& modifier, const std::string& key) const {
-        Controller->Hotkey(modifier, key);
+    void Keyboard::Hotkey(const std::string& modifier, const std::string& key) {
+        GetKeyboardControls()->Hotkey(modifier, key);
     }
 
-    void Keyboard::Typewrite(const std::string& text, const int interval) const {
+    void Keyboard::Typewrite(const std::string& text, const int interval) {
         for (const char c : text) {
             Press(c);
 
@@ -37,7 +33,7 @@ namespace LibGame::Io {
         }
     }
 
-    void Keyboard::Write(const std::string& text) const {
+    void Keyboard::Write(const std::string& text) {
         for (const char c : text) {
             Press(c);
         }

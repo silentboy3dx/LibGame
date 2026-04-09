@@ -9,22 +9,18 @@ using LibIO::GetClipboardControls;
 namespace LibGame::Io {
 
     Clipboard::Clipboard(Interactions *core) : BaseInteraction(core){
-        Controller = GetClipboardControls();
+        // Empty for now
     }
 
-    Clipboard::~Clipboard() {
-        delete Controller;
+    void Clipboard::Copy(std::string text) {
+        return GetClipboardControls()->Copy(std::move(text));
     }
 
-    void Clipboard::Copy(std::string text) const {
-        return Controller->Copy(std::move(text));
+    std::string Clipboard::Paste() {
+        return GetClipboardControls()->Paste();
     }
 
-    std::string Clipboard::Paste() const {
-        return Controller->Paste();
-    }
-
-    void Clipboard::Clear() const {
-        return Controller->Clear();
+    void Clipboard::Clear() {
+        return GetClipboardControls()->Clear();
     }
 }

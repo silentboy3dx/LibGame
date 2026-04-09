@@ -14,41 +14,41 @@
 using namespace LibGame::State;
 
 namespace LibGame {
+
     class Interactions;
 
     class BaseInteraction {
     public:
-        explicit BaseInteraction(Interactions *base) { core = base; }
-
+        explicit BaseInteraction(Interactions* base) : core(base) {}
         virtual ~BaseInteraction() = default;
 
     protected:
-        Interactions *core;
+        Interactions* core;
     };
 
 
     class Interactions {
     public:
         Interactions();
+        ~Interactions();
 
-        ~Interactions() = default;
+        // Destructor mag default blijven
+        // ~Interactions() = default;
 
-        static Interactions &GetInstance();
+        static Interactions& GetInstance();
         static bool IsGameInForeground();
 
-        void SetState(BaseState* state) {
-            _state = state;
+        void SetState(std::unique_ptr<BaseState> state) {
+            _state = std::move(state);
         }
 
         BaseState* GetState() {
-            return _state;
+            return _state.get();
         }
 
         template<typename T>
-                void RegisterInteraction() {
-            // Get the type name automatically
+        void RegisterInteraction() {
             std::string name = typeid(T).name();
-            // Remove any namespace prefixes if needed
             size_t pos = name.find_last_of(':');
             if (pos != std::string::npos) {
                 name = name.substr(pos + 1);
@@ -60,15 +60,15 @@ namespace LibGame {
         }
 
         template<typename T>
-                void RegisterModule() { return RegisterInteraction<T>();}
+        void RegisterModule() { return RegisterInteraction<T>(); }
 
         template<typename T>
-        T &GetInteraction() {
+        T& GetInteraction() {
             auto typeIdx = std::type_index(typeid(T));
             auto it = _typeMap.find(typeIdx);
 
             if (it != _typeMap.end()) {
-                auto &name = it->second;
+                auto& name = it->second;
                 auto interactionIt = _interactions.find(name);
 
                 if (interactionIt != _interactions.end()) {
@@ -80,7 +80,6 @@ namespace LibGame {
             }
 
             std::string name = typeid(T).name();
-            // Remove any namespace prefixes if needed
             size_t pos = name.find_last_of(':');
             if (pos != std::string::npos) {
                 name = name.substr(pos + 1);
@@ -91,13 +90,9 @@ namespace LibGame {
             throw std::runtime_error(oss.str());
         }
 
-
-
     private:
-        BaseState* _state = nullptr;
-        std::unordered_map<std::string, std::shared_ptr<BaseInteraction> > _interactions;
+        std::unique_ptr<BaseState> _state;
+        std::unordered_map<std::string, std::shared_ptr<BaseInteraction>> _interactions;
         std::unordered_map<std::type_index, std::string> _typeMap;
-
-        static Interactions *_instance;
     };
 }

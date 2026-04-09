@@ -6,7 +6,6 @@
 #include "LibGame/io/Screenshot.hpp"
 #include "LibGame/state/JsonFile.hpp"
 
-
 #include "LibGame/module/ImageReader.hpp"
 #include "LibGame/module/Moderation.hpp"
 #include "LibGame/module/SexActions.hpp"
@@ -34,11 +33,9 @@ using namespace LibGame::Module;
 using namespace LibGame::Io;
 
 namespace LibGame {
-    Interactions *Interactions::_instance = nullptr;
-
     Interactions::Interactions() {
 
-        SetState(new JsonFile());
+        SetState(std::make_unique<JsonFile>());
 
         RegisterInteraction<Mouse>();
         RegisterInteraction<Keyboard>();
@@ -67,12 +64,23 @@ namespace LibGame {
         RegisterModule<Gift>();
     }
 
-    Interactions &Interactions::GetInstance(){
-        if (_instance == nullptr) {
-            _instance = new Interactions();
-        }
-        return *_instance;
+
+
+    Interactions& Interactions::GetInstance() {
+        static Interactions instance;
+        return instance;
     }
+
+    Interactions::~Interactions() {
+
+        for (auto &pair : _interactions) {
+            pair.second.reset(); // shared_ptr -> delete
+        }
+
+        _interactions.clear();
+        _state.reset();
+    }
+
 
     bool Interactions::IsGameInForeground() {
         std::cout << "Checking if game is in foreground" << std::endl;
@@ -80,11 +88,8 @@ namespace LibGame {
             std::cout << "Active window title: " << info->title << std::endl;
             return info->title == "3DXChat";
         } else {
-            std::cout << "No active window title: " << std::endl;
+            std::cout << "No active window title" << std::endl;
             return false;
         }
-
-        return false;
     }
 }
-

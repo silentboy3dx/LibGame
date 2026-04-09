@@ -9,6 +9,9 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+include(OpenCV-LibGame)
+include(JSON-LibGame)
+
 add_library(${PROJECT_NAME} STATIC
 
         include/LibGame/io/Screenshot.hpp
@@ -108,6 +111,7 @@ target_include_directories(${PROJECT_NAME}
         PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+        ${OpenCV_INCLUDE_DIRS}
 )
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
@@ -116,9 +120,6 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     target_compile_definitions(${PROJECT_NAME} PRIVATE PLATFORM_LINUX)
 endif()
 
-
-include(OpenCV-LibGame)
-include(JSON-LibGame)
 
 if (SPARKLE_SUPERBUILD)
     message(STATUS "❤️  ${PROJECT_NAME} USING Superbuild")

@@ -10,27 +10,24 @@ namespace LibGame::Io {
     class Mouse final : public BaseInteraction {
     public:
         explicit Mouse(Interactions *core);
-        ~Mouse() override;
+        ~Mouse() override = default;
 
-        void Scroll(int amount, int *x = nullptr, int *y = nullptr) const;
+        static void Scroll(int amount, int *x = nullptr, int *y = nullptr) ;
 
-        void ScrollUp(int amount = 1) const;
+        static void ScrollUp(int amount = 1) ;
 
-        void ScrollDown(int amount = 1) const;
+        static void ScrollDown(int amount = 1) ;
 
-        void Click() const;
+        static void Click() ;
 
-        void RightClick() const;
+        static void RightClick() ;
 
-        void MoveTo(int x = 0, int y = 0) const;
+        static void MoveTo(int x = 0, int y = 0) ;
 
-        void MoveToAndClick(int x = 0, int y = 0) const;
+        static void MoveToAndClick(int x = 0, int y = 0) ;
 
-        void MoveToAndRightClick(int x = 0, int y = 0) const;
+        static void MoveToAndRightClick(int x = 0, int y = 0) ;
 
-        void MoveToAndExit(int x = 0, int y = 0, int exitcode = 0) const;
-
-    private:
-        MouseControls *controller;
+        static void MoveToAndExit(int x = 0, int y = 0, int exitcode = 0) ;
     };
 }

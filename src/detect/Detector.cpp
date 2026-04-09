@@ -1,15 +1,13 @@
 #include "LibGame/detect/Detector.hpp"
-
-#include <iostream>
-
 #include "LibGame/Interactions.hpp"
-
-#include <LibGame/detect/DResult.hpp>
 
 #include <LibGraphics/match/TemplateMatcher.hpp>
 #include <LibGraphics/match/MatchOptions.hpp>
 #include <LibScreenshots/LibScreenshots.hpp>
 #include <LibGraphics/type/Region.hpp>
+#include <LibGame/detect/DResult.hpp>
+
+#include <iostream>
 
 using namespace LibGraphics::Type;
 using namespace LibScreenshots;
