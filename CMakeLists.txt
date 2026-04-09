@@ -116,12 +116,36 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     target_compile_definitions(${PROJECT_NAME} PRIVATE PLATFORM_LINUX)
 endif()
 
-include(LibGraphics-LibGame)
-include(LibScreenshots-LibGame)
+
 include(OpenCV-LibGame)
-include(LibIO-LibGame)
-include(LibOS-LibGame)
 include(JSON-LibGame)
+
+if (SPARKLE_SUPERBUILD)
+    message(STATUS "❤️  ${PROJECT_NAME} USING Superbuild")
+
+    target_link_libraries(LibGame PUBLIC LibScreenshots)
+    target_link_libraries(LibGame PUBLIC LibGraphics)
+    target_link_libraries(LibGame PUBLIC LibIO)
+    target_link_libraries(LibGame PUBLIC LibOS)
+
+
+else()
+
+    include(LibGraphics-LibGame)
+    include(LibScreenshots-LibGame)
+    include(LibIO-LibGame)
+    include(LibOS-LibGame)
+
+    find_package(LibGraphics REQUIRED)
+
+    target_link_libraries(LibScreenshots
+            PRIVATE
+            LibIO::LibIO
+            LibOS::LibOS
+            LibScreenshots::LibScreenshots
+            LibGraphics::LibGraphics
+    )
+endif()
 
 target_link_libraries(LibGame
         PRIVATE
@@ -132,11 +156,6 @@ target_link_libraries(LibGame
             opencv_imgcodecs
             opencv_videoio
             opencv_calib3d
-        PUBLIC
-            LibIO::LibIO
-            LibOS::LibOS
-            LibScreenshots::LibScreenshots
-            LibGraphics::LibGraphics
 )
 
 include(GNUInstallDirs)

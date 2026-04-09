@@ -1,4 +1,4 @@
-message(STATUS "Linking OpenCV")
+message(STATUS "  🔨 Linking Opencv")
 
 if (WIN32)
     find_package(OpenCV REQUIRED)
