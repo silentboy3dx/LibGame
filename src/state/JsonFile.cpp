@@ -1,4 +1,6 @@
 #include "LibGame/state/JsonFile.hpp"
+#include "LibGame/LibGame.hpp"
+#include "LibOS/LibOS.hpp"
 
 #include <fstream>
 #include <map>
@@ -9,36 +11,20 @@
 #include <any>
 #include <vector>
 
-#pragma warning("Move GetEnvString to LibOS")
+using LibGame::Exceptions::AssetException;
 
 namespace LibGame::State {
 
     // ------------------------------------------------------------
-    // Portable environment variable reader (Windows + Linux/macOS)
-    // ------------------------------------------------------------
-    static std::string GetEnvString(const char* name) {
-    #if defined(_WIN32)
-        char* buffer = nullptr;
-        size_t size = 0;
-
-        if (_dupenv_s(&buffer, &size, name) == 0 && buffer != nullptr) {
-            std::string value(buffer);
-            free(buffer);
-            return value;
-        }
-        return "";
-    #else
-        const char* val = std::getenv(name);
-        return val ? std::string(val) : "";
-    #endif
-    }
-
-    // ------------------------------------------------------------
     // Constructor / Destructor
     // ------------------------------------------------------------
-
     JsonFile::JsonFile() {
-        std::string dataPathEnv = GetEnvString("LIBGAME_DATA_PATH");
+
+        auto envPathOpt = LibOS::GetEnv("LIBGAME_DATA_PATH");
+        if (!envPathOpt.has_value()) {
+            throw Exceptions::AssetException("LIBGAME_DATA_PATH not set", typeid(JsonFile).name());
+        }
+        std::string dataPathEnv = envPathOpt.value();
 
         if (!dataPathEnv.empty()) {
             _dataFilePath = dataPathEnv + "/data.json";

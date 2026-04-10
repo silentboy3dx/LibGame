@@ -1,40 +1,18 @@
 #include "LibGame/asset/Assets.hpp"
 #include "LibGame/LibGame.hpp"
+#include "LibOS/LibOS.hpp"
 
 #include <LibGraphics/LibGraphics.hpp>
 
 #include <filesystem>
 #include <stdexcept>
-#include <cstdlib>
 #include <string>
 
-#pragma warning("Move GetEnvString to LibOS")
-
-
 using LibGame::Exceptions::AssetException;
-
 using namespace LibGraphics;
 
 namespace LibGame::Asset {
-    // ------------------------------------------------------------
-    // Portable environment variable reader (Windows + Linux/macOS)
-    // ------------------------------------------------------------
-    static std::string GetEnvString(const char *name) {
-#if defined(_WIN32)
-        char *buffer = nullptr;
-        size_t size = 0;
 
-        if (_dupenv_s(&buffer, &size, name) == 0 && buffer != nullptr) {
-            std::string value(buffer);
-            free(buffer);
-            return value;
-        }
-        return "";
-#else
-        const char *val = std::getenv(name);
-        return val ? std::string(val) : "";
-#endif
-    }
 
     // ------------------------------------------------------------
     // Asset loading
@@ -46,30 +24,22 @@ namespace LibGame::Asset {
             return cache[asset];
         }
 
-        // Read environment variable safely
-        std::string assetPath = GetEnvString("LIBGAME_ASSET_PATH");
-
-        if (assetPath.empty()) {
-            throw AssetException("LIBGAME_ASSET_PATH not set", typeid(Assets).name());
+        auto envPathOpt = LibOS::GetEnv("LIBGAME_DATA_PATH");
+        if (!envPathOpt.has_value()) {
+            throw AssetException("LIBGAME_DATA_PATH not set", typeid(Image).name());
         }
 
-        // Build full path
+        const std::string& assetPath = envPathOpt.value();
         const std::string fullPath = assetPath + "/" + assetType + "/" + asset;
 
-        // Check if file exists
         if (!std::filesystem::exists(fullPath)) {
             throw std::runtime_error("Asset file does not exist: " + fullPath);
         }
 
-        // Load into cache
         cache[asset] = Image::load(fullPath);
 
         return cache[asset];
     }
-
-    // ------------------------------------------------------------
-    // Asset type getters/setters
-    // ------------------------------------------------------------
 
     std::string Assets::getAssetType() const {
         return assetType;
