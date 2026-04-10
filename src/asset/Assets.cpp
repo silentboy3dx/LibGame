@@ -24,9 +24,9 @@ namespace LibGame::Asset {
             return cache[asset];
         }
 
-        auto envPathOpt = LibOS::GetEnv("LIBGAME_DATA_PATH");
+        auto envPathOpt = LibOS::GetEnv("LIBGAME_ASSET_PATH");
         if (!envPathOpt.has_value()) {
-            throw AssetException("LIBGAME_DATA_PATH not set", typeid(Image).name());
+            throw AssetException("LIBGAME_ASSET_PATH not set", typeid(Image).name());
         }
 
         const std::string& assetPath = envPathOpt.value();
