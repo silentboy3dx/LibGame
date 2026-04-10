@@ -34,7 +34,6 @@ using namespace LibGame::Io;
 
 namespace LibGame {
     Interactions::Interactions() {
-
         SetState(std::make_unique<JsonFile>());
 
         RegisterInteraction<Mouse>();
@@ -64,32 +63,24 @@ namespace LibGame {
         RegisterModule<Gift>();
     }
 
-
-
-    Interactions& Interactions::GetInstance() {
+    Interactions &Interactions::GetInstance() {
         static Interactions instance;
         return instance;
     }
 
     Interactions::~Interactions() {
-
-        for (auto &pair : _interactions) {
-            pair.second.reset(); // shared_ptr -> delete
+        for (auto &pair: _interactions) {
+            pair.second.reset();
         }
 
         _interactions.clear();
         _state.reset();
     }
 
-
     bool Interactions::IsGameInForeground() {
-        std::cout << "Checking if game is in foreground" << std::endl;
         if (const std::optional<WindowInfo> info = GetActiveWindow()) {
-            std::cout << "Active window title: " << info->title << std::endl;
             return info->title == "3DXChat";
-        } else {
-            std::cout << "No active window title" << std::endl;
-            return false;
         }
+        return false;
     }
 }

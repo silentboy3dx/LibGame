@@ -19,5 +19,7 @@
 #include "LibGame/module/Idle.hpp"
 #include "LibGame/module/Item.hpp"
 #include "LibGame/module/Gift.hpp"
+#include "LibGame/exceptions/AssetException.hpp"
+
 #include "LibIO/LibIO.hpp"
 

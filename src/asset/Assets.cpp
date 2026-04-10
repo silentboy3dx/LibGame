@@ -1,4 +1,5 @@
 #include "LibGame/asset/Assets.hpp"
+#include "LibGame/LibGame.hpp"
 
 #include <LibGraphics/LibGraphics.hpp>
 
@@ -9,16 +10,18 @@
 
 #pragma warning("Move GetEnvString to LibOS")
 
+
+using LibGame::Exceptions::AssetException;
+
 using namespace LibGraphics;
 
 namespace LibGame::Asset {
-
     // ------------------------------------------------------------
     // Portable environment variable reader (Windows + Linux/macOS)
     // ------------------------------------------------------------
-    static std::string GetEnvString(const char* name) {
-    #if defined(_WIN32)
-        char* buffer = nullptr;
+    static std::string GetEnvString(const char *name) {
+#if defined(_WIN32)
+        char *buffer = nullptr;
         size_t size = 0;
 
         if (_dupenv_s(&buffer, &size, name) == 0 && buffer != nullptr) {
@@ -27,18 +30,17 @@ namespace LibGame::Asset {
             return value;
         }
         return "";
-    #else
-        const char* val = std::getenv(name);
+#else
+        const char *val = std::getenv(name);
         return val ? std::string(val) : "";
-    #endif
+#endif
     }
 
     // ------------------------------------------------------------
     // Asset loading
     // ------------------------------------------------------------
 
-    Image& Assets::AssetFile(const std::string& asset) {
-
+    Image &Assets::AssetFile(const std::string &asset) {
         // Return cached asset if already loaded
         if (cache.contains(asset)) {
             return cache[asset];
@@ -48,7 +50,7 @@ namespace LibGame::Asset {
         std::string assetPath = GetEnvString("LIBGAME_ASSET_PATH");
 
         if (assetPath.empty()) {
-            throw std::runtime_error("LIBGAME_ASSET_PATH not set");
+            throw AssetException("LIBGAME_ASSET_PATH not set", typeid(Assets).name());
         }
 
         // Build full path
@@ -73,8 +75,7 @@ namespace LibGame::Asset {
         return assetType;
     }
 
-    void Assets::setAssetType(const std::string& type) {
+    void Assets::setAssetType(const std::string &type) {
         assetType = type;
     }
-
 }
