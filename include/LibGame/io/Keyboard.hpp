@@ -14,14 +14,14 @@ namespace LibGame::Io {
 
         ~Keyboard() override = default;
 
-        static void Press(char key) ;
+        void Press(char key);
 
-        static void Press(const std::string &key) ;
+        void Press(const std::string &key);
 
-        static void Hotkey(const std::string &modifier, const std::string &key) ;
+        void Hotkey(const std::string &modifier, const std::string &key);
 
-        static void Typewrite(const std::string &text, int interval = 100) ;
+        void Typewrite(const std::string &text, int interval = 100);
 
-        static void Write(const std::string &text) ;
+        void Write(const std::string &text);
     };
 }

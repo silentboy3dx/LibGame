@@ -102,7 +102,7 @@ namespace LibGame::Detect {
             return static_cast<DResult>(result);
 
             // Perform detection logic here
-        } catch (const Exceptions::LowConfidenceException &e) {
+        } catch (const LibGraphics::Exceptions::LowConfidenceException &e) {
             std::cout << match_template.origin << ": Low confidence exception" << e.what() << std::endl;
         } catch (const std::exception &) {
             // Handle exceptions if necessary
@@ -173,10 +173,11 @@ namespace LibGame::Detect {
                 }
                 return converted;
             }
-        } catch (const Exceptions::LowConfidenceException &e) {
+        } catch (const LibGraphics::Exceptions::LowConfidenceException &e) {
             std::cout << match_template.origin << ": Low confidence exception " << e.what() << std::endl;
         } catch (const std::exception &) {
             // Handle exceptions if necessary
+            std::cout << "Exception" << std::endl;
         }
 
         return std::nullopt;
