@@ -16,6 +16,6 @@ namespace LibGame::Module {
         [[nodiscard]] bool PlaceCursorInChat() const;
         [[nodiscard]] bool GoToLocal() const;
         [[nodiscard]] bool PressSend() const;
-        [[nodiscard]] bool WipeChat() const;
+        void WipeChat() const;
     };
 }

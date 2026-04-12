@@ -71,7 +71,7 @@ namespace LibGame::Module {
         return ClickIfVisible("chat/button_send.png", 0.99f, false);
     }
 
-    bool Chat::WipeChat() const {
+    void Chat::WipeChat() const {
         if (PlaceCursorInChat()) {
 
 #if PLATFORM_LINUX
@@ -80,10 +80,6 @@ namespace LibGame::Module {
 
             keyboard->Hotkey("ctrl", "a");
             keyboard->Press("backspace");
-
-            return true;
         }
-
-        return false;
     }
 }
