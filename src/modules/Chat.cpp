@@ -2,7 +2,6 @@
 
 namespace LibGame::Module {
     std::optional<DResult> Chat::GetLocalTab() const {
-
         auto screenshot = detector->GetLastTarget();
 
         if (!screenshot.isValid()) {
@@ -26,13 +25,12 @@ namespace LibGame::Module {
         );
 
         if (unselected) return unselected;
-
-        const std::optional<DResult> selected = detector->Single(
-            assets->AssetFile("chat/tab_local_unselected.png"),
-            DArgs{.confidence = 0.92f, .match_target = screenshot}
-        );
-
-        return selected;
+        //
+        // const std::optional<DResult> selected = detector->Single(->AssetFile("chat/tab_local_unselected.png"),
+        //     DArgs{.confidence = 0.92f, .match_target = screenshot}
+        // );
+        //
+        // return selected;
     }
 
     bool Chat::GoToLocal() const {
@@ -50,11 +48,10 @@ namespace LibGame::Module {
     }
 
     bool Chat::PlaceCursorInChat() const {
-
         const std::optional<DResult> result = detector->Single(
-               assets->AssetFile("chat/button_send.png"),
-               DArgs{.confidence = 0.99f}
-           );
+            assets->AssetFile("chat/button_send.png"),
+            DArgs{.confidence = 0.99f}
+        );
 
         if (result) {
             const DResult clickLoc = result.value();
@@ -73,7 +70,6 @@ namespace LibGame::Module {
 
     void Chat::WipeChat() const {
         if (PlaceCursorInChat()) {
-
 #if PLATFORM_LINUX
             sleepms(200);
 #endif

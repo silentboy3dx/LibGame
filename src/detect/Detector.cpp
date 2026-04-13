@@ -47,9 +47,9 @@ namespace LibGame::Detect {
                                               args.region->Y,
                                               args.region->Width,
                                               args.region->Height);
-                    } else {
-                        return TakeScreenshot();
                     }
+
+                    return TakeScreenshot();
                 }();
 
                 match_target = screenshot;
@@ -107,7 +107,6 @@ namespace LibGame::Detect {
         } catch (const std::exception &) {
             // Handle exceptions if necessary
         }
-
 
         return std::nullopt;
     }
