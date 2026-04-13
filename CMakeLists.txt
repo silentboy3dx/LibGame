@@ -24,6 +24,7 @@ add_library(${PROJECT_NAME} STATIC
         include/LibGame/detect/DResult.hpp
 
         include/LibGame/asset/Assets.hpp
+        include/LibGame/asset/AssetCache.hpp
 
         include/LibGame/Interactions.hpp
         include/LibGame/LibGame.hpp
@@ -84,6 +85,8 @@ add_library(${PROJECT_NAME} STATIC
         src/modules/Gift.cpp
 
         src/detect/Detector.cpp
+
+        src/asset/AssetCache.cpp
         src/asset/Assets.cpp
 
         src/action/primary/IdlePrimaryStatus.cpp
@@ -105,6 +108,8 @@ add_library(${PROJECT_NAME} STATIC
 
         src/Interactions.cpp
         src/main.cpp
+
+
 )
 
 target_include_directories(${PROJECT_NAME}

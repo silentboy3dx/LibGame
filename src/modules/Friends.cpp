@@ -7,8 +7,7 @@ using Color::BackgroundScanner;
 using Color::Information;
 
 namespace LibGame::Module {
-
-    std::string Friends::stripAndTrim(const std::string& input) {
+    std::string Friends::stripAndTrim(const std::string &input) {
         std::string s = input;
 
         // strip prefix "| " als die er staat
@@ -18,7 +17,7 @@ namespace LibGame::Module {
 
         // trim whitespace links en rechts
         const auto start = std::find_if_not(s.begin(), s.end(), ::isspace);
-        const auto end   = std::find_if_not(s.rbegin(), s.rend(), ::isspace).base();
+        const auto end = std::find_if_not(s.rbegin(), s.rend(), ::isspace).base();
 
         if (start >= end) return ""; // alles was whitespace
         return std::string(start, end);
@@ -35,36 +34,35 @@ namespace LibGame::Module {
 
 
         if (screenshot) {
+            auto args = DArgs(0.92f, true);
+            args.match_target = screenshot;
 
-            const auto result = GetAsset("friends/label_online_friends.png",
-                                         DArgs{.grayscale = true, .confidence = 0.99f});
-
+            const auto result = GetAsset("friends/label_online_friends.png", args);
 
             if (result.has_value()) {
                 const auto label = result.value();
                 const int steps = (FRIENDS_MAX_HEIGHT - LABEL_ONLINE_FRIENDS_TOP_OFFSET) / FRIENDS_NAME_HEIGHT;
 
                 Image list = screenshot.crop(label.X, (label.Y + label.Height), FRIENDS_LIST_WIDTH,
-                                                   FRIENDS_MAX_HEIGHT);
+                                             FRIENDS_MAX_HEIGHT);
 
                 int x = 15;
                 int y = 0;
 
                 for (int step = 0; step < steps; step += 1) {
-
                     int offset = BackgroundScanner::background_color_change_down(
                         list, x, y, FRIENDS_NAME_HEIGHT, false
                     );
 
                     if (offset > -1) {
-                        std::array<uint8_t, 3> pixels = list.getRGB(x, y + offset+1);
+                        std::array<uint8_t, 3> pixels = list.getRGB(x, y + offset + 1);
 
                         int r = pixels[0], g = pixels[1], b = pixels[2];
 
                         if (Information::is_white(r, g, b, 5)) {
-
                             int yy = (label.Y + label.Height) + y;
-                            auto name = screenshot.crop((label.X + x) - 14, yy, FRIENDS_LIST_WIDTH, FRIENDS_NAME_HEIGHT);
+                            auto name = screenshot.crop((label.X + x) - 14, yy, FRIENDS_LIST_WIDTH,
+                                                        FRIENDS_NAME_HEIGHT);
 
                             auto text = core->GetInteraction<ImageReader>().ImageToText(
                                 name,
@@ -73,7 +71,6 @@ namespace LibGame::Module {
                             );
 
                             friends.push_back(stripAndTrim(text.value()));
-
                         } else {
                             step = steps;
                             break;

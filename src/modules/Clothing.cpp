@@ -17,9 +17,12 @@ namespace LibGame::Module {
     }
 
     bool Clothing::OpenPanel() const {
+        auto args = DArgs(0.98f);
+        args.match_target = detector->GetLastTarget();
+
         const std::optional<DResult> result = detector->Single(
             assets->AssetFile("clothing/button_clothes.png"),
-            DArgs{.confidence = 0.98f, .match_target = detector->GetLastTarget()}
+           args
         );
 
         if (result) {
@@ -37,9 +40,12 @@ namespace LibGame::Module {
 
     bool Clothing::ClosePanel() const {
         if (isPanelOpen()) {
+            auto args = DArgs(0.97f);
+            args.match_target = detector->GetLastTarget();
+
             const std::optional<DResult> result = detector->Single(
                 assets->AssetFile("clothing/header_appearance.png"),
-                DArgs{.confidence = 0.97f, .match_target = detector->GetLastTarget()}
+                args
             );
 
             if (result) {
@@ -56,9 +62,11 @@ namespace LibGame::Module {
     }
 
     bool Clothing::IsWet() const {
+        auto args = DArgs(0.97f);
+
         const std::optional<DResult> result = detector->Single(
             assets->AssetFile("clothing/button_dry.png"),
-            DArgs{.confidence = 0.97f}
+            args
         );
 
         return result.has_value();
@@ -67,7 +75,7 @@ namespace LibGame::Module {
     bool Clothing::IsDry() const {
         const std::optional<DResult> result = detector->Single(
             assets->AssetFile("clothing/button_wet.png"),
-            DArgs{.confidence = 0.98f}
+             DArgs(0.98f)
         );
 
         return result.has_value();

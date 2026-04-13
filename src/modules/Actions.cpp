@@ -5,8 +5,8 @@ namespace LibGame::Module {
         return ClickIfFirstAssetIsVisible(
             "actions/actions_panel_header.png",
             "actions/button_sit1.png",
-            DArgs{.confidence = 0.99f},
-            DArgs{.confidence = 0.90f}
+            DArgs(0.99f),
+             DArgs(0.90f)
         );
     }
 
@@ -14,8 +14,8 @@ namespace LibGame::Module {
         return ClickIfFirstAssetIsVisible(
             "actions/actions_panel_header.png",
             "actions/button_sit2.png",
-            DArgs{.confidence = 0.99f},
-            DArgs{.confidence = 0.90f}
+            DArgs(0.99f),
+             DArgs(0.90f)
         );
     }
 
@@ -23,8 +23,8 @@ namespace LibGame::Module {
         return ClickIfFirstAssetIsVisible(
             "actions/actions_panel_header.png",
             "actions/button_lie1.png",
-            DArgs{.confidence = 0.99f},
-            DArgs{.confidence = 0.90f}
+            DArgs(0.99f),
+             DArgs(0.90f)
         );
     }
 
@@ -32,8 +32,8 @@ namespace LibGame::Module {
         return ClickIfFirstAssetIsVisible(
             "actions/actions_panel_header.png",
             "actions/button_lie2.png",
-            DArgs{.confidence = 0.99f},
-            DArgs{.confidence = 0.90f}
+            DArgs(0.99f),
+             DArgs(0.90f)
         );
     }
 
@@ -41,8 +41,8 @@ namespace LibGame::Module {
         return ClickIfFirstAssetIsVisible(
             "actions/actions_panel_header.png",
             "actions/button_hello.png",
-            DArgs{.confidence = 0.99f},
-            DArgs{.confidence = 0.90f}
+            DArgs(0.99f),
+             DArgs(0.90f)
         );
     }
 
@@ -50,8 +50,8 @@ namespace LibGame::Module {
         return ClickIfFirstAssetIsVisible(
             "actions/actions_panel_header.png",
             "actions/button_applause.png",
-            DArgs{.confidence = 0.99f},
-            DArgs{.confidence = 0.90f}
+            DArgs(0.99f),
+             DArgs(0.90f)
         );
     }
 }

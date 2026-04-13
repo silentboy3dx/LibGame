@@ -27,6 +27,9 @@ namespace LibGame::Detect {
 
     std::optional<DResult> Detector::Single(Image &match_template, const DArgs &args) {
         try {
+
+            // std::this_thread::sleep_for(std::chrono::seconds(2));
+
             auto options = MatchOptions();
             std::optional<Image> match_target = args.match_target; // target is where to search in
             // Image match_template = args.match_template; // template is what we search
@@ -59,11 +62,6 @@ namespace LibGame::Detect {
                 toRealworld = true;
             }
 
-            if (args.grayscale) {
-                match_target = match_target->toGrayscale();
-                match_template = match_template.toGrayscale();
-            }
-
             // TODO: Add debug
 
             // TODO: Test grayscale by writing an image to disk
@@ -73,6 +71,7 @@ namespace LibGame::Detect {
             // TODO: Test Debug
 
             options.minConfidence = args.confidence;
+            options.grayscale = args.grayscale;
 
             SetLastTarget(match_target.value());
 
@@ -98,6 +97,10 @@ namespace LibGame::Detect {
             if (args.cacheable) {
 #pragma warning("Cache not implemented yet")
             }
+
+
+
+
 
             return static_cast<DResult>(result);
 
@@ -139,12 +142,9 @@ namespace LibGame::Detect {
                 toRealworld = true;
             }
 
-            if (args.grayscale) {
-                match_target = match_target->toGrayscale();
-                match_template = match_template.toGrayscale();
-            }
-
             options.minConfidence = args.confidence;
+            options.grayscale = args.grayscale;
+
             SetLastTarget(match_target.value());
 
             // match_template.show();

@@ -10,8 +10,8 @@ namespace LibGame::Module {
         const auto result = ClickIfFirstAssetIsVisible(
             "movement/movement_panel_header.png",
             "movement/button_run.png",
-            DArgs{.confidence = 0.99f},
-            DArgs{.grayscale = true, .confidence = 0.93f}
+            DArgs(0.99f),
+           DArgs(0.93f, true)
         );
 
 
@@ -27,8 +27,8 @@ namespace LibGame::Module {
          const auto result =  ClickIfFirstAssetIsVisible(
             "movement/movement_panel_header.png",
             "movement/button_walk.png",
-            DArgs{.confidence = 0.99f},
-            DArgs{.grayscale = true, .confidence = 0.93f}
+            DArgs(0.99f),
+           DArgs(0.93f, true)
         );
 
         if (result) {

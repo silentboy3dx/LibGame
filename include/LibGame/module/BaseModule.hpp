@@ -1,7 +1,5 @@
 #pragma once
 
-// #include <X11/Xlib.h>
-
 #include "LibGame/Interactions.hpp"
 #include "LibGame/detect/Detector.hpp"
 #include "LibGame/asset/Assets.hpp"
@@ -16,7 +14,7 @@
 
 using namespace LibGame::Io;
 using namespace LibGame::Detect;
-using namespace LibGame::Asset;
+using LibGame::Asset::Assets;
 
 namespace LibGame::Module {
     class BaseModule : public BaseInteraction {
@@ -39,7 +37,7 @@ namespace LibGame::Module {
         Screenshot *screenshots = nullptr;
         Mouse *mouse = nullptr;
 
-        [[nodiscard]] std::optional<DResult> GetAsset(const std::string& asset, const DArgs &args = DArgs{.grayscale = false, .confidence = 0.99f}) const {
+        [[nodiscard]] std::optional<DResult> GetAsset(const std::string& asset, const DArgs &args = DArgs()) const {
             return detector->Single(
                            assets->AssetFile(asset),
                            args
@@ -47,18 +45,22 @@ namespace LibGame::Module {
         }
 
         [[nodiscard]] bool isVisible(const std::string &asset, const float confidence = 0.98f, const bool grayscale = false, const bool cachable = false) const {
+            auto args = DArgs(confidence, grayscale, cachable);
+
             const std::optional<DResult> result = detector->Single(
                 assets->AssetFile(asset),
-                DArgs{.cacheable = cachable, .grayscale = grayscale, .confidence = confidence}
+                args
             );
 
             return result.has_value();
         }
 
         [[nodiscard]] bool ClickIfVisible(const std::string &asset, const float confidence = 0.98f, const bool grayscale = false, const bool cachable = false) const {
+            auto args = DArgs(confidence, grayscale, cachable);
+
             const std::optional<DResult> result = detector->Single(
                 assets->AssetFile(asset),
-                DArgs{.cacheable = cachable, .grayscale = grayscale, .confidence = confidence}
+                args
             );
 
             if (result) {
@@ -86,10 +88,8 @@ namespace LibGame::Module {
 
             if (primary_result) {
 
-
                 DArgs recreated_args = secondary_args;
                 recreated_args.match_target = core->GetInteraction<Detector>().GetLastTarget();
-
 
                 const std::optional<DResult> secondary_result = detector->Single(
                             assets->AssetFile(secondary_asset),

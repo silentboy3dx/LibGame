@@ -17,7 +17,6 @@ namespace LibGame::Module {
     }
 
     std::optional<GiftSender> Gift::GetLatestGiftFromProfile() {
-
         const auto profile = core->GetInteraction<Profile>();
 
         profile.OpenMyProfile();
@@ -37,16 +36,15 @@ namespace LibGame::Module {
         return result;
     }
 
-    std::optional<GiftSender> Gift::ReadLastestGift() {
-
-
-
+    std::optional<GiftSender> Gift::ReadLastestGift() const {
         const auto screenshot = core->GetInteraction<Screenshot>().Take();
 
-        const auto btn_result = GetAsset("gift/button_my_gifts_highlighted.png",
-                                                 DArgs{.grayscale = false, .confidence = 0.99f, .match_target = screenshot});
+        auto args = DArgs(0.99f);
+        args.match_target = screenshot;
 
-        GiftSender sender {.Message = "No message found"};
+        const auto btn_result = GetAsset("gift/button_my_gifts_highlighted.png", args);
+
+        GiftSender sender{.Message = "No message found"};
 
         if (screenshot.isValid() && btn_result.has_value()) {
             const auto giftbutton = btn_result.value();
@@ -56,32 +54,35 @@ namespace LibGame::Module {
                 const auto seperator = seperator_result.value();
 
 
-                 auto gift = screenshot.crop(innerToLeft.X, innerToLeft.Y, PROFILE_WINDOW_WIDTH - FRIENDS_LIST_WIDTH, seperator.Y - innerToLeft.Y);
+                auto gift = screenshot.crop(innerToLeft.X, innerToLeft.Y, PROFILE_WINDOW_WIDTH - FRIENDS_LIST_WIDTH,
+                                            seperator.Y - innerToLeft.Y);
 
-                 auto const btnDelete = GetAsset("gift/button_delete.png",
-                                                 DArgs{.grayscale = true, .confidence = 0.99f, .match_target = gift});
+                args = DArgs(0.99f, true);
+                args.match_target = gift;
+
+                auto const btnDelete = GetAsset("gift/button_delete.png", args);
 
 
-                 if (btnDelete.has_value()) {
-                     const auto button = btnDelete.value();
+                if (btnDelete.has_value()) {
+                    const auto button = btnDelete.value();
 
-                     /**
-                      * We will redact both the gift image and the delete button so that
-                      * we have a better ocr result.
-                      */
-                     std::vector<Type::Rect> decations = {
-                         {button.X, button.Y, button.Width, button.Height}, /* Delete button */
-                         {0, 62, 491, 268} /* Gift image */
-                     };
+                    /**
+                     * We will redact both the gift image and the delete button so that
+                     * we have a better ocr result.
+                     */
+                    std::vector<Type::Rect> decations = {
+                        {button.X, button.Y, button.Width, button.Height}, /* Delete button */
+                        {0, 62, 491, 268} /* Gift image */
+                    };
 
-                     gift.redact(decations);
+                    gift.redact(decations);
 
-                     auto result = core->GetInteraction<ImageReader>().ImageToText(gift, 0.8f, true);
+                    auto result = core->GetInteraction<ImageReader>().ImageToText(gift, 0.8f, true);
 
-                     GiftSender sender{.Message = result.value_or("No text found")};;
+                    GiftSender sender{.Message = result.value_or("No text found")};;
 
-                     return sender;
-                 }
+                    return sender;
+                }
 
                 // gift.show();
                 // mouse->MoveTo(seperator.X, seperator.Y);
@@ -90,6 +91,4 @@ namespace LibGame::Module {
 
         return std::nullopt;
     }
-
-
 }

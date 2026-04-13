@@ -12,25 +12,27 @@ namespace LibGame::Module {
             }
         }
 
+        auto args = DArgs(0.97f);
+        args.match_target = screenshot;
+
         const std::optional<DResult> highlighted = detector->Single(
             assets->AssetFile("chat/tab_local_highlighted.png"),
-            DArgs{.confidence = 0.97f, .match_target = screenshot}
+            args
         );
 
         if (highlighted) return highlighted;
 
+        args = DArgs(0.92f);
+        args.match_target = screenshot;
+
         const std::optional<DResult> unselected = detector->Single(
             assets->AssetFile("chat/tab_local_unselected.png"),
-            DArgs{.confidence = 0.92f, .match_target = screenshot}
+            args
         );
 
         if (unselected) return unselected;
-        //
-        // const std::optional<DResult> selected = detector->Single(->AssetFile("chat/tab_local_unselected.png"),
-        //     DArgs{.confidence = 0.92f, .match_target = screenshot}
-        // );
-        //
-        // return selected;
+
+        return std::nullopt;
     }
 
     bool Chat::GoToLocal() const {
@@ -48,9 +50,11 @@ namespace LibGame::Module {
     }
 
     bool Chat::PlaceCursorInChat() const {
+
+
         const std::optional<DResult> result = detector->Single(
             assets->AssetFile("chat/button_send.png"),
-            DArgs{.confidence = 0.99f}
+            DArgs(0.99f, true)
         );
 
         if (result) {
@@ -61,11 +65,12 @@ namespace LibGame::Module {
             return true;
         }
 
+
         return false;
     }
 
     bool Chat::PressSend() const {
-        return ClickIfVisible("chat/button_send.png", 0.99f, false);
+        return ClickIfVisible("chat/button_send.png", 0.99f, true);
     }
 
     void Chat::WipeChat() const {

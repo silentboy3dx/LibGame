@@ -62,7 +62,7 @@ namespace LibGame::Module {
     std::optional<DResult> Dances::GetDanceHeader() const {
         return detector->Single(
             assets->AssetFile("dances/dance_panel_header.png"),
-            DArgs{.cacheable = true, .grayscale = true, .confidence = 0.95f}
+            DArgs(0.95f, true, true)
         );
     }
 
@@ -81,9 +81,12 @@ namespace LibGame::Module {
             );
 
             if (crop.isValid()) {
+                auto args = DArgs(_confidences[dance], true);
+                args.match_target = crop;
+
                 return detector->Single(
                     assets->AssetFile(std::format("dances/{}.png", dance)),
-                    DArgs{.grayscale = true, .confidence = _confidences[dance], .match_target = crop}
+                    args
                 );
             }
         }

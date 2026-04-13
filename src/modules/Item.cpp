@@ -5,8 +5,8 @@ namespace LibGame::Module {
         return ClickIfFirstAssetIsVisible(
             "item/holding_panel_header.png",
             "item/button_use.png",
-            DArgs{.confidence = 0.99f},
-            DArgs{.confidence = 0.85f}
+            DArgs(0.99f),
+             DArgs(0.85f)
         );
     }
 
@@ -14,8 +14,8 @@ namespace LibGame::Module {
         return ClickIfFirstAssetIsVisible(
             "item/holding_panel_header.png",
             "item/button_remove.png",
-            DArgs{.confidence = 0.99f},
-            DArgs{.confidence = 0.85f}
+            DArgs(0.99f),
+             DArgs(0.85f)
         );
     }
 
@@ -23,8 +23,8 @@ namespace LibGame::Module {
         return ClickIfFirstAssetIsVisible(
             "item/holding_panel_header.png",
             "item/button_throw.png",
-            DArgs{.confidence = 0.99f},
-            DArgs{.confidence = 0.85f}
+            DArgs(0.99f),
+             DArgs(0.85f)
         );
     }
 }

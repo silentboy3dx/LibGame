@@ -12,8 +12,8 @@ namespace LibGame::Module {
         const bool result = ClickIfFirstAssetIsVisible(
             "idle/idle_panel_header.png",
             "idle/1.png",
-            DArgs{.confidence = 0.98f},
-            DArgs{.confidence = 0.90f}
+             DArgs(0.98f),
+             DArgs(0.90f)
         );
 
         if (result) {
@@ -28,8 +28,8 @@ namespace LibGame::Module {
         const bool result = ClickIfFirstAssetIsVisible(
             "idle/idle_panel_header.png",
             "idle/2.png",
-            DArgs{.confidence = 0.98f},
-            DArgs{.confidence = 0.90f}
+             DArgs(0.98f),
+             DArgs(0.90f)
         );
 
         if (result) {
@@ -44,8 +44,8 @@ namespace LibGame::Module {
         const bool result = ClickIfFirstAssetIsVisible(
             "idle/idle_panel_header.png",
             "idle/3.png",
-            DArgs{.confidence = 0.98f},
-            DArgs{.confidence = 0.90f}
+             DArgs(0.98f),
+             DArgs(0.90f)
         );
 
         if (result) {
@@ -60,8 +60,8 @@ namespace LibGame::Module {
         const bool result = ClickIfFirstAssetIsVisible(
             "idle/idle_panel_header.png",
             "idle/4.png",
-            DArgs{.confidence = 0.98f},
-            DArgs{.confidence = 0.90f}
+             DArgs(0.98f),
+             DArgs(0.90f)
         );
 
         if (result) {
@@ -76,8 +76,8 @@ namespace LibGame::Module {
         const bool result = ClickIfFirstAssetIsVisible(
             "idle/idle_panel_header.png",
             "idle/5.png",
-            DArgs{.confidence = 0.98f},
-            DArgs{.confidence = 0.90f}
+             DArgs(0.98f),
+             DArgs(0.90f)
         );
 
         if (result) {
@@ -92,8 +92,8 @@ namespace LibGame::Module {
         const bool result = ClickIfFirstAssetIsVisible(
             "idle/idle_panel_header.png",
             "idle/6.png",
-            DArgs{.confidence = 0.98f},
-            DArgs{.confidence = 0.90f}
+             DArgs(0.98f),
+             DArgs(0.90f)
         );
 
         if (result) {

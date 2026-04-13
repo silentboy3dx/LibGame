@@ -4,7 +4,7 @@ namespace LibGame::Module {
     std::optional<DResult> Profile::GetMyProfileLabel() const {
         return detector->Single(
             assets->AssetFile("profile/label_my_profile.png"),
-            DArgs{.confidence = 0.99f}
+            DArgs(0.99f)
         );
     }
 
@@ -15,7 +15,7 @@ namespace LibGame::Module {
     bool Profile::IsOthersProfileOpen() const {
         return (detector->Single(
                     assets->AssetFile("profile/button_more.png"),
-                    DArgs{.confidence = 0.99f}
+                    DArgs(0.99f)
                 ) != std::nullopt);
     }
 

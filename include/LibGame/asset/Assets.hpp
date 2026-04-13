@@ -8,24 +8,19 @@
 using namespace LibGraphics;
 
 namespace LibGame::Asset {
-    struct AssetType {
-        inline static auto TYPE_2K = "2K";
-        inline static auto TYPE_4K = "4K";
-    };
+
+
 
     class Assets final : public BaseInteraction {
     public:
-        explicit Assets(Interactions *core = nullptr) : BaseInteraction(core) {};
+        explicit Assets(Interactions *core = nullptr) : BaseInteraction(core) {}
 
         ~Assets() override = default;
 
-        Image &AssetFile(const std::string &asset);
+        // Returns a cached Image reference
+        Image& AssetFile(const std::string& asset) const;
 
-        void setAssetType(const std::string &type);
-        std::string getAssetType() const;
-
-    private:
-        std::string assetType = AssetType::TYPE_2K;
-        std::unordered_map<std::string, Image> cache;
+        // void setAssetType(const std::string& type);
+        static std::string getAssetType();
     };
 }
