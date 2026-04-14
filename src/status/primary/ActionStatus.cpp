@@ -1,9 +1,9 @@
-#include "LibGame/action/primary/ActionStatus.hpp"
+#include "LibGame/status/primary/ActionStatus.hpp"
 #include "LibGame/misc/KvStore.hpp"
 #include <string>
 #include <unordered_map>
 
-namespace LibGame::Action::Primary {
+namespace LibGame::Status::Primary {
     ActionStatus::ActionStatus(Type t)
         : type(t) {
         fillContext();

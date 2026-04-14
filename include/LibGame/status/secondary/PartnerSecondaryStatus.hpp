@@ -3,7 +3,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace LibGame::Action::Secondary {
+namespace LibGame::Status::Secondary {
 
     class PartnerSecondaryStatus final : public Misc::KvStore {
     public:

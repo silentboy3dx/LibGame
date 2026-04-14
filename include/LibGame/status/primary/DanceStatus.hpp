@@ -3,11 +3,10 @@
 #include <string>
 #include <unordered_map>
 
-namespace LibGame::Action::Primary  {
+namespace LibGame::Status::Primary  {
 
     class DanceStatus : public Misc::KvStore {
     public:
-        // ✅ Enum met alle 47 dansen
         enum class Type {
             Dance1, Dance2, Dance3, Dance4, Dance5, Dance6, Dance7, Dance8, Dance9, Dance10,
             Dance11, Dance12, Dance13, Dance14, Dance15, Dance16, Dance17, Dance18, Dance19, Dance20,

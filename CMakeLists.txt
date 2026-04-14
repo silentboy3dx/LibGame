@@ -29,15 +29,15 @@ add_library(${PROJECT_NAME} STATIC
         include/LibGame/Interactions.hpp
         include/LibGame/LibGame.hpp
 
-        include/LibGame/action/primary/IdlePrimaryStatus.hpp
-        include/LibGame/action/primary/SlowDanceStatus.hpp
-        include/LibGame/action/primary/DanceStatus.hpp
-        include/LibGame/action/primary/ActionStatus.hpp
+        include/LibGame/status/primary/IdlePrimaryStatus.hpp
+        include/LibGame/status/primary/SlowDanceStatus.hpp
+        include/LibGame/status/primary/DanceStatus.hpp
+        include/LibGame/status/primary/ActionStatus.hpp
 
-        include/LibGame/action/secondary/MovementSpeedSecondaryStatus.hpp
-        include/LibGame/action/secondary/StraponSecondaryStatus.hpp
-        include/LibGame/action/secondary/PartnerSecondaryStatus.hpp
-        include/LibGame/action/secondary/NakedSecondaryStatus.hpp
+        include/LibGame/status/secondary/MovementSpeedSecondaryStatus.hpp
+        include/LibGame/status/secondary/StraponSecondaryStatus.hpp
+        include/LibGame/status/secondary/PartnerSecondaryStatus.hpp
+        include/LibGame/status/secondary/NakedSecondaryStatus.hpp
 
         include/LibGame/module/ImageReader.hpp
         include/LibGame/module/Moderation.hpp
@@ -89,15 +89,15 @@ add_library(${PROJECT_NAME} STATIC
         src/asset/AssetCache.cpp
         src/asset/Assets.cpp
 
-        src/action/primary/IdlePrimaryStatus.cpp
-        src/action/primary/SlowDanceStatus.cpp
-        src/action/primary/ActionStatus.cpp
-        src/action/primary/DanceStatus.cpp
+        src/status/primary/IdlePrimaryStatus.cpp
+        src/status/primary/SlowDanceStatus.cpp
+        src/status/primary/ActionStatus.cpp
+        src/status/primary/DanceStatus.cpp
 
-        src/action/secondary/MovementSpeedSecondaryStatus.cpp
-        src/action/secondary/StraponSecondaryStatus.cpp
-        src/action/secondary/PartnerSecondaryStatus.cpp
-        src/action/secondary/NakedSecondaryStatus.cpp
+        src/status/secondary/MovementSpeedSecondaryStatus.cpp
+        src/status/secondary/StraponSecondaryStatus.cpp
+        src/status/secondary/PartnerSecondaryStatus.cpp
+        src/status/secondary/NakedSecondaryStatus.cpp
 
         src/state/JsonFile.cpp
 

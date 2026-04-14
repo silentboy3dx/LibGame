@@ -1,11 +1,11 @@
-#include "LibGame/action/primary/DanceStatus.hpp"
+#include "LibGame/status/primary/DanceStatus.hpp"
 
 #include <format>
 #include <iostream>
 #include <ostream>
 #include <stdexcept>
 
-namespace LibGame::Action::Primary {
+namespace LibGame::Status::Primary {
     DanceStatus::DanceStatus(Type t) : type(t) {
         fillContext();
     }

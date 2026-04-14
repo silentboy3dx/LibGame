@@ -5,7 +5,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace LibGame::Action::Primary {
+namespace LibGame::Status::Primary {
     class SlowDanceStatus : public Misc::KvStore {
     public:
         enum class Type { Stop, Facing, Behind, Kiss };

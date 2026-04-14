@@ -1,6 +1,6 @@
-#include "LibGame/action/secondary/StraponSecondaryStatus.hpp"
+#include "LibGame/status/secondary/StraponSecondaryStatus.hpp"
 
-namespace LibGame::Action::Secondary {
+namespace LibGame::Status::Secondary {
     StraponSecondaryStatus::StraponSecondaryStatus(const Type t) : type(t) {
         fillContext();
     }

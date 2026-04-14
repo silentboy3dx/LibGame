@@ -31,17 +31,6 @@ namespace LibGame::Module {
         return *this;
     }
 
-    // Nieuw: verwijderen van acties
-    Context& Context::RemovePrimaryAction() {
-        primaryContext.clear();
-        return *this;
-    }
-
-    Context& Context::RemoveSecondaryAction() {
-        secondaryContext.clear();
-        return *this;
-    }
-
     std::string Context::toString() const {
         std::ostringstream oss;
 

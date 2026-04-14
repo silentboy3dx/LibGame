@@ -1,10 +1,10 @@
 #include "LibGame/module/Dances.hpp"
 
-#include "LibGame/action/primary/DanceStatus.hpp"
+#include "LibGame/status/primary/DanceStatus.hpp"
 #include "LibGame/module/BaseModule.hpp"
 #include "LibGame/module/Context.hpp"
 
-using namespace LibGame::Action::Primary;
+using namespace LibGame::Status::Primary;
 
 namespace LibGame::Module {
 
@@ -139,7 +139,7 @@ namespace LibGame::Module {
                 mouse->MoveToAndClick(_header.X + center.X, _header.Y + center.Y);
 
                 core->GetInteraction<Context>()
-                    .SetPrimaryAction<DanceStatus>(DanceStatus::TypeFromInt(number));
+                    .SetPrimaryStatus<DanceStatus>(DanceStatus::TypeFromInt(number));
 
                 return true;
             }

@@ -1,6 +1,6 @@
-#include "LibGame/action/secondary/NakedSecondaryStatus.hpp"
+#include "LibGame/status/secondary/NakedSecondaryStatus.hpp"
 
-namespace LibGame::Action::Secondary {
+namespace LibGame::Status::Secondary {
     NakedSecondaryStatus::NakedSecondaryStatus(const Type t) : type(t) {
         fillContext();
     }

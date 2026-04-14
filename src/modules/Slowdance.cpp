@@ -1,11 +1,11 @@
 #include "LibGame/module/Slowdance.hpp"
 
-#include "LibGame/action/primary/ActionStatus.hpp"
-#include "LibGame/action/primary/SlowDanceStatus.hpp"
+#include "LibGame/status/primary/ActionStatus.hpp"
+#include "LibGame/status/primary/SlowDanceStatus.hpp"
 #include "LibGame/module/Context.hpp"
 #include "LibGame/module/Idle.hpp"
 
-using namespace LibGame::Action::Primary;
+using namespace LibGame::Status::Primary;
 
 namespace LibGame::Module {
     bool Slowdance::IsPanelVisible() const {
@@ -22,7 +22,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<SlowDanceStatus>(SlowDanceStatus::Type::Facing);
+                    .SetPrimaryStatus<SlowDanceStatus>(SlowDanceStatus::Type::Facing);
         }
 
         return result;
@@ -38,7 +38,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<SlowDanceStatus>(SlowDanceStatus::Type::Behind);
+                    .SetPrimaryStatus<SlowDanceStatus>(SlowDanceStatus::Type::Behind);
         }
 
         return result;
@@ -54,7 +54,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<SlowDanceStatus>(SlowDanceStatus::Type::Kiss);
+                    .SetPrimaryStatus<SlowDanceStatus>(SlowDanceStatus::Type::Kiss);
         }
 
         return result;
@@ -70,7 +70,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<SlowDanceStatus>(SlowDanceStatus::Type::Stop);
+                    .SetPrimaryStatus<SlowDanceStatus>(SlowDanceStatus::Type::Stop);
         }
 
         return result;

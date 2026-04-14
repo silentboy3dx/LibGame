@@ -1,13 +1,14 @@
 #include "LibGame/module/Clothing.hpp"
 
-#include "LibGame/action/secondary/NakedSecondaryStatus.hpp"
+#include "LibGame/status/secondary/NakedSecondaryStatus.hpp"
 #include "LibGame/io/Mouse.hpp"
 #include "LibGame/misc/Point.hpp"
 #include "LibGame/module/Context.hpp"
 
 #include <optional>
 
-using LibGame::Action::Secondary::NakedSecondaryStatus;
+using LibGame::Status::Secondary::NakedSecondaryStatus;
+
 using namespace LibGame::Detect;
 using namespace LibGame::Misc;
 
@@ -91,7 +92,7 @@ namespace LibGame::Module {
         const bool result = ClickIfVisible("clothing/button_put_on_all.png", 0.98f, false);
 
         if (result) {
-            core->GetInteraction<Context>().AddSecondaryAction<NakedSecondaryStatus>(
+            core->GetInteraction<Context>().AddSecondaryStatus<NakedSecondaryStatus>(
                 NakedSecondaryStatus::Type::Dressed
             );
         }
@@ -113,7 +114,7 @@ namespace LibGame::Module {
         const bool result = ClickIfVisible("clothing/button_put_off_all.png", 0.97f, false);
 
         if (result) {
-            core->GetInteraction<Context>().AddSecondaryAction<NakedSecondaryStatus>(
+            core->GetInteraction<Context>().AddSecondaryStatus<NakedSecondaryStatus>(
                 NakedSecondaryStatus::Type::Undressed
             );
         }

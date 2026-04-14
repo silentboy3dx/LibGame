@@ -1,9 +1,9 @@
 #include "LibGame/module/Movement.hpp"
 
-#include "LibGame/action/secondary/MovementSpeedSecondaryStatus.hpp"
+#include "LibGame/status/secondary/MovementSpeedSecondaryStatus.hpp"
 #include "LibGame/module/Context.hpp"
 
-using namespace LibGame::Action::Secondary;
+using namespace LibGame::Status::Secondary;
 
 namespace LibGame::Module {
     bool Movement::Run() const {
@@ -17,7 +17,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-            .AddSecondaryAction<MovementSpeedSecondaryStatus>(MovementSpeedSecondaryStatus::Type::Running);
+            .AddSecondaryStatus<MovementSpeedSecondaryStatus>(MovementSpeedSecondaryStatus::Type::Running);
         }
 
         return result;
@@ -33,7 +33,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-            .AddSecondaryAction<MovementSpeedSecondaryStatus>(MovementSpeedSecondaryStatus::Type::Walking);
+            .AddSecondaryStatus<MovementSpeedSecondaryStatus>(MovementSpeedSecondaryStatus::Type::Walking);
         }
 
         return result;

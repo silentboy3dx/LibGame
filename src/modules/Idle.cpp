@@ -1,9 +1,9 @@
 #include "LibGame/module/Idle.hpp"
 
-#include "LibGame/action/primary/IdlePrimaryStatus.hpp"
+#include "LibGame/status/primary/IdlePrimaryStatus.hpp"
 #include "LibGame/module/Context.hpp"
 
-using LibGame::Action::Primary::IdlePrimaryStatus;
+using LibGame::Status::Primary::IdlePrimaryStatus;
 
 namespace LibGame::Module {
     class Context;
@@ -18,7 +18,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle1);
+                    .SetPrimaryStatus<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle1);
         }
 
         return result;
@@ -34,7 +34,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle2);
+                    .SetPrimaryStatus<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle2);
         }
 
         return result;
@@ -50,7 +50,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle3);
+                    .SetPrimaryStatus<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle3);
         }
 
         return result;
@@ -66,7 +66,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle4);
+                    .SetPrimaryStatus<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle4);
         }
 
         return result;
@@ -82,7 +82,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle5);
+                    .SetPrimaryStatus<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle5);
         }
 
         return result;
@@ -98,7 +98,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle6);
+                    .SetPrimaryStatus<IdlePrimaryStatus>(IdlePrimaryStatus::Type::Idle6);
         }
 
         return result;
