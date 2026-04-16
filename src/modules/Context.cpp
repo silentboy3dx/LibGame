@@ -1,5 +1,7 @@
 #include "LibGame/module/Context.hpp"
 
+#include <sstream>
+
 namespace LibGame::Module {
 
     Context& Context::add(const std::string& key, const std::string& value) {
@@ -31,7 +33,6 @@ namespace LibGame::Module {
         return *this;
     }
 
-    // Nieuw: verwijderen van acties
     Context& Context::RemovePrimaryAction() {
         primaryContext.clear();
         return *this;
@@ -46,23 +47,23 @@ namespace LibGame::Module {
         std::ostringstream oss;
 
         for (const auto& line : beforeLines) {
-            oss << line << "\n";
+            oss << line << '\n';
         }
 
-        for (const auto& [k,v] : primaryContext) {
-            oss << k << ": " << v << "\n";
+        for (const auto& [k, v] : primaryContext) {
+            oss << k << ": " << v << '\n';
         }
 
-        for (const auto& [k,v] : secondaryContext) {
-            oss << k << ": " << v << "\n";
+        for (const auto& [k, v] : secondaryContext) {
+            oss << k << ": " << v << '\n';
         }
 
-        for (const auto& [k,v] : KvStore::getContext()) {
-            oss << k << ": " << v << "\n";
+        for (const auto& [k, v] : KvStore::getContext()) {
+            oss << k << ": " << v << '\n';
         }
 
         for (const auto& line : afterLines) {
-            oss << line << "\n";
+            oss << line << '\n';
         }
 
         return oss.str();
@@ -72,4 +73,5 @@ namespace LibGame::Module {
         os << ctx.toString();
         return os;
     }
+
 }

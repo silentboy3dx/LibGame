@@ -1,9 +1,9 @@
 #include "LibGame/module/Movement.hpp"
 
-#include "LibGame/action/secondary/MovementSpeedSecondaryStatus.hpp"
+#include "LibGame/statuses/secondary/MovementSpeedSecondaryStatus.hpp"
 #include "LibGame/module/Context.hpp"
 
-using namespace LibGame::Action::Secondary;
+using namespace LibGame::Statuses::Secondary;
 
 namespace LibGame::Module {
     bool Movement::Run() const {

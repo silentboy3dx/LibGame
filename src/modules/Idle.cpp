@@ -1,9 +1,9 @@
 #include "LibGame/module/Idle.hpp"
 
-#include "LibGame/action/primary/IdlePrimaryStatus.hpp"
+#include "LibGame/statuses/primary/IdlePrimaryStatus.hpp"
 #include "LibGame/module/Context.hpp"
 
-using LibGame::Action::Primary::IdlePrimaryStatus;
+using LibGame::Statuses::Primary::IdlePrimaryStatus;
 
 namespace LibGame::Module {
     class Context;

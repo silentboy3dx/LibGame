@@ -1,6 +1,6 @@
-#include "LibGame/action/primary/IdlePrimaryStatus.hpp"
+#include "LibGame/statuses/primary/IdlePrimaryStatus.hpp"
 
-namespace LibGame::Action::Primary {
+namespace LibGame::Statuses::Primary {
 
     IdlePrimaryStatus::IdlePrimaryStatus(const Type t) : type(t) {
         fillContext();

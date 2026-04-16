@@ -1,23 +1,20 @@
 #pragma once
 #include "LibGame/misc/KvStore.hpp"
+
 #include <string>
 #include <unordered_map>
 
-namespace LibGame::Action::Primary {
+namespace LibGame::Statuses::Secondary {
 
-    class IdlePrimaryStatus final : public Misc::KvStore {
+    class MovementSpeedSecondaryStatus final : public Misc::KvStore {
     public:
         enum class Type {
-            Idle1,
-            Idle2,
-            Idle3,
-            Idle4,
-            Idle5,
-            Idle6
+            Walking,
+            Running
         };
 
-        explicit IdlePrimaryStatus(Type t);
-        ~IdlePrimaryStatus() override;
+        explicit MovementSpeedSecondaryStatus(Type t);
+        ~MovementSpeedSecondaryStatus() override;
 
         static std::string GetPrimaryActionName();
         static std::string GetPrimaryActionValue(Type action);

@@ -1,9 +1,9 @@
 #include "LibGame/module/Strapon.hpp"
 
-#include "LibGame/action/secondary/StraponSecondaryStatus.hpp"
+#include "LibGame/statuses/secondary/StraponSecondaryStatus.hpp"
 #include "LibGame/module/Context.hpp"
 
-using namespace LibGame::Action::Secondary;
+using namespace LibGame::Statuses::Secondary;
 
 namespace LibGame::Module {
     bool Strapon::Off() const {

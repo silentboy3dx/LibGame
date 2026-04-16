@@ -3,7 +3,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace LibGame::Action::Primary  {
+namespace LibGame::Statuses::Primary  {
 
     class DanceStatus : public Misc::KvStore {
     public:

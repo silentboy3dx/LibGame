@@ -1,13 +1,13 @@
 #include "LibGame/module/Clothing.hpp"
 
-#include "LibGame/action/secondary/NakedSecondaryStatus.hpp"
+#include "LibGame/statuses/secondary/NakedSecondaryStatus.hpp"
 #include "LibGame/io/Mouse.hpp"
 #include "LibGame/misc/Point.hpp"
 #include "LibGame/module/Context.hpp"
 
 #include <optional>
 
-using LibGame::Action::Secondary::NakedSecondaryStatus;
+using LibGame::Statuses::Secondary::NakedSecondaryStatus;
 using namespace LibGame::Detect;
 using namespace LibGame::Misc;
 

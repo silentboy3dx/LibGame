@@ -1,10 +1,10 @@
 #include "LibGame/module/Dances.hpp"
 
-#include "LibGame/action/primary/DanceStatus.hpp"
+#include "LibGame/statuses/primary/DanceStatus.hpp"
 #include "LibGame/module/BaseModule.hpp"
 #include "LibGame/module/Context.hpp"
 
-using namespace LibGame::Action::Primary;
+using namespace LibGame::Statuses::Primary;
 
 namespace LibGame::Module {
 

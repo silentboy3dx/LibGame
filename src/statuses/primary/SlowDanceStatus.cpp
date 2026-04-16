@@ -1,9 +1,10 @@
-#include "LibGame/action/primary/SlowDanceStatus.hpp"
+#include "LibGame/statuses/primary/SlowDanceStatus.hpp"
 #include "LibGame/misc/KvStore.hpp"
+
 #include <string>
 #include <unordered_map>
 
-namespace LibGame::Action::Primary {
+namespace LibGame::Statuses::Primary {
     SlowDanceStatus::SlowDanceStatus(Type t)
         : type(t) {
         fillContext();

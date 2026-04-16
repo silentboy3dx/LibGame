@@ -1,6 +1,6 @@
-#include "LibGame/action/secondary/PartnerSecondaryStatus.hpp"
+#include "LibGame/statuses/secondary/PartnerSecondaryStatus.hpp"
 
-namespace LibGame::Action::Secondary {
+namespace LibGame::Statuses::Secondary {
 
     std::string PartnerSecondaryStatus::partner{};
 

@@ -1,6 +1,6 @@
-#include "LibGame/action/secondary/MovementSpeedSecondaryStatus.hpp"
+#include "LibGame/statuses/secondary/MovementSpeedSecondaryStatus.hpp"
 
-namespace LibGame::Action::Secondary {
+namespace LibGame::Statuses::Secondary {
 
     MovementSpeedSecondaryStatus::MovementSpeedSecondaryStatus(const Type t) : type(t) {
         fillContext();

@@ -1,11 +1,10 @@
 #include "LibGame/module/Slowdance.hpp"
 
-#include "LibGame/action/primary/ActionStatus.hpp"
-#include "LibGame/action/primary/SlowDanceStatus.hpp"
+#include "LibGame/statuses/primary/ActionStatus.hpp"
+#include "LibGame/statuses/primary/SlowDanceStatus.hpp"
 #include "LibGame/module/Context.hpp"
-#include "LibGame/module/Idle.hpp"
 
-using namespace LibGame::Action::Primary;
+using LibGame::Statuses::Primary::SlowDanceStatus;
 
 namespace LibGame::Module {
     bool Slowdance::IsPanelVisible() const {

@@ -3,17 +3,19 @@
 #include <string>
 #include <unordered_map>
 
-namespace LibGame::Action::Secondary {
+namespace LibGame::Statuses::Secondary {
 
-    class MovementSpeedSecondaryStatus final : public Misc::KvStore {
+    class StraponSecondaryStatus final : public Misc::KvStore {
     public:
         enum class Type {
-            Walking,
-            Running
+            Off,
+            Penis,
+            Toy1,
+            Toy2
         };
 
-        explicit MovementSpeedSecondaryStatus(Type t);
-        ~MovementSpeedSecondaryStatus() override;
+        explicit StraponSecondaryStatus(const Type t);
+        ~StraponSecondaryStatus() override;
 
         static std::string GetPrimaryActionName();
         static std::string GetPrimaryActionValue(Type action);

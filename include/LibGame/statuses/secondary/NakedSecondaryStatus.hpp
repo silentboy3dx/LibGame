@@ -1,25 +1,23 @@
 #pragma once
 #include "LibGame/misc/KvStore.hpp"
+
 #include <string>
 #include <unordered_map>
 
-namespace LibGame::Action::Secondary {
+namespace LibGame::Statuses::Secondary {
 
-    class StraponSecondaryStatus final : public Misc::KvStore {
+    class NakedSecondaryStatus final : public Misc::KvStore {
     public:
         enum class Type {
-            Off,
-            Penis,
-            Toy1,
-            Toy2
+            Dressed,
+            Undressed
         };
 
-        explicit StraponSecondaryStatus(const Type t);
-        ~StraponSecondaryStatus() override;
+        explicit NakedSecondaryStatus(Type t);
+        ~NakedSecondaryStatus() override;
 
         static std::string GetPrimaryActionName();
         static std::string GetPrimaryActionValue(Type action);
-
         [[nodiscard]] std::unordered_map<std::string, std::string> getContext() const override;
 
     private:

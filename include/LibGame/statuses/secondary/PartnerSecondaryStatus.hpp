@@ -1,9 +1,11 @@
 #pragma once
 #include "LibGame/misc/KvStore.hpp"
+
 #include <string>
 #include <unordered_map>
 
-namespace LibGame::Action::Secondary {
+
+namespace LibGame::Statuses::Secondary {
 
     class PartnerSecondaryStatus final : public Misc::KvStore {
     public:
