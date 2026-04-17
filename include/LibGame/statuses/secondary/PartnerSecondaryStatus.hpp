@@ -4,8 +4,12 @@
 #include <string>
 #include <unordered_map>
 
+<<<<<<<< HEAD:include/LibGame/statuses/secondary/PartnerSecondaryStatus.hpp
 
 namespace LibGame::Statuses::Secondary {
+========
+namespace LibGame::Status::Secondary {
+>>>>>>>> origin/main:include/LibGame/status/secondary/PartnerSecondaryStatus.hpp
 
     class PartnerSecondaryStatus final : public Misc::KvStore {
     public:

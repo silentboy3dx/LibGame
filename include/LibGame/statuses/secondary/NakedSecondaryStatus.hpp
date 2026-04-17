@@ -4,7 +4,11 @@
 #include <string>
 #include <unordered_map>
 
+<<<<<<<< HEAD:include/LibGame/statuses/secondary/NakedSecondaryStatus.hpp
 namespace LibGame::Statuses::Secondary {
+========
+namespace LibGame::Status::Secondary {
+>>>>>>>> origin/main:include/LibGame/status/secondary/NakedSecondaryStatus.hpp
 
     class NakedSecondaryStatus final : public Misc::KvStore {
     public:

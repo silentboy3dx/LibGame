@@ -5,7 +5,11 @@
 #include <string>
 #include <unordered_map>
 
+<<<<<<<< HEAD:include/LibGame/statuses/primary/ActionStatus.hpp
 namespace LibGame::Statuses::Primary {
+========
+namespace LibGame::Status::Primary {
+>>>>>>>> origin/main:include/LibGame/status/primary/ActionStatus.hpp
     class ActionStatus : public Misc::KvStore {
     public:
         enum class Type { Sit1, Sit2, Lie1, Lie2, Hello, Applause };

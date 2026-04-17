@@ -3,7 +3,11 @@
 #include <string>
 #include <unordered_map>
 
+<<<<<<<< HEAD:include/LibGame/statuses/primary/IdlePrimaryStatus.hpp
 namespace LibGame::Statuses::Primary {
+========
+namespace LibGame::Status::Primary {
+>>>>>>>> origin/main:include/LibGame/status/primary/IdlePrimaryStatus.hpp
 
     class IdlePrimaryStatus final : public Misc::KvStore {
     public:

@@ -3,7 +3,11 @@
 #include <string>
 #include <unordered_map>
 
+<<<<<<<< HEAD:include/LibGame/statuses/secondary/StraponSecondaryStatus.hpp
 namespace LibGame::Statuses::Secondary {
+========
+namespace LibGame::Status::Secondary {
+>>>>>>>> origin/main:include/LibGame/status/secondary/StraponSecondaryStatus.hpp
 
     class StraponSecondaryStatus final : public Misc::KvStore {
     public:

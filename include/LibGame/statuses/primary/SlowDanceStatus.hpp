@@ -2,7 +2,14 @@
 
 #include "LibGame/misc/KvStore.hpp"
 
+<<<<<<<< HEAD:include/LibGame/statuses/primary/SlowDanceStatus.hpp
 namespace LibGame::Statuses::Primary {
+========
+#include <string>
+#include <unordered_map>
+
+namespace LibGame::Status::Primary {
+>>>>>>>> origin/main:include/LibGame/status/primary/SlowDanceStatus.hpp
     class SlowDanceStatus : public Misc::KvStore {
     public:
         enum class Type { Stop, Facing, Behind, Kiss };
