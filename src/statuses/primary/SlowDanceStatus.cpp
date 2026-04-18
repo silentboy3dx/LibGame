@@ -1,18 +1,8 @@
-<<<<<<<< HEAD:src/statuses/primary/SlowDanceStatus.cpp
+
 #include "LibGame/statuses/primary/SlowDanceStatus.hpp"
-========
-#include "LibGame/status/primary/SlowDanceStatus.hpp"
->>>>>>>> origin/main:src/status/primary/SlowDanceStatus.cpp
-#include "LibGame/misc/KvStore.hpp"
 
-#include <string>
-#include <unordered_map>
-
-<<<<<<<< HEAD:src/statuses/primary/SlowDanceStatus.cpp
 namespace LibGame::Statuses::Primary {
-========
-namespace LibGame::Status::Primary {
->>>>>>>> origin/main:src/status/primary/SlowDanceStatus.cpp
+
     SlowDanceStatus::SlowDanceStatus(Type t)
         : type(t) {
         fillContext();

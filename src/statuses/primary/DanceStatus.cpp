@@ -1,19 +1,11 @@
-<<<<<<<< HEAD:src/statuses/primary/DanceStatus.cpp
 #include "LibGame/statuses/primary/DanceStatus.hpp"
-========
-#include "LibGame/status/primary/DanceStatus.hpp"
->>>>>>>> origin/main:src/status/primary/DanceStatus.cpp
 
 #include <format>
 #include <iostream>
 #include <ostream>
 #include <stdexcept>
 
-<<<<<<<< HEAD:src/statuses/primary/DanceStatus.cpp
 namespace LibGame::Statuses::Primary {
-========
-namespace LibGame::Status::Primary {
->>>>>>>> origin/main:src/status/primary/DanceStatus.cpp
     DanceStatus::DanceStatus(Type t) : type(t) {
         fillContext();
     }

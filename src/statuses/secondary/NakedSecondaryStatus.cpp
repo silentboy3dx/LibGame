@@ -1,12 +1,7 @@
-<<<<<<<< HEAD:src/statuses/secondary/NakedSecondaryStatus.cpp
 #include "LibGame/statuses/secondary/NakedSecondaryStatus.hpp"
 
 namespace LibGame::Statuses::Secondary {
-========
-#include "LibGame/status/secondary/NakedSecondaryStatus.hpp"
 
-namespace LibGame::Status::Secondary {
->>>>>>>> origin/main:src/status/secondary/NakedSecondaryStatus.cpp
     NakedSecondaryStatus::NakedSecondaryStatus(const Type t) : type(t) {
         fillContext();
     }
