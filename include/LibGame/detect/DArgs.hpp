@@ -11,11 +11,12 @@ namespace LibGame::Detect {
     struct DArgs {
         bool cacheable = false;
         bool grayscale = false;
+        bool debug = true;
         float confidence = 0.99f;
         std::optional<Region> region = std::nullopt;
         std::optional<Image> match_target; // the big image
 
-        DArgs(float confidence = 0.99f, bool grayscale = false, bool cacheable = false):
-            confidence(confidence), grayscale(grayscale), cacheable(cacheable) {}
+        DArgs(float confidence = 0.99f, bool grayscale = false, bool cacheable = false, bool debug = false):
+            confidence(confidence), grayscale(grayscale), cacheable(cacheable), debug(debug) {}
     };
 }

@@ -26,8 +26,10 @@ namespace LibGame::Detect {
     }
 
     std::optional<DResult> Detector::Single(Image &match_template, const DArgs &args) {
-        try {
 
+        bool debug = false;
+
+        try {
             // std::this_thread::sleep_for(std::chrono::seconds(2));
 
             auto options = MatchOptions();
@@ -38,6 +40,8 @@ namespace LibGame::Detect {
             if (args.cacheable) {
 #pragma warning("Cache not implemented yet")
             }
+
+            debug = args.debug;
 
             if (!match_target) {
                 /**
@@ -98,15 +102,13 @@ namespace LibGame::Detect {
 #pragma warning("Cache not implemented yet")
             }
 
-
-
-
-
             return static_cast<DResult>(result);
 
             // Perform detection logic here
         } catch (const LibGraphics::Exceptions::LowConfidenceException &e) {
-            std::cout << match_template.origin << ": Low confidence exception" << e.what() << std::endl;
+            if (debug) {
+                std::cout << match_template.origin << ": Low confidence exception" << e.what() << std::endl;
+            }
         } catch (const std::exception &) {
             // Handle exceptions if necessary
         }
@@ -115,6 +117,9 @@ namespace LibGame::Detect {
     }
 
     std::optional<std::vector<DResult> > Detector::Multiple(Image &match_template, const DArgs &args) {
+
+        bool debug = false;
+
         try {
             auto options = MatchOptions();
             std::optional<Image> match_target = args.match_target;
@@ -124,6 +129,8 @@ namespace LibGame::Detect {
 #pragma warning("Cache not implemented yet")
             }
 
+            debug = args.debug;
+
             if (!match_target) {
                 const Image screenshot = [&]() -> Image {
                     if (args.region.has_value()) {
@@ -131,9 +138,9 @@ namespace LibGame::Detect {
                                               args.region->Y,
                                               args.region->Width,
                                               args.region->Height);
-                    } else {
-                        return TakeScreenshot();
                     }
+
+                    return TakeScreenshot();
                 }();
                 match_target = screenshot;
             }
@@ -141,6 +148,7 @@ namespace LibGame::Detect {
             if (args.region.has_value()) {
                 toRealworld = true;
             }
+
 
             options.minConfidence = args.confidence;
             options.grayscale = args.grayscale;
@@ -173,10 +181,11 @@ namespace LibGame::Detect {
                 return converted;
             }
         } catch (const LibGraphics::Exceptions::LowConfidenceException &e) {
-            std::cout << match_template.origin << ": Low confidence exception " << e.what() << std::endl;
+            if (debug) {
+                std::cout << match_template.origin << ": Low confidence exception " << e.what() << std::endl;
+            }
         } catch (const std::exception &) {
             // Handle exceptions if necessary
-            std::cout << "Exception" << std::endl;
         }
 
         return std::nullopt;
