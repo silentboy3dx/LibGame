@@ -1,12 +1,16 @@
 #pragma once
-#include "LibGame/misc/KvStore.hpp"
+#include "LibGame/statuses/primary/PrimaryStatus.hpp"
 
 #include <string>
 #include <unordered_map>
 
+namespace LibGame::Module {
+    class Context;   // ← forward declaration
+}
+
 namespace LibGame::Statuses::Primary {
 
-    class IdlePrimaryStatus final : public Misc::KvStore {
+    class IdlePrimaryStatus final : public PrimaryStatus {
     public:
         enum class Type {
             Idle1,
@@ -17,13 +21,16 @@ namespace LibGame::Statuses::Primary {
             Idle6
         };
 
-        explicit IdlePrimaryStatus(Type t);
+        explicit IdlePrimaryStatus(Module::Context &ctx, Type t) : PrimaryStatus(ctx), type(t) {
+            fillContext();
+        }
+
         ~IdlePrimaryStatus() override;
 
         static std::string GetPrimaryActionName();
-        static std::string GetPrimaryActionValue(Type action);
-
-        [[nodiscard]] std::unordered_map<std::string, std::string> getContext() const override;
+        static std::string GetSecondaryActionName();
+        static std::string GetSecondaryActionValue(Type action);
+        void clear() override;
 
     private:
         Type type;

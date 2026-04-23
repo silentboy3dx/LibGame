@@ -1,27 +1,25 @@
 #include "LibGame/statuses/primary/ActionStatus.hpp"
-#include "LibGame/misc/KvStore.hpp"
+#include "LibGame/module/Context.hpp"
 
 #include <string>
-#include <unordered_map>
 
 namespace LibGame::Statuses::Primary {
-    ActionStatus::ActionStatus(Type t)
-        : type(t) {
-        fillContext();
-    }
-
     ActionStatus::~ActionStatus() = default;
+
+    void ActionStatus::clear() {
+        ctx.remove("Action");
+        ctx.remove(GetSecondaryActionName());
+    }
 
     std::string ActionStatus::GetPrimaryActionName() {
         return "Performing Action";
     }
 
     std::string ActionStatus::GetSecondaryActionName() {
-        return "Action";
+        return "Action performed";
     }
 
     std::string ActionStatus::GetSecondaryActionValue(Type action) {
-
         switch (action) {
             case Type::Sit1: return "Sitting on the floor";
             case Type::Sit2: return "Levitating in a cross-legged pose";
@@ -33,14 +31,8 @@ namespace LibGame::Statuses::Primary {
         }
     }
 
-    std::unordered_map<std::string, std::string> ActionStatus::getContext() const {
-        return store;
-    }
-
-    void ActionStatus::fillContext() {
-        add(GetSecondaryActionName(), GetSecondaryActionValue(type));
-        if (!partner.empty()) {
-            add("Partner", partner);
-        }
+    void ActionStatus::fillContext() const {
+        ctx.add("Action", GetPrimaryActionName());
+        ctx.add(GetSecondaryActionName(), GetSecondaryActionValue(type));
     }
 }

@@ -1,21 +1,21 @@
-
 #include "LibGame/statuses/primary/SlowDanceStatus.hpp"
+#include "LibGame/module/Context.hpp"
 
 namespace LibGame::Statuses::Primary {
-
-    SlowDanceStatus::SlowDanceStatus(Type t)
-        : type(t) {
-        fillContext();
-    }
-
     SlowDanceStatus::~SlowDanceStatus() = default;
 
+    void SlowDanceStatus::clear() {
+        ctx.remove("Slow-dance Partner");
+        ctx.remove("Action");
+        ctx.remove(GetSecondaryActionName());
+    }
+
     std::string SlowDanceStatus::GetPrimaryActionName() {
-        return "Slowdance";
+        return "Slow-dance";
     }
 
     std::string SlowDanceStatus::GetSecondaryActionName() {
-        return "Slowdance pose";
+        return "Slow-dance pose";
     }
 
     std::string SlowDanceStatus::GetSecondaryActionValue(Type action) {
@@ -28,16 +28,17 @@ namespace LibGame::Statuses::Primary {
         }
     }
 
-    std::unordered_map<std::string, std::string> SlowDanceStatus::getContext() const {
-        return store;
+    void SlowDanceStatus::SetPartner(const std::string &name)  {
+        partner = name;
+        fillContext();
     }
 
-    void SlowDanceStatus::fillContext() {
+    void SlowDanceStatus::fillContext() const {
         if (type != Type::Stop) {
-            add("Action", GetPrimaryActionName());
-            add(GetSecondaryActionName(), GetSecondaryActionValue(type));
+            ctx.add("Action", GetPrimaryActionName());
+            ctx.add(GetSecondaryActionName(), GetSecondaryActionValue(type));
             if (!partner.empty()) {
-                add("Partner", partner);
+                ctx.add("Slow-dance Partner", partner);
             }
         }
     }

@@ -1,33 +1,37 @@
 #pragma once
-#include "LibGame/misc/KvStore.hpp"
+#include "LibGame/statuses/secondary/SecondaryStatus.hpp"
 
 #include <string>
-#include <unordered_map>
+
+namespace LibGame::Module {
+    class Context;   // ← forward declaration
+}
 
 namespace LibGame::Statuses::Secondary {
-    class PartnerSecondaryStatus final : public Misc::KvStore {
+    class PartnerSecondaryStatus final : public SecondaryStatus {
     public:
+
         enum class Type {
             Off,
             Partner
         };
 
-        explicit PartnerSecondaryStatus(const Type t);
-
-        ~PartnerSecondaryStatus() override;
-
-        static std::string GetPrimaryActionName();
-
-        static std::string GetPrimaryActionValue(const Type action);
-
-        static void SetPartner(const std::string &partner);
-
-        [[nodiscard]] std::unordered_map<std::string, std::string> getContext() const;
-
-    private:
-        Type type;
         static std::string partner;
 
-        void fillContext();
+        explicit PartnerSecondaryStatus(Module::Context &ctx, const Type t) : SecondaryStatus(ctx), type(t) {
+            fillContext();
+        }
+
+        ~PartnerSecondaryStatus() override;
+        void clear() override;
+
+        static std::string GetPrimaryActionName();
+        static std::string GetPrimaryActionValue(Type action);
+
+        void SetPartner(const std::string &partner) const;
+
+    private:
+        void fillContext() const;
+        Type type;
     };
 }

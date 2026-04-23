@@ -1,14 +1,17 @@
 #include "LibGame/statuses/secondary/PartnerSecondaryStatus.hpp"
+#include "LibGame/module/Context.hpp"
+
+using LibGame::Module::Context;
 
 namespace LibGame::Statuses::Secondary {
 
-    std::string PartnerSecondaryStatus::partner{};
-
-    PartnerSecondaryStatus::PartnerSecondaryStatus(const Type t) : type(t) {
-        fillContext();
-    }
+    std::string PartnerSecondaryStatus::partner = "";
 
     PartnerSecondaryStatus::~PartnerSecondaryStatus() = default;
+
+    void PartnerSecondaryStatus::clear() {
+        ctx.remove(GetPrimaryActionName());
+    }
 
     std::string PartnerSecondaryStatus::GetPrimaryActionName() {
         return "Current Partner";
@@ -18,15 +21,11 @@ namespace LibGame::Statuses::Secondary {
         return partner;
     }
 
-    void PartnerSecondaryStatus::SetPartner(const std::string& p) {
-        partner = p;
+    void PartnerSecondaryStatus::fillContext() const {
+        SetPartner("");
     }
 
-    std::unordered_map<std::string, std::string> PartnerSecondaryStatus::getContext() const {
-        return store;
-    }
-
-    void PartnerSecondaryStatus::fillContext() {
-        add("Partner", GetPrimaryActionValue(type));
+    void PartnerSecondaryStatus::SetPartner(const std::string& p) const {
+        ctx.add(GetPrimaryActionName(), p);
     }
 }

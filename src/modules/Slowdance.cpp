@@ -21,7 +21,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<SlowDanceStatus>(SlowDanceStatus::Type::Facing);
+                    .SetPrimaryStatus<SlowDanceStatus>(SlowDanceStatus::Type::Facing);
         }
 
         return result;
@@ -37,7 +37,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<SlowDanceStatus>(SlowDanceStatus::Type::Behind);
+                    .SetPrimaryStatus<SlowDanceStatus>(SlowDanceStatus::Type::Behind);
         }
 
         return result;
@@ -53,7 +53,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<SlowDanceStatus>(SlowDanceStatus::Type::Kiss);
+                    .SetPrimaryStatus<SlowDanceStatus>(SlowDanceStatus::Type::Kiss);
         }
 
         return result;
@@ -69,7 +69,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .SetPrimaryAction<SlowDanceStatus>(SlowDanceStatus::Type::Stop);
+                    .SetPrimaryStatus<SlowDanceStatus>(SlowDanceStatus::Type::Stop);
         }
 
         return result;

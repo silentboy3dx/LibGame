@@ -34,10 +34,12 @@ add_library(${PROJECT_NAME} STATIC
         include/LibGame/statuses/primary/DanceStatus.hpp
         include/LibGame/statuses/primary/ActionStatus.hpp
 
+
         include/LibGame/statuses/secondary/MovementSpeedSecondaryStatus.hpp
         include/LibGame/statuses/secondary/StraponSecondaryStatus.hpp
         include/LibGame/statuses/secondary/PartnerSecondaryStatus.hpp
         include/LibGame/statuses/secondary/NakedSecondaryStatus.hpp
+        include/LibGame/statuses/secondary/SecondaryStatus.hpp
 
 
         include/LibGame/module/ImageReader.hpp

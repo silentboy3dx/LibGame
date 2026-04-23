@@ -1,12 +1,15 @@
 #include "LibGame/statuses/secondary/NakedSecondaryStatus.hpp"
+#include "LibGame/module/Context.hpp"
+
+using LibGame::Module::Context;
 
 namespace LibGame::Statuses::Secondary {
 
-    NakedSecondaryStatus::NakedSecondaryStatus(const Type t) : type(t) {
-        fillContext();
-    }
-
     NakedSecondaryStatus::~NakedSecondaryStatus() = default;
+
+    void NakedSecondaryStatus::clear() {
+        ctx.remove(GetPrimaryActionName());
+    }
 
     std::string NakedSecondaryStatus::GetPrimaryActionName() {
         return "Dressed";
@@ -20,11 +23,7 @@ namespace LibGame::Statuses::Secondary {
         }
     }
 
-    std::unordered_map<std::string, std::string> NakedSecondaryStatus::getContext() const {
-        return store;
-    }
-
-    void NakedSecondaryStatus::fillContext() {
-        add("Clothing style", GetPrimaryActionValue(type));
+    void NakedSecondaryStatus::fillContext() const {
+        ctx.add(GetPrimaryActionName(), GetPrimaryActionValue(type));
     }
 }

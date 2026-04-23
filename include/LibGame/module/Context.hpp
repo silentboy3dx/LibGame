@@ -1,12 +1,15 @@
 #pragma once
 #include "BaseModule.hpp"
 #include "LibGame/misc/KvStore.hpp"
+#include "LibGame/statuses/secondary/SecondaryStatus.hpp"
+#include "LibGame/statuses/primary//PrimaryStatus.hpp"
 
 #include <unordered_map>
 #include <vector>
 #include <string>
 #include <type_traits>
-#include <ostream>
+#include <typeindex>
+#include <memory>
 #include <algorithm>
 
 namespace LibGame::Module {
@@ -16,92 +19,94 @@ namespace LibGame::Module {
         explicit Context(Interactions* core) noexcept : BaseModule(core) {}
         ~Context() override = default;
 
-        // KvStore overrides (global context)
         Context& add(const std::string& key, const std::string& value) override;
         Context& remove(const std::string& key) override;
         Context& clear() override;
 
-        // Extra tekst voor/na context
         Context& before(const std::string& line);
         Context& after(const std::string& line);
 
-        // PRIMARY ACTION (single-primary)
         template <typename TStatus>
-        Context& SetPrimaryAction(typename TStatus::Type status) {
-            static_assert(std::is_base_of_v<Misc::KvStore, TStatus>,
-                          "TStatus must inherit from KvStore");
+        TStatus& SetPrimaryStatus(TStatus::Type status) {
+            static_assert(std::is_base_of_v<Statuses::Primary::PrimaryStatus, TStatus>);
 
-            TStatus action(status);
-            primaryContext = action.getContext();
-            return *this;
+            using Base = Statuses::Primary::PrimaryStatus;
+            using BasePtr = std::unique_ptr<Base>;
+
+            auto raw = new TStatus(*this, status);
+            TStatus& ref = *raw;
+
+            primaryInstances[typeid(TStatus)] = BasePtr(raw);
+            return ref;
+        }
+
+        template<typename TStatus>
+        TStatus* GetPrimaryStatus() {
+            auto it = primaryInstances.find(typeid(TStatus));
+            if (it == primaryInstances.end()) return nullptr;
+            return static_cast<TStatus*>(it->second.get());
         }
 
         template<typename TStatus>
         Context& RemovePrimaryStatus() {
-            primaryContext.clear();
+
+            auto it = primaryInstances.find(typeid(TStatus));
+            if (it == primaryInstances.end())
+                return *this;
+
+            primaryInstances[typeid(TStatus)]->clear();
+            primaryInstances.erase(it);
+            primaryInstances.clear();
+
             return *this;
         }
-
-        Context& RemovePrimaryAction();
 
         template<typename TStatus>
         bool HasPrimaryStatus() const {
-            static_assert(std::is_base_of_v<Misc::KvStore, TStatus>,
-                          "TStatus must inherit from KvStore");
-
-            TStatus tmp(static_cast<typename TStatus::Type>(0));
-            auto keys = tmp.getContext();
-
-            return std::ranges::all_of(keys, [&](const auto& kv) {
-                return primaryContext.contains(kv.first);
-            });
+            auto it = primaryInstances.find(typeid(TStatus));
+            return (it != primaryInstances.end());
         }
 
-        // SECONDARY ACTION (multi-secondary)
         template <typename TStatus>
-        Context& AddSecondaryAction(typename TStatus::Type status) {
-            static_assert(std::is_base_of_v<Misc::KvStore, TStatus>,
-                          "TStatus must inherit from KvStore");
+        TStatus& AddSecondaryStatus(TStatus::Type status) {
+            static_assert(std::is_base_of_v<Statuses::Secondary::SecondaryStatus, TStatus>);
+            auto instance = std::make_unique<TStatus>(*this, status);
 
-            TStatus action(status);
-            auto ctx = action.getContext();
+            TStatus& ref = *instance;
+            secondaryInstances[typeid(TStatus)] = std::move(instance);
+            return ref;
+        }
 
-            for (const auto& [k, v] : ctx) {
-                secondaryContext[k] = v;
-            }
-            return *this;
+        template<typename TStatus>
+        TStatus* GetSecondaryStatus() {
+            auto it = secondaryInstances.find(typeid(TStatus));
+            if (it == secondaryInstances.end()) return nullptr;
+            return static_cast<TStatus*>(it->second.get());
         }
 
         template<typename TStatus>
         Context& RemoveSecondaryStatus() {
-            static_assert(std::is_base_of_v<Misc::KvStore, TStatus>,
-                          "TStatus must inherit from KvStore");
+            static_assert(std::is_base_of_v<Statuses::Secondary::SecondaryStatus, TStatus>);
 
-            TStatus tmp(static_cast<typename TStatus::Type>(0));
-            auto ctx = tmp.getContext();
+            auto it = secondaryInstances.find(typeid(TStatus));
+            if (it == secondaryInstances.end())
+                return *this;
 
-            for (const auto& [k, _] : ctx) {
-                secondaryContext.erase(k);
-            }
+            remove(TStatus::GetPrimaryActionName());
+            secondaryInstances[typeid(TStatus)]->clear();
+            secondaryInstances.erase(it);
             return *this;
         }
 
-        Context& RemoveSecondaryAction();
-
         template<typename TStatus>
         bool HasSecondaryStatus() const {
-            static_assert(std::is_base_of_v<Misc::KvStore, TStatus>,
-                          "TStatus must inherit from KvStore");
+            static_assert(std::is_base_of_v<Statuses::Secondary::SecondaryStatus, TStatus>);
 
-            TStatus tmp(static_cast<typename TStatus::Type>(0));
-            auto ctx = tmp.getContext();
+            auto it = secondaryInstances.find(typeid(TStatus));
+            return  (it != secondaryInstances.end());
 
-            return std::ranges::all_of(ctx, [&](const auto& kv) {
-                return secondaryContext.contains(kv.first);
-            });
         }
 
-        // Debug
         std::string toString() const;
         friend std::ostream& operator<<(std::ostream& os, const Context& ctx);
 
@@ -109,8 +114,8 @@ namespace LibGame::Module {
         std::vector<std::string> beforeLines;
         std::vector<std::string> afterLines;
 
-        std::unordered_map<std::string, std::string> primaryContext;
-        std::unordered_map<std::string, std::string> secondaryContext;
+        std::unordered_map<std::type_index, std::unique_ptr<Statuses::Primary::PrimaryStatus>> primaryInstances;
+        std::unordered_map<std::type_index, std::unique_ptr<Statuses::Secondary::SecondaryStatus>> secondaryInstances;
     };
 
 }

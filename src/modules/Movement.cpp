@@ -17,7 +17,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-            .AddSecondaryAction<MovementSpeedSecondaryStatus>(MovementSpeedSecondaryStatus::Type::Running);
+            .AddSecondaryStatus<MovementSpeedSecondaryStatus>(MovementSpeedSecondaryStatus::Type::Running);
         }
 
         return result;
@@ -33,7 +33,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-            .AddSecondaryAction<MovementSpeedSecondaryStatus>(MovementSpeedSecondaryStatus::Type::Walking);
+            .AddSecondaryStatus<MovementSpeedSecondaryStatus>(MovementSpeedSecondaryStatus::Type::Walking);
         }
 
         return result;

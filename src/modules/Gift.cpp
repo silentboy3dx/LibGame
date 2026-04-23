@@ -39,7 +39,7 @@ namespace LibGame::Module {
     std::optional<GiftSender> Gift::ReadLastestGift() const {
         const auto screenshot = core->GetInteraction<Screenshot>().Take();
 
-        auto args = DArgs(0.99f);
+        auto args = DArgs(0.98f, false, false, true);
         args.match_target = screenshot;
 
         const auto btn_result = GetAsset("gift/button_my_gifts_highlighted.png", args);
@@ -61,25 +61,41 @@ namespace LibGame::Module {
                 args.match_target = gift;
 
                 auto const btnDelete = GetAsset("gift/button_delete.png", args);
+                auto const btnReport = GetAsset("gift/button_report.png", args);
 
+                if (btnDelete.has_value() && btnReport.has_value()) {
+                    // const auto deleteButton = btnDelete.value();
+                    const auto reportButton = btnReport.value();
 
-                if (btnDelete.has_value()) {
-                    const auto button = btnDelete.value();
+                    int nameWidth = 115;
+                    int nameHeight = 37;
+                    int padding = 10;
 
-                    /**
-                     * We will redact both the gift image and the delete button so that
-                     * we have a better ocr result.
-                     */
-                    std::vector<Type::Rect> decations = {
-                        {button.X, button.Y, button.Width, button.Height}, /* Delete button */
-                        {0, 62, 491, 268} /* Gift image */
-                    };
+                    const Type::Rect cropRegion = {reportButton.X - (nameWidth + padding), reportButton.Y, nameWidth, nameHeight};
+                    const Type::Rect imageRegion = {0, 62, 491, 268};
 
-                    gift.redact(decations);
+                    // std::vector<Type::Rect> redaction = {
+                    //     /* Report button */
+                    //     {reportButton.X, reportButton.Y, reportButton.Width, reportButton.Height},
+                    //     /* Delete button */
+                    //     {deleteButton.X, deleteButton.Y, deleteButton.Width, deleteButton.Height},
+                    //     /* Name */
+                    //     {reportButton.X - (nameWidth + padding), reportButton.Y, nameWidth, nameHeight},
+                    //     /* Gift image */
+                    //     imageRegion
+                    // };
 
-                    auto result = core->GetInteraction<ImageReader>().ImageToText(gift, 0.8f, true);
+                    int calculatedHeight = gift.height - (imageRegion.Height + imageRegion.Y);
+                    int calculatedWidth = (ProfileWidth - FriendsListWidth); calculatedWidth += 5;
+                    int calculatedY = gift.height - calculatedHeight;
 
-                    GiftSender sender{.Message = result.value_or("No text found")};;
+                    auto nameCrop = gift.crop(cropRegion.X, cropRegion.Y - 16, cropRegion.Width, cropRegion.Height);
+                    auto textCrop = gift.crop(0, calculatedY, calculatedWidth,   calculatedHeight);
+
+                    auto messageText = core->GetInteraction<ImageReader>().ImageToText(textCrop, 0.8f, true);
+                    auto nameText = core->GetInteraction<ImageReader>().ImageToText(nameCrop, 0.8f, true);
+
+                    GiftSender sender{.Sender = nameText.value_or("Unknow"), .Message = messageText.value_or("No text found")};;
 
                     return sender;
                 }

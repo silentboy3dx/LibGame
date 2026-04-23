@@ -1,10 +1,15 @@
 #pragma once
-#include "LibGame/misc/KvStore.hpp"
+#include "LibGame/statuses/secondary/SecondaryStatus.hpp"
 #include <string>
 #include <unordered_map>
 
+namespace LibGame::Module {
+    class Context;   // ← forward declaration
+}
+
+
 namespace LibGame::Statuses::Secondary {
-    class StraponSecondaryStatus final : public Misc::KvStore {
+    class StraponSecondaryStatus final : public SecondaryStatus {
     public:
         enum class Type {
             Off,
@@ -13,19 +18,19 @@ namespace LibGame::Statuses::Secondary {
             Toy2
         };
 
-        explicit StraponSecondaryStatus(const Type t);
+        explicit StraponSecondaryStatus(Module::Context &ctx, const Type t) : SecondaryStatus(ctx), type(t) {
+            fillContext();
+        }
 
         ~StraponSecondaryStatus() override;
+        void clear() override;
 
         static std::string GetPrimaryActionName();
-
         static std::string GetPrimaryActionValue(Type action);
-
-        [[nodiscard]] std::unordered_map<std::string, std::string> getContext() const override;
 
     private:
         Type type;
 
-        void fillContext();
+        void fillContext() const;
     };
 }

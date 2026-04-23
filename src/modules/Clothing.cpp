@@ -91,7 +91,7 @@ namespace LibGame::Module {
         const bool result = ClickIfVisible("clothing/button_put_on_all.png", 0.98f, false);
 
         if (result) {
-            core->GetInteraction<Context>().AddSecondaryAction<NakedSecondaryStatus>(
+            core->GetInteraction<Context>().AddSecondaryStatus<NakedSecondaryStatus>(
                 NakedSecondaryStatus::Type::Dressed
             );
         }
@@ -113,7 +113,7 @@ namespace LibGame::Module {
         const bool result = ClickIfVisible("clothing/button_put_off_all.png", 0.97f, false);
 
         if (result) {
-            core->GetInteraction<Context>().AddSecondaryAction<NakedSecondaryStatus>(
+            core->GetInteraction<Context>().AddSecondaryStatus<NakedSecondaryStatus>(
                 NakedSecondaryStatus::Type::Undressed
             );
         }

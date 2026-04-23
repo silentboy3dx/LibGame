@@ -1,12 +1,15 @@
 #include "LibGame/statuses/secondary/MovementSpeedSecondaryStatus.hpp"
+#include "LibGame/module/Context.hpp"
+
+using LibGame::Module::Context;
 
 namespace LibGame::Statuses::Secondary {
 
-    MovementSpeedSecondaryStatus::MovementSpeedSecondaryStatus(const Type t) : type(t) {
-        fillContext();
-    }
-
     MovementSpeedSecondaryStatus::~MovementSpeedSecondaryStatus() = default;
+
+    void MovementSpeedSecondaryStatus::clear() {
+        ctx.remove(GetPrimaryActionName());
+    }
 
     std::string MovementSpeedSecondaryStatus::GetPrimaryActionName() {
         return "Movement Type";
@@ -20,12 +23,8 @@ namespace LibGame::Statuses::Secondary {
         }
     }
 
-    std::unordered_map<std::string, std::string> MovementSpeedSecondaryStatus::getContext() const {
-        return store;
-    }
-
-    void MovementSpeedSecondaryStatus::fillContext() {
-        add("Movement type", GetPrimaryActionValue(type));
+    void MovementSpeedSecondaryStatus::fillContext() const {
+        ctx.add(GetPrimaryActionName(), GetPrimaryActionValue(type));
     }
 
 }

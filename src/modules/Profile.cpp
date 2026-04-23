@@ -4,7 +4,7 @@ namespace LibGame::Module {
     std::optional<DResult> Profile::GetMyProfileLabel() const {
         return detector->Single(
             assets->AssetFile("profile/label_my_profile.png"),
-            DArgs(0.99f)
+            DArgs(0.94f, false, false, false)
         );
     }
 

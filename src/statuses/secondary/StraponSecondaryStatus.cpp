@@ -1,12 +1,15 @@
 #include "LibGame/statuses/secondary/StraponSecondaryStatus.hpp"
+#include "LibGame/module/Context.hpp"
+
+using LibGame::Module::Context;
 
 namespace LibGame::Statuses::Secondary {
 
-    StraponSecondaryStatus::StraponSecondaryStatus(const Type t) : type(t) {
-        fillContext();
-    }
-
     StraponSecondaryStatus::~StraponSecondaryStatus() = default;
+
+    void StraponSecondaryStatus::clear() {
+        ctx.remove(GetPrimaryActionName());
+    }
 
     std::string StraponSecondaryStatus::GetPrimaryActionName() {
         return "Wearing Strapon";
@@ -22,13 +25,9 @@ namespace LibGame::Statuses::Secondary {
         }
     }
 
-    std::unordered_map<std::string, std::string> StraponSecondaryStatus::getContext() const {
-        return store;
-    }
-
-    void StraponSecondaryStatus::fillContext() {
+    void StraponSecondaryStatus::fillContext() const {
         if (type != Type::Off) {
-            add("Strapon type", GetPrimaryActionValue(type));
+            ctx.add(GetPrimaryActionName(), GetPrimaryActionValue(type));
         }
     }
 }

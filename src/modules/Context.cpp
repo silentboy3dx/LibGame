@@ -1,5 +1,4 @@
 #include "LibGame/module/Context.hpp"
-
 #include <sstream>
 
 namespace LibGame::Module {
@@ -16,10 +15,10 @@ namespace LibGame::Module {
 
     Context& Context::clear() {
         KvStore::clear();
-        primaryContext.clear();
-        secondaryContext.clear();
         beforeLines.clear();
         afterLines.clear();
+        primaryInstances.clear();
+        secondaryInstances.clear();
         return *this;
     }
 
@@ -33,38 +32,12 @@ namespace LibGame::Module {
         return *this;
     }
 
-    Context& Context::RemovePrimaryAction() {
-        primaryContext.clear();
-        return *this;
-    }
-
-    Context& Context::RemoveSecondaryAction() {
-        secondaryContext.clear();
-        return *this;
-    }
-
     std::string Context::toString() const {
         std::ostringstream oss;
 
-        for (const auto& line : beforeLines) {
-            oss << line << '\n';
-        }
-
-        for (const auto& [k, v] : primaryContext) {
-            oss << k << ": " << v << '\n';
-        }
-
-        for (const auto& [k, v] : secondaryContext) {
-            oss << k << ": " << v << '\n';
-        }
-
-        for (const auto& [k, v] : KvStore::getContext()) {
-            oss << k << ": " << v << '\n';
-        }
-
-        for (const auto& line : afterLines) {
-            oss << line << '\n';
-        }
+        for (const auto& line : beforeLines) oss << line << '\n';
+        for (const auto& [k, v] : KvStore::getContext()) oss << k << ": " << v << '\n';
+        for (const auto& line : afterLines) oss << line << '\n';
 
         return oss.str();
     }

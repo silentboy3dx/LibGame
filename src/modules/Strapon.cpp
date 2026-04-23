@@ -16,7 +16,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-            .AddSecondaryAction<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Off);
+            .AddSecondaryStatus<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Off);
         }
 
         return result;
@@ -32,7 +32,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-            .AddSecondaryAction<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Penis);
+            .AddSecondaryStatus<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Penis);
         }
 
         return result;
@@ -48,7 +48,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                                .AddSecondaryAction<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Toy1);
+                                .AddSecondaryStatus<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Toy1);
         }
 
         return result;
@@ -64,7 +64,7 @@ namespace LibGame::Module {
 
         if (result) {
             core->GetInteraction<Context>()
-                    .AddSecondaryAction<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Toy2);
+                    .AddSecondaryStatus<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Toy2);
         }
 
         return result;

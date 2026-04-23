@@ -1,29 +1,35 @@
 #pragma once
 
-#include "LibGame/misc/KvStore.hpp"
+#include "LibGame/statuses/primary/PrimaryStatus.hpp"
+
+#include <string>
+
+namespace LibGame::Module {
+    class Context;   // ← forward declaration
+}
 
 namespace LibGame::Statuses::Primary {
-    class SlowDanceStatus : public Misc::KvStore {
+    class SlowDanceStatus : public PrimaryStatus {
     public:
         enum class Type { Stop, Facing, Behind, Kiss };
 
-        explicit SlowDanceStatus(Type t);
+        explicit SlowDanceStatus(Module::Context &ctx, Type t) : PrimaryStatus(ctx), type(t) {
+            fillContext();
+        };
 
         ~SlowDanceStatus() override;
 
         static std::string GetPrimaryActionName();
-
         static std::string GetSecondaryActionName();
-
         static std::string GetSecondaryActionValue(Type action);
 
-        std::unordered_map<std::string, std::string> getContext() const override;
+        void SetPartner(const std::string &name);
+        void clear() override;
 
     private:
         Type type;
         std::string partner;
 
-        // Helper om de context te vullen
-        void fillContext();
+        void fillContext() const;
     };
 }

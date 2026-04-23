@@ -1,16 +1,19 @@
 #include "LibGame/statuses/primary/DanceStatus.hpp"
+#include "LibGame/module/Context.hpp"
 
 #include <format>
 #include <iostream>
 #include <ostream>
 #include <stdexcept>
 
-namespace LibGame::Statuses::Primary {
-    DanceStatus::DanceStatus(Type t) : type(t) {
-        fillContext();
-    }
 
+namespace LibGame::Statuses::Primary {
     DanceStatus::~DanceStatus() = default;
+
+    void DanceStatus::clear() {
+        ctx.remove("Action");
+        ctx.remove(GetSecondaryActionName());
+    }
 
     std::string DanceStatus::GetPrimaryActionName() {
         return "Dancing";
@@ -35,13 +38,8 @@ namespace LibGame::Statuses::Primary {
         return static_cast<Type>(value);
     }
 
-    std::unordered_map<std::string, std::string> DanceStatus::getContext() const {
-        return store;
+    void DanceStatus::fillContext() const {
+        ctx.add("Action", GetPrimaryActionName());
+        ctx.add(GetSecondaryActionName(), GetSecondaryActionValue(type));
     }
-
-    void DanceStatus::fillContext() {
-        add("Action", GetPrimaryActionName());
-        add(GetSecondaryActionName(), GetSecondaryActionValue(type));
-    }
-
 }
