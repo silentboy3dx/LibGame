@@ -42,8 +42,6 @@ namespace LibGame::Module {
 
             mouse->MoveToAndClick(result.X, result.Y);
             return true;
-        } else {
-            std::cout << "Could not find local tab" << std::endl;
         }
 
         return false;
