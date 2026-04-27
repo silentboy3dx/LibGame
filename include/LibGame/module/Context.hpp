@@ -26,6 +26,10 @@ namespace LibGame::Module {
         Context& before(const std::string& line);
         Context& after(const std::string& line);
 
+
+        void clearBefore() { beforeLines.clear(); }
+        void clearAfter() { afterLines.clear(); }
+
         template <typename TStatus>
         TStatus& SetPrimaryStatus(TStatus::Type status) {
             static_assert(std::is_base_of_v<Statuses::Primary::PrimaryStatus, TStatus>);
