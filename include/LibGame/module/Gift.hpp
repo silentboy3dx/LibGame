@@ -16,7 +16,7 @@ namespace LibGame::Module {
 
         ~Gift() override = default;
 
-        std::optional<GiftSender> GetLatestGiftFromProfile();
+        std::optional<GiftSender> GetLatestGiftFromProfile() const;
         std::optional<GiftSender> ReadLastestGift() const;
 
     private:

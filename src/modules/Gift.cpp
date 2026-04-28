@@ -13,25 +13,22 @@ using namespace LibGame::Misc;
 
 namespace LibGame::Module {
     bool Gift::GoToMyGifts() const {
-        return ClickIfVisible("gift/button_my_gifts.png");
+        return ClickIfVisible("gift/button_my_gifts.png", 0.98f, true, false, true);
     }
 
-    std::optional<GiftSender> Gift::GetLatestGiftFromProfile() {
+    std::optional<GiftSender> Gift::GetLatestGiftFromProfile() const {
         const auto profile = core->GetInteraction<Profile>();
+        std::optional<GiftSender> result = std::nullopt;
 
-        profile.OpenMyProfile();
+        const bool profile_open = profile.OpenMyProfile();
+        const bool open_gift = GoToMyGifts();
 
-        GoToMyGifts();
+        if (profile_open && open_gift) {
+            result = ReadLastestGift();
+        }
 
-        auto result = ReadLastestGift();
-
-        profile.CloseMyProfile();
-
-        // open profile
-        // click my gifts
-        // read gift
-        // close profile
-        // return gift sender info
+        std::this_thread::sleep_for(std::chrono::microseconds(10));
+        (void) profile.CloseMyProfile();
 
         return result;
     }
@@ -71,7 +68,9 @@ namespace LibGame::Module {
                     int nameHeight = 37;
                     int padding = 10;
 
-                    const Type::Rect cropRegion = {reportButton.X - (nameWidth + padding), reportButton.Y, nameWidth, nameHeight};
+                    const Type::Rect cropRegion = {
+                        reportButton.X - (nameWidth + padding), reportButton.Y, nameWidth, nameHeight
+                    };
                     const Type::Rect imageRegion = {0, 62, 491, 268};
 
                     // std::vector<Type::Rect> redaction = {
@@ -86,16 +85,19 @@ namespace LibGame::Module {
                     // };
 
                     int calculatedHeight = gift.height - (imageRegion.Height + imageRegion.Y);
-                    int calculatedWidth = (ProfileWidth - FriendsListWidth); calculatedWidth += 5;
+                    int calculatedWidth = (ProfileWidth - FriendsListWidth);
+                    calculatedWidth += 5;
                     int calculatedY = gift.height - calculatedHeight;
 
                     auto nameCrop = gift.crop(cropRegion.X, cropRegion.Y - 16, cropRegion.Width, cropRegion.Height);
-                    auto textCrop = gift.crop(0, calculatedY, calculatedWidth,   calculatedHeight);
+                    auto textCrop = gift.crop(0, calculatedY, calculatedWidth, calculatedHeight);
 
                     auto messageText = core->GetInteraction<ImageReader>().ImageToText(textCrop, 0.8f, true);
                     auto nameText = core->GetInteraction<ImageReader>().ImageToText(nameCrop, 0.8f, true);
 
-                    GiftSender sender{.Sender = nameText.value_or("Unknow"), .Message = messageText.value_or("No text found")};;
+                    GiftSender sender{
+                        .Sender = nameText.value_or("Unknow"), .Message = messageText.value_or("No text found")
+                    };;
 
                     return sender;
                 }

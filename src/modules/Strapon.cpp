@@ -10,8 +10,8 @@ namespace LibGame::Module {
         const auto result = ClickIfFirstAssetIsVisible(
             "strapon/strapon_panel_header.png",
             "strapon/button_off.png",
-            DArgs(0.99f),
-            DArgs(0.99f)
+            DArgs(0.99f, false, false, true),
+            DArgs(0.98f, true, false, true)
         );
 
         if (result) {
@@ -26,8 +26,8 @@ namespace LibGame::Module {
         const auto result = ClickIfFirstAssetIsVisible(
             "strapon/strapon_panel_header.png",
             "strapon/button_penis.png",
-            DArgs(0.99f),
-            DArgs(0.99f)
+            DArgs(0.99f, false, false, true),
+            DArgs(0.98f, false, false, true)
         );
 
         if (result) {
@@ -42,8 +42,8 @@ namespace LibGame::Module {
         const auto result = ClickIfFirstAssetIsVisible(
             "strapon/strapon_panel_header.png",
             "strapon/button_strapon_1.png",
-            DArgs(0.99f),
-            DArgs(0.99f)
+            DArgs(0.99f, false, false, true),
+            DArgs(0.98f, false, false, true)
         );
 
         if (result) {
@@ -58,8 +58,8 @@ namespace LibGame::Module {
         const auto result = ClickIfFirstAssetIsVisible(
             "strapon/strapon_panel_header.png",
             "strapon/button_strapon_2.png",
-            DArgs(0.99f),
-            DArgs(0.99f)
+            DArgs(0.99f, false, false, true),
+            DArgs(0.98f, false, false, true)
         );
 
         if (result) {

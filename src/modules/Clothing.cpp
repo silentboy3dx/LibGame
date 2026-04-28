@@ -102,7 +102,6 @@ namespace LibGame::Module {
 
         return result;
     }
-
     bool Clothing::UnDressAll() const {
         if (!isPanelOpen()) {
             if (!OpenPanel()) {
@@ -149,7 +148,7 @@ namespace LibGame::Module {
             }
         }
 
-        const bool result = ClickIfVisible("clothing/button_dry.png", 0.98f, false);
+        const bool result = ClickIfVisible("clothing/button_dry.png", 0.9f, true, false, true);
 
         if (!ClosePanel()) {
             return false;

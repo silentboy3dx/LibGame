@@ -55,8 +55,8 @@ namespace LibGame::Module {
             return result.has_value();
         }
 
-        [[nodiscard]] bool ClickIfVisible(const std::string &asset, const float confidence = 0.98f, const bool grayscale = false, const bool cachable = false) const {
-            auto args = DArgs(confidence, grayscale, cachable);
+        [[nodiscard]] bool ClickIfVisible(const std::string &asset, const float confidence = 0.98f, const bool grayscale = false, const bool cachable = false, bool debug = false) const {
+            auto args = DArgs(confidence, grayscale, cachable,  debug);
 
             const std::optional<DResult> result = detector->Single(
                 assets->AssetFile(asset),
@@ -69,10 +69,12 @@ namespace LibGame::Module {
 
                 mouse->MoveToAndClick(center.X, center.Y);
 
+                std::cout << "Asset " << asset <<  " found" << std::endl;
+
                 sleepms(300);
                 return true;
             } else {
-                std::cout << "Could not find " << asset << std::endl;
+                std::cerr << "Could not find " << asset << std::endl;
             }
 
             return false;

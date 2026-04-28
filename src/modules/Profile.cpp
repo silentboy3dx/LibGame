@@ -20,11 +20,11 @@ namespace LibGame::Module {
     }
 
     bool Profile::OpenMyProfile() const {
-        return ClickIfVisible("profile/button_profile.png", 0.99f, false);
+        return ClickIfVisible("profile/button_profile.png", 0.99f, false, false, false);
     }
 
     bool Profile::CloseMyProfile() const {
-        return ClickIfVisible("profile/button_profile.png", 0.99f, false);
+        return ClickIfVisible("profile/button_profile.png", 0.99f, false, false, true);
     }
 
     bool Profile::CloseProfile() const {

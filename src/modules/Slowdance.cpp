@@ -15,8 +15,8 @@ namespace LibGame::Module {
         const auto result = ClickIfFirstAssetIsVisible(
             "slowdance/slowdance_panel_header.png",
             "slowdance/button_face_to_face.png",
-             DArgs(0.98f),
-            DArgs(0.99f)
+             DArgs(0.98f,false, false, false),
+            DArgs(0.98f,false, false, false)
         );
 
         if (result) {
@@ -31,8 +31,8 @@ namespace LibGame::Module {
         const auto result = ClickIfFirstAssetIsVisible(
             "slowdance/slowdance_panel_header.png",
             "slowdance/button_behind.png",
-             DArgs(0.98f),
-            DArgs(0.99f)
+             DArgs(0.98f,false, false, false),
+            DArgs(0.98f,false, false, false)
         );
 
         if (result) {
@@ -47,8 +47,8 @@ namespace LibGame::Module {
         const auto result = ClickIfFirstAssetIsVisible(
             "slowdance/slowdance_panel_header.png",
             "slowdance/button_kiss.png",
-             DArgs(0.98f),
-            DArgs(0.99f)
+             DArgs(0.98f, false, false, false),
+            DArgs(0.98f, false, false, false)
         );
 
         if (result) {
@@ -63,8 +63,8 @@ namespace LibGame::Module {
         const auto result = ClickIfFirstAssetIsVisible(
             "slowdance/slowdance_panel_header.png",
             "slowdance/button_stop.png",
-             DArgs(0.98f),
-            DArgs(0.99f)
+             DArgs(0.98f,false, false, false),
+            DArgs(0.98f,false, false, false)
         );
 
         if (result) {
