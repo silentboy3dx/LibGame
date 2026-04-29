@@ -1,7 +1,7 @@
 #pragma once
 #include "LibGame/Interactions.hpp"
 
-#include <LibIO/clipboard/ClipboardControls.hpp>
+#include <LibIO/ClipboardControls.hpp>
 
 #include <string>
 

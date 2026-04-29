@@ -2,7 +2,7 @@
 
 #include "LibGame/Interactions.hpp"
 
-#include <LibIO/mouse/MouseControls.hpp>
+#include <LibIO/MouseControls.hpp>
 
 using LibIO::Mouse::MouseControls;
 

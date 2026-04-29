@@ -2,7 +2,7 @@
 
 #include "LibGame/Interactions.hpp"
 
-#include <LibIO/keyboard/KeyboardControls.hpp>
+#include <LibIO/KeyboardControls.hpp>
 #include <string>
 
 using namespace LibIO::Keyboard;
