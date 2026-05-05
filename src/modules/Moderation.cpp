@@ -1,6 +1,8 @@
 #include "LibGame/module/Moderation.hpp"
-#include <chrono>
+
 #include <nlohmann/json.hpp>
+
+#include <chrono>
 
 namespace LibGame::Module {
 
@@ -11,22 +13,18 @@ namespace LibGame::Module {
         // This way existing data from file is preserved
     }
 
-    void Moderation::AddTimeout(const std::string& target, int seconds) {
-        // Load existing timeouts first
+    void Moderation::AddTimeout(const std::string& target, int seconds) const {
         auto timeouts = GetTimeouts();
 
-        // Get current Unix timestamp
-        auto now = std::chrono::system_clock::now();
-        auto epoch = now.time_since_epoch();
-        auto currentTime = std::chrono::duration_cast<std::chrono::seconds>(epoch).count();
-        auto endTime = currentTime + seconds;
+        const auto now = std::chrono::system_clock::now();
+        const auto epoch = now.time_since_epoch();
+        const auto currentTime = std::chrono::duration_cast<std::chrono::seconds>(epoch).count();
+        const auto endTime = currentTime + seconds;
 
-        TimeoutRecord timeout(target, endTime);
+        const TimeoutRecord timeout(target, endTime);
 
-        // Add or update the timeout
         timeouts[target] = timeout;
 
-        // Store as map<string, string> where value is JSON
         std::map<std::string, std::string> timeoutStrings;
         for (const auto& [key, val] : timeouts) {
             nlohmann::json tmp;
@@ -38,14 +36,12 @@ namespace LibGame::Module {
         _state->Set(TIMEOUTS_KEY, timeoutStrings);
     }
 
-    void Moderation::RemoveTimeout(const std::string& target) {
-        // Load existing timeouts first
+    void Moderation::RemoveTimeout(const std::string& target) const {
         auto timeouts = GetTimeouts();
 
-        if (timeouts.find(target) != timeouts.end()) {
+        if (timeouts.contains(target)) {
             timeouts.erase(target);
 
-            // Convert back to string map
             std::map<std::string, std::string> timeoutStrings;
             for (const auto& [key, val] : timeouts) {
                 nlohmann::json tmp;
@@ -58,22 +54,17 @@ namespace LibGame::Module {
         }
     }
 
-    void Moderation::AddBlock(const std::string& target) {
-        // Load existing blocks first
-        auto blocks = GetBlockList();
-
-        if (std::find(blocks.begin(), blocks.end(), target) == blocks.end()) {
+    void Moderation::AddBlock(const std::string& target) const {
+        if (auto blocks = GetBlockList(); std::ranges::find(blocks, target) == blocks.end()) {
             blocks.push_back(target);
             _state->Set(BLOCKS_KEY, blocks);
         }
     }
 
-    void Moderation::RemoveBlock(const std::string& target) {
-        // Load existing blocks first
+    void Moderation::RemoveBlock(const std::string& target) const {
         auto blocks = GetBlockList();
 
-        auto it = std::find(blocks.begin(), blocks.end(), target);
-        if (it != blocks.end()) {
+        if (const auto it = std::ranges::find(blocks, target); it != blocks.end()) {
             blocks.erase(it);
             _state->Set(BLOCKS_KEY, blocks);
         }
@@ -83,14 +74,12 @@ namespace LibGame::Module {
         std::map<std::string, TimeoutRecord> result;
 
         if (!_state->Has(TIMEOUTS_KEY)) {
-            return result;  // Return empty map if key doesn't exist
+            return result;
         }
 
         try {
-            // Get as map<string, string>
             auto timeoutStrings = _state->Get<std::map<std::string, std::string>>(TIMEOUTS_KEY);
 
-            // Deserialize each JSON string
             for (const auto& [key, jsonStr] : timeoutStrings) {
                 try {
                     auto j = nlohmann::json::parse(jsonStr);
@@ -111,37 +100,34 @@ namespace LibGame::Module {
 
     std::vector<std::string> Moderation::GetBlockList() const {
         if (!_state->Has(BLOCKS_KEY)) {
-            return std::vector<std::string>();  // Return empty vector if key doesn't exist
+            return {};
         }
 
         try {
             return _state->Get<std::vector<std::string>>(BLOCKS_KEY);
         } catch (...) {
-            return std::vector<std::string>();
+            return {};
         }
     }
 
     bool Moderation::IsBlocked(const std::string& target) const {
         auto blocks = GetBlockList();
-        return std::find(blocks.begin(), blocks.end(), target) != blocks.end();
+        return std::ranges::find(blocks, target) != blocks.end();
     }
 
-    bool Moderation::IsTimedOut(const std::string& target) {
+    bool Moderation::IsTimedOut(const std::string& target) const {
         auto timeouts = GetTimeouts();
 
-        if (timeouts.find(target) == timeouts.end()) {
+        if (!timeouts.contains(target)) {
             return false;
         }
 
-        // Check if timeout has expired
-        auto now = std::chrono::system_clock::now();
-        auto epoch = now.time_since_epoch();
-        auto currentTime = std::chrono::duration_cast<std::chrono::seconds>(epoch).count();
+        const auto now = std::chrono::system_clock::now();
+        const auto epoch = now.time_since_epoch();
+        const auto currentTime = std::chrono::duration_cast<std::chrono::seconds>(epoch).count();
 
-        auto& timeout = timeouts[target];
-        if (currentTime >= timeout.until) {
-            // Timeout expired, remove it
-            const_cast<Moderation*>(this)->RemoveTimeout(target);
+        if (auto& timeout = timeouts[target]; currentTime >= timeout.until) {
+            this->RemoveTimeout(target);
             return false;
         }
 

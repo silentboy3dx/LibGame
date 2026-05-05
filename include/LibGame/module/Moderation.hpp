@@ -19,17 +19,17 @@ namespace LibGame::Module {
         explicit Moderation(Interactions *core);
         ~Moderation() override = default;
 
-        void AddTimeout(const std::string& target, int seconds);
-        void RemoveTimeout(const std::string& target);
+        void AddTimeout(const std::string& target, int seconds) const;
+        void RemoveTimeout(const std::string& target) const;
 
-        void AddBlock(const std::string& target);
-        void RemoveBlock(const std::string& target);
+        void AddBlock(const std::string& target) const;
+        void RemoveBlock(const std::string& target) const;
 
         std::map<std::string, TimeoutRecord> GetTimeouts() const;
         std::vector<std::string> GetBlockList() const;
 
         bool IsBlocked(const std::string& target) const;
-        bool IsTimedOut(const std::string& target);
+        bool IsTimedOut(const std::string& target) const;
 
     private:
         static constexpr const char* TIMEOUTS_KEY = "game_moderation_timeouts";

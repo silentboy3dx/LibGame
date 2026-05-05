@@ -2,6 +2,7 @@
 
 #include <LibIO/LibIO.hpp>
 #include <chrono>
+#include <iostream>
 #include <thread>
 
 using namespace LibIO;

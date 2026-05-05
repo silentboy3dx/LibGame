@@ -27,9 +27,9 @@ namespace LibGame::State {
         std::string dataPathEnv = envPathOpt.value();
 
         if (!dataPathEnv.empty()) {
-            _dataFilePath = dataPathEnv + "/data.json";
+            _dataFilePath = dataPathEnv + "/tmp/data.json";
         } else {
-            _dataFilePath = "./data.json";
+            _dataFilePath = "./tmp/data.json";
         }
 
         LoadDataFromFile();

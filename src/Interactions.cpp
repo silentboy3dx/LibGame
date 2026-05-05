@@ -42,7 +42,6 @@ namespace LibGame {
         RegisterInteraction<Clipboard>();
         RegisterInteraction<Detector>();
         RegisterInteraction<Assets>();
-
         RegisterModule<ImageReader>();
         RegisterModule<Moderation>();
         RegisterModule<SexActions>();
