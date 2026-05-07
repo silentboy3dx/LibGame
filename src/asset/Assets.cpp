@@ -17,7 +17,7 @@ using LibCore::Report::arg;
 
 namespace LibGame::Asset {
 
-    Image& Assets::AssetFile(const std::string& asset) const {
+    Image& Assets::AssetFile(const std::string& asset) {
         auto& cache = AssetCache::Instance();
 
         if (!cache.Has(asset)) {
