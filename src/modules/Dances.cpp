@@ -139,7 +139,7 @@ namespace LibGame::Module {
                 mouse->MoveToAndClick(_header.X + center.X, _header.Y + center.Y);
 
                 core->GetInteraction<Context>()
-                    .SetPrimaryStatus<DanceStatus>(DanceStatus::TypeFromInt(number));
+                    .SetPrimaryStatus<DanceStatus>(DanceStatus::DanceTypeFromInt(number));
 
                 return true;
             }

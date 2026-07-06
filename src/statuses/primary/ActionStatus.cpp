@@ -31,6 +31,31 @@ namespace LibGame::Statuses::Primary {
         }
     }
 
+    std::string ActionStatus::TypeToString(Type enumValue) {
+        Type t = enumValue;
+
+        switch (t) {
+            case Type::Sit1:     return "Sit1";
+            case Type::Sit2:     return "Sit2";
+            case Type::Lie1:     return "Lie1";
+            case Type::Lie2:     return "Lie2";
+            case Type::Hello:    return "Hello";
+            case Type::Applause: return "Applause";
+        }
+        return "Unknown";
+    }
+
+    ActionStatus::Type ActionStatus::TypeFromString(const std::string &value) {
+        if (value == "Sit1")     return Type::Sit1;
+        if (value == "Sit2")     return Type::Sit2;
+        if (value == "Lie1")     return Type::Lie1;
+        if (value == "Lie2")     return Type::Lie2;
+        if (value == "Hello")    return Type::Hello;
+        if (value == "Applause") return Type::Applause;
+
+        return Type::Sit1;
+    }
+
     void ActionStatus::fillContext() const {
         ctx.add("Action", GetPrimaryActionName());
         ctx.add(GetSecondaryActionName(), GetSecondaryActionValue(type));

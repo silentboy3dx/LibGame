@@ -1,4 +1,8 @@
 #include "LibGame/module/Actions.hpp"
+#include "LibGame/module/Context.hpp"
+#include "LibGame/statuses/primary/ActionStatus.hpp"
+
+using LibGame::Statuses::Primary::ActionStatus;
 
 namespace LibGame::Module {
     bool Actions::Sit1() const {
@@ -6,7 +10,7 @@ namespace LibGame::Module {
             "actions/actions_panel_header.png",
             "actions/button_sit1.png",
             DArgs(0.99f),
-             DArgs(0.90f)
+            DArgs(0.90f)
         );
     }
 
@@ -15,7 +19,7 @@ namespace LibGame::Module {
             "actions/actions_panel_header.png",
             "actions/button_sit2.png",
             DArgs(0.99f),
-             DArgs(0.90f)
+            DArgs(0.90f)
         );
     }
 
@@ -24,7 +28,7 @@ namespace LibGame::Module {
             "actions/actions_panel_header.png",
             "actions/button_lie1.png",
             DArgs(0.99f),
-             DArgs(0.90f)
+            DArgs(0.90f)
         );
     }
 
@@ -33,7 +37,7 @@ namespace LibGame::Module {
             "actions/actions_panel_header.png",
             "actions/button_lie2.png",
             DArgs(0.99f),
-             DArgs(0.90f)
+            DArgs(0.90f)
         );
     }
 
@@ -42,7 +46,7 @@ namespace LibGame::Module {
             "actions/actions_panel_header.png",
             "actions/button_hello.png",
             DArgs(0.99f),
-             DArgs(0.90f)
+            DArgs(0.90f)
         );
     }
 
@@ -51,7 +55,7 @@ namespace LibGame::Module {
             "actions/actions_panel_header.png",
             "actions/button_applause.png",
             DArgs(0.99f),
-             DArgs(0.90f)
+            DArgs(0.90f)
         );
     }
 }

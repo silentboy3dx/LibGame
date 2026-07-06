@@ -28,6 +28,27 @@ namespace LibGame::Statuses::Primary {
         }
     }
 
+    std::string SlowDanceStatus::TypeToString(Type enumValue) {
+        Type t = static_cast<Type>(enumValue);
+
+        switch (t) {
+            case Type::Stop:     return "Stop";
+            case Type::Facing:   return "Facing";
+            case Type::Behind:   return "Behind";
+            case Type::Kiss:     return "Kiss";
+        }
+        return "Unknown";
+    }
+
+    SlowDanceStatus::Type SlowDanceStatus::TypeFromString(const std::string& value) {
+        if (value == "Stop")     return Type::Stop;
+        if (value == "Facing")   return Type::Facing;
+        if (value == "Behind")   return Type::Behind;
+        if (value == "Kiss")     return Type::Kiss;
+
+        return Type::Stop;
+    }
+
     void SlowDanceStatus::SetPartner(const std::string &name)  {
         partner = name;
         fillContext();

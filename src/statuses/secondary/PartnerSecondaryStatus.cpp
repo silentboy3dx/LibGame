@@ -21,6 +21,23 @@ namespace LibGame::Statuses::Secondary {
         return partner;
     }
 
+    std::string PartnerSecondaryStatus::TypeToString(Type enumValue) {
+        Type t = static_cast<Type>(enumValue);
+
+        switch (t) {
+            case Type::Off:     return "Off";
+            case Type::Partner:     return "Partner";
+        }
+        return "Unknown";
+    }
+
+    PartnerSecondaryStatus::Type PartnerSecondaryStatus::TypeFromString(const std::string& value) {
+        if (value == "Off")     return static_cast<Type>(Type::Off);
+        if (value == "Partner")     return static_cast<Type>(Type::Partner);
+
+        return static_cast<Type>(Type::Off);
+    }
+
     void PartnerSecondaryStatus::fillContext() const {
         SetPartner("");
     }

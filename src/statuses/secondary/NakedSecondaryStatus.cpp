@@ -23,6 +23,23 @@ namespace LibGame::Statuses::Secondary {
         }
     }
 
+    std::string NakedSecondaryStatus::TypeToString(Type enumValue) {
+        Type t = static_cast<Type>(enumValue);
+
+        switch (t) {
+            case Type::Dressed:     return "Dressed";
+            case Type::Undressed:     return "Undressed";
+        }
+        return "Unknown";
+    }
+
+    NakedSecondaryStatus::Type NakedSecondaryStatus::TypeFromString(const std::string& value) {
+        if (value == "Dressed")     return static_cast<Type>(Type::Dressed);
+        if (value == "Undressed")     return static_cast<Type>(Type::Undressed);
+
+        return static_cast<Type>(Type::Dressed);
+    }
+
     void NakedSecondaryStatus::fillContext() const {
         ctx.add(GetPrimaryActionName(), GetPrimaryActionValue(type));
     }

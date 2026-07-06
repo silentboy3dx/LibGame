@@ -26,15 +26,17 @@ namespace LibGame::Statuses::Primary {
         }
 
         ~IdlePrimaryStatus() override;
+        void clear() override;
 
         static std::string GetPrimaryActionName();
         static std::string GetSecondaryActionName();
         static std::string GetSecondaryActionValue(Type action);
-        void clear() override;
+        static std::string TypeToString(Type enumValue);
+        static Type TypeFromString(const std::string& value);
 
     private:
         Type type;
-        void fillContext();
+        void fillContext() const;
     };
 
 }

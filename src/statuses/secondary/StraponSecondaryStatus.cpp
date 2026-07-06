@@ -24,6 +24,26 @@ namespace LibGame::Statuses::Secondary {
             default: return "unknown type";
         }
     }
+    std::string StraponSecondaryStatus::TypeToString(Type enumValue) {
+        Type t = enumValue;
+
+        switch (t) {
+            case Type::Off:     return "Off";
+            case Type::Penis:   return "Penis";
+            case Type::Toy1:    return "Toy1";
+            case Type::Toy2:    return "Toy2";
+        }
+        return "Unknown";
+    }
+
+    StraponSecondaryStatus::Type StraponSecondaryStatus::TypeFromString(const std::string& value) {
+        if (value == "Off")     return Type::Off;
+        if (value == "Penis")   return Type::Penis;
+        if (value == "Toy1")    return Type::Toy1;
+        if (value == "Toy2")    return Type::Toy2;
+
+        return Type::Off;
+    }
 
     void StraponSecondaryStatus::fillContext() const {
         if (type != Type::Off) {

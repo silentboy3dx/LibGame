@@ -4,11 +4,10 @@
 #include <string>
 
 namespace LibGame::Module {
-    class Context;   // ← forward declaration
+    class Context; // ← forward declaration
 }
 
 namespace LibGame::Statuses::Secondary {
-
     class MovementSpeedSecondaryStatus final : public SecondaryStatus {
     public:
         enum class Type {
@@ -25,10 +24,12 @@ namespace LibGame::Statuses::Secondary {
 
         static std::string GetPrimaryActionName();
         static std::string GetPrimaryActionValue(Type action);
+        static std::string TypeToString(Type enumValue);
+        static Type TypeFromString(const std::string& value);
 
     private:
         Type type;
+
         void fillContext() const;
     };
-
 }

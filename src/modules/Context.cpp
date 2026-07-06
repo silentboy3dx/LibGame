@@ -2,18 +2,17 @@
 #include <sstream>
 
 namespace LibGame::Module {
-
-    Context& Context::add(const std::string& key, const std::string& value) {
+    Context &Context::add(const std::string &key, const std::string &value) {
         KvStore::add(key, value);
         return *this;
     }
 
-    Context& Context::remove(const std::string& key) {
+    Context &Context::remove(const std::string &key) {
         KvStore::remove(key);
         return *this;
     }
 
-    Context& Context::clear() {
+    Context &Context::clear() {
         KvStore::clear();
         beforeLines.clear();
         afterLines.clear();
@@ -22,12 +21,12 @@ namespace LibGame::Module {
         return *this;
     }
 
-    Context& Context::before(const std::string& line) {
+    Context &Context::before(const std::string &line) {
         beforeLines.push_back(line);
         return *this;
     }
 
-    Context& Context::after(const std::string& line) {
+    Context &Context::after(const std::string &line) {
         afterLines.push_back(line);
         return *this;
     }
@@ -35,16 +34,15 @@ namespace LibGame::Module {
     std::string Context::toString() const {
         std::ostringstream oss;
 
-        for (const auto& line : beforeLines) oss << line << '\n';
-        for (const auto& [k, v] : KvStore::getContext()) oss << k << ": " << v << '\n';
-        for (const auto& line : afterLines) oss << line << '\n';
+        for (const auto &line: beforeLines) oss << line << '\n';
+        for (const auto &[k, v]: KvStore::getContext()) oss << k << ": " << v << '\n';
+        for (const auto &line: afterLines) oss << line << '\n';
 
         return oss.str();
     }
 
-    std::ostream& operator<<(std::ostream& os, const Context& ctx) {
+    std::ostream &operator<<(std::ostream &os, const Context &ctx) {
         os << ctx.toString();
         return os;
     }
-
 }

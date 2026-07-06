@@ -27,6 +27,8 @@ namespace LibGame::Statuses::Secondary {
 
         static std::string GetPrimaryActionName();
         static std::string GetPrimaryActionValue(Type action);
+        static std::string TypeToString(Type enumValue);
+        static Type TypeFromString(const std::string& value);
 
         void SetPartner(const std::string &partner) const;
 

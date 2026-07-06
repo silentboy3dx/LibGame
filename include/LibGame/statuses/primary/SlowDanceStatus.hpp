@@ -18,13 +18,16 @@ namespace LibGame::Statuses::Primary {
         };
 
         ~SlowDanceStatus() override;
+        void clear() override;
+
 
         static std::string GetPrimaryActionName();
         static std::string GetSecondaryActionName();
         static std::string GetSecondaryActionValue(Type action);
+        static std::string TypeToString(Type enumValue);
+        static Type TypeFromString(const std::string& value);
 
         void SetPartner(const std::string &name);
-        void clear() override;
 
     private:
         Type type;

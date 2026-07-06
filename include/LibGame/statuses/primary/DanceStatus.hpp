@@ -31,7 +31,9 @@ namespace LibGame::Statuses::Primary  {
         static std::string GetSecondaryActionValue(Type action);
         void clear() override;
 
-        static Type TypeFromInt(int value);
+        static Type DanceTypeFromInt(int value);
+        static std::string TypeToString(Type enumValue);
+        static Type TypeFromString(const std::string& value);
 
     private:
         Type type;

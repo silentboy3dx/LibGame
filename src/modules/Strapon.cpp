@@ -7,66 +7,38 @@ using namespace LibGame::Statuses::Secondary;
 
 namespace LibGame::Module {
     bool Strapon::Off() const {
-        const auto result = ClickIfFirstAssetIsVisible(
+        return ClickIfFirstAssetIsVisible(
             "strapon/strapon_panel_header.png",
             "strapon/button_off.png",
             DArgs(0.99f, false, false, true),
             DArgs(0.98f, true, false, true)
         );
-
-        if (result) {
-            core->GetInteraction<Context>()
-            .AddSecondaryStatus<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Off);
-        }
-
-        return result;
     }
 
     bool Strapon::Penis() const {
-        const auto result = ClickIfFirstAssetIsVisible(
+        return ClickIfFirstAssetIsVisible(
             "strapon/strapon_panel_header.png",
             "strapon/button_penis.png",
             DArgs(0.99f, false, false, true),
             DArgs(0.98f, false, false, true)
         );
-
-        if (result) {
-            core->GetInteraction<Context>()
-            .AddSecondaryStatus<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Penis);
-        }
-
-        return result;
     }
 
     bool Strapon::Toy1() const {
-        const auto result = ClickIfFirstAssetIsVisible(
+        return ClickIfFirstAssetIsVisible(
             "strapon/strapon_panel_header.png",
             "strapon/button_strapon_1.png",
             DArgs(0.99f, false, false, true),
             DArgs(0.98f, false, false, true)
         );
-
-        if (result) {
-            core->GetInteraction<Context>()
-                                .AddSecondaryStatus<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Toy1);
-        }
-
-        return result;
     }
 
     bool Strapon::Toy2() const {
-        const auto result = ClickIfFirstAssetIsVisible(
+        return ClickIfFirstAssetIsVisible(
             "strapon/strapon_panel_header.png",
             "strapon/button_strapon_2.png",
             DArgs(0.99f, false, false, true),
             DArgs(0.98f, false, false, true)
         );
-
-        if (result) {
-            core->GetInteraction<Context>()
-                    .AddSecondaryStatus<StraponSecondaryStatus>(StraponSecondaryStatus::Type::Toy2);
-        }
-
-        return result;
     }
 }
