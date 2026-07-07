@@ -12,6 +12,7 @@ using namespace LibGame::Detect;
 using namespace LibGame::Misc;
 
 namespace LibGame::Module {
+
     bool Clothing::isPanelOpen() const {
         return isVisible("clothing/header_appearance.png", 0.97f, false, true);
     }
@@ -102,6 +103,7 @@ namespace LibGame::Module {
 
         return result;
     }
+
     bool Clothing::UnDressAll() const {
         if (!isPanelOpen()) {
             if (!OpenPanel()) {

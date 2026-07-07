@@ -165,7 +165,7 @@ target_link_libraries(LibGame
             opencv_highgui
             opencv_imgcodecs
             opencv_videoio
-            opencv_calib3d
+#            opencv_calib3d
 )
 
 include(GNUInstallDirs)
