@@ -30,7 +30,7 @@ namespace LibGame::Statuses::Primary {
     }
 
     std::string IdlePrimaryStatus::TypeToString(Type enumValue) {
-        Type t = static_cast<Type>(enumValue);
+        Type t = enumValue;
 
         switch (t) {
             case Type::Idle1:     return "Idle1";

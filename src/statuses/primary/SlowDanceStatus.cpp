@@ -29,7 +29,7 @@ namespace LibGame::Statuses::Primary {
     }
 
     std::string SlowDanceStatus::TypeToString(Type enumValue) {
-        Type t = static_cast<Type>(enumValue);
+        Type t = enumValue;
 
         switch (t) {
             case Type::Stop:     return "Stop";

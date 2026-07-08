@@ -12,7 +12,7 @@ namespace LibGame::Statuses::Secondary {
     }
 
     std::string NakedSecondaryStatus::GetPrimaryActionName() {
-        return "Dressed";
+        return "Clothing status";
     }
 
     std::string NakedSecondaryStatus::GetPrimaryActionValue(const Type action) {
@@ -24,7 +24,7 @@ namespace LibGame::Statuses::Secondary {
     }
 
     std::string NakedSecondaryStatus::TypeToString(Type enumValue) {
-        Type t = static_cast<Type>(enumValue);
+        Type t = enumValue;
 
         switch (t) {
             case Type::Dressed:     return "Dressed";
@@ -34,10 +34,10 @@ namespace LibGame::Statuses::Secondary {
     }
 
     NakedSecondaryStatus::Type NakedSecondaryStatus::TypeFromString(const std::string& value) {
-        if (value == "Dressed")     return static_cast<Type>(Type::Dressed);
-        if (value == "Undressed")     return static_cast<Type>(Type::Undressed);
+        if (value == "Dressed")     return Type::Dressed;
+        if (value == "Undressed")     return Type::Undressed;
 
-        return static_cast<Type>(Type::Dressed);
+        return Type::Dressed;
     }
 
     void NakedSecondaryStatus::fillContext() const {

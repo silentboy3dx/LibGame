@@ -32,10 +32,10 @@ namespace LibGame::Statuses::Secondary {
     }
 
     PartnerSecondaryStatus::Type PartnerSecondaryStatus::TypeFromString(const std::string& value) {
-        if (value == "Off")     return static_cast<Type>(Type::Off);
-        if (value == "Partner")     return static_cast<Type>(Type::Partner);
+        if (value == "Off")     return Type::Off;
+        if (value == "Partner")     return Type::Partner;
 
-        return static_cast<Type>(Type::Off);
+        return Type::Off;
     }
 
     void PartnerSecondaryStatus::fillContext() const {

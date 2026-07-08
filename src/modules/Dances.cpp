@@ -16,16 +16,18 @@ namespace LibGame::Module {
         : BaseModule(core)
     {
         _confidences = {
-            {1, 0.97f}, {2, 0.91f}, {3, 0.93f}, {4, 0.93f}, {5, 0.93f},
-            {6, 0.66f}, {7, 0.95f}, {8, 0.94f}, {9, 0.94f}, {10, 0.96f},
-            {11, 0.96f}, {12, 0.92f}, {13, 0.94f}, {14, 0.95f}, {15, 0.94f},
-            {16, 0.95f}, {17, 0.94f}, {18, 0.94f}, {19, 0.94f}, {20, 0.90f},
-            {21, 0.88f}, {22, 0.90f}, {23, 0.91f}, {24, 0.91f}, {25, 0.91f},
-            {26, 0.92f}, {27, 0.92f}, {28, 0.92f}, {29, 0.91f}, {30, 0.92f},
-            {31, 0.94f}, {32, 0.91f}, {33, 0.92f}, {34, 0.93f}, {35, 0.92f},
-            {36, 0.93f}, {37, 0.93f}, {38, 0.9333368f}, {39, 0.93f}, {40, 0.94f},
-            {41, 0.95f}, {42, 0.91f}, {43, 0.93f}, {44, 0.87f}, {45, 0.93f},
-            {46, 0.93f}, {47, 0.94f}
+            {1, 0.97f}, {2, 0.98f}, {3, 0.98f}, {4, 0.99f},
+            {5, 0.97f}, {6, 0.98f}, {7, 0.97f}, {8, 1.0f},
+            {9, 0.98f}, {10, 0.98f}, {11, 0.98f}, {12, 0.93f},
+            {13, 0.98f}, {14, 0.98f}, {15, 0.98f}, {16, 0.98f},
+            {17, 0.98f}, {18, 0.98f}, {19, 0.98f}, {20, 0.98f},
+            {21, 0.98f}, {22, 0.98f}, {23, 0.98f}, {24, 0.98f},
+            {25, 0.97f}, {26, 0.98f}, {27, 0.98f}, {28, 0.98f},
+            {29, 0.97f}, {30, 0.98f}, {31, 0.98f}, {32, 0.98f},
+            {33, 0.97f}, {34, 0.98f}, {35, 0.98f}, {36, 0.98f},
+            {37, 0.97f}, {38, 0.98f}, {39, 0.98f}, {40, 0.98f},
+            {41, 0.98f}, {42, 0.98f}, {43, 0.98f}, {44, 0.95f},
+            {45, 0.97f}, {46, 0.98f}, {47, 0.98f}
         };
 
         // ⚠️ Belangrijk:
@@ -56,13 +58,13 @@ namespace LibGame::Module {
             mouse->ScrollUp();
         }
 
-        sleepms(100);
+        sleepms(900);
     }
 
     std::optional<DResult> Dances::GetDanceHeader() const {
         return detector->Single(
             assets->AssetFile("dances/dance_panel_header.png"),
-            DArgs(0.95f, true, true)
+            DArgs(0.94f, true, true, true)
         );
     }
 
@@ -76,12 +78,12 @@ namespace LibGame::Module {
             const Image crop = shot.crop(
                 x,
                 y,
-                dancesInnerWidth,
+                dancesInnerWidth + 4,
                 dancesInnerHeight
             );
 
             if (crop.isValid()) {
-                auto args = DArgs(_confidences[dance], true);
+                auto args = DArgs(_confidences[dance], true, false, true);
                 args.match_target = crop;
 
                 return detector->Single(
@@ -111,6 +113,8 @@ namespace LibGame::Module {
             mouse->MoveTo(x, y);
             mouse->ScrollDown();
 
+            sleepms(300);
+
             attempt += 1;
             amount += 1;
         }
@@ -120,7 +124,7 @@ namespace LibGame::Module {
 
     bool Dances::Dance(const int number) {
 
-        // ✔ Veilig: assets bestaat nu
+        InitAssets();
         InitAssets();
 
         if (auto result = GetDanceHeader(); result.has_value()) {
@@ -143,6 +147,8 @@ namespace LibGame::Module {
 
                 return true;
             }
+        } else {
+            std::cerr << "Failed to find dance header" << std::endl;
         }
 
         return false;

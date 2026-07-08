@@ -2,8 +2,6 @@
 #include "LibGame/module/Context.hpp"
 
 #include <format>
-#include <iostream>
-#include <ostream>
 #include <stdexcept>
 
 
@@ -24,11 +22,56 @@ namespace LibGame::Statuses::Primary {
     }
 
     std::string DanceStatus::GetSecondaryActionValue(Type action) {
-        std::cout << "DanceStatus::GetSecondaryActionValue(" << static_cast<int>(action) << ")" << std::endl;
-        if (int index = static_cast<int>(action); index >= 1 && index <= 47) {
-            return "Dance " + std::to_string(index);
+        switch (action) {
+            case Type::Dance1:  return "Dance 1 — Basic hip-hop groove";
+            case Type::Dance2:  return "Dance 2 — Casual club shuffle";
+            case Type::Dance3:  return "Dance 3 — Light pop dance";
+            case Type::Dance4:  return "Dance 4 — Energetic EDM festival dance";
+            case Type::Dance5:  return "Dance 5 — Sexy hip-hop body roll";
+            case Type::Dance6:  return "Dance 6 — Smooth Latin-inspired groove";
+            case Type::Dance7:  return "Dance 7 — Robotic popping dance";
+            case Type::Dance8:  return "Dance 8 — Hands-up club dance";
+            case Type::Dance9:  return "Dance 9 — Casual club sway";
+            case Type::Dance10: return "Dance 10 — Pop step-touch dance";
+            case Type::Dance11: return "Dance 11 — Hip-hop bounce rhythm";
+            case Type::Dance12: return "Dance 12 — Slow sexy club dance";
+            case Type::Dance13: return "Dance 13 — EDM shuffle dance";
+            case Type::Dance14: return "Dance 14 — Hip-hop footwork pattern";
+            case Type::Dance15: return "Dance 15 — Slow R&B groove";
+            case Type::Dance16: return "Dance 16 — Club dance with hip movement";
+            case Type::Dance17: return "Dance 17 — Gangnam Style";
+            case Type::Dance18: return "Dance 18 — Shuffle dance pattern";
+            case Type::Dance19: return "Dance 19 — Popping wave dance";
+            case Type::Dance20: return "Dance 20 — Festival jump dance";
+            case Type::Dance21: return "Dance 21 — Club shuffle variation";
+            case Type::Dance22: return "Dance 22 — Sexy hip-hop groove";
+            case Type::Dance23: return "Dance 23 — Shuffle dance with arm flow";
+            case Type::Dance24: return "Dance 24 — Light pop dance variation";
+            case Type::Dance25: return "Dance 25 — Hip-hop groove pattern";
+            case Type::Dance26: return "Dance 26 — Fast shuffle dance";
+            case Type::Dance27: return "Dance 27 — Sexy club dance variation";
+            case Type::Dance28: return "Dance 28 — Hip-hop wave movement";
+            case Type::Dance29: return "Dance 29 — Shuffle dance variation";
+            case Type::Dance30: return "Dance 30 — Pop dance variation";
+            case Type::Dance31: return "Dance 31 — Hip-hop bounce variation";
+            case Type::Dance32: return "Dance 32 — Sexy EDM dance";
+            case Type::Dance33: return "Dance 33 — Shuffle dance pattern";
+            case Type::Dance34: return "Dance 34 — Casual club dance";
+            case Type::Dance35: return "Dance 35 — Hip-hop groove variation";
+            case Type::Dance36: return "Dance 36 — Festival shuffle dance";
+            case Type::Dance37: return "Dance 37 — Hard shuffle dance";
+            case Type::Dance38: return "Dance 38 — Club dance variation";
+            case Type::Dance39: return "Dance 39 — Shuffle dance with footwork";
+            case Type::Dance40: return "Dance 40 — Modern EDM club dance";
+            case Type::Dance41: return "Dance 41 — Shuffle dance with armflow";
+            case Type::Dance42: return "Dance 42 — Fast hip-hop footwork";
+            case Type::Dance43: return "Dance 43 — Sexy bodywave dance";
+            case Type::Dance44: return "Dance 44 — Festival shuffle variation";
+            case Type::Dance45: return "Dance 45 — Latin hip movement dance";
+            case Type::Dance46: return "Dance 46 — Upbeat pop dance";
+            case Type::Dance47: return "Dance 47 — Fast shuffle with footwork";
+            default:            return "Unknown dance";
         }
-        return "unknown activity";
     }
 
     DanceStatus::Type DanceStatus::DanceTypeFromInt(int value) {
@@ -39,7 +82,7 @@ namespace LibGame::Statuses::Primary {
     }
 
     std::string DanceStatus::TypeToString(Type enumValue) {
-        Type t = static_cast<Type>(enumValue);
+        Type t = enumValue;
 
         switch (t) {
             case Type::Dance1: return "Dance1";
