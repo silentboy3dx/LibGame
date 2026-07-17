@@ -48,20 +48,20 @@ namespace LibGame::Module {
     }
 
     bool Chat::PlaceCursorInChat() const {
-
-
         const std::optional<DResult> result = detector->Single(
             assets->AssetFile("chat/button_send.png"),
-            DArgs(0.99f, true)
+            DArgs(0.99f, false, false, true)
         );
 
-        if (result) {
+        if (result.has_value()) {
             const DResult clickLoc = result.value();
             constexpr int btnWidth = 100;
 
             mouse->MoveToAndClick(clickLoc.X - btnWidth, clickLoc.Y);
             return true;
         }
+
+        std::cerr << "Failed to find chat button" << std::endl;
 
 
         return false;
