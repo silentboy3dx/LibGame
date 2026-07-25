@@ -11,7 +11,7 @@ namespace LibGame::Module {
     std::unordered_map<int, float> Dances::_confidences;
     std::unordered_map<int, Image> Dances::_assets;
     bool Dances::_assetsInitialized = false;
-//ELTF5zYXqQ7iAbXMp5nC
+
     Dances::Dances(Interactions *core)
         : BaseModule(core)
     {
@@ -29,6 +29,7 @@ namespace LibGame::Module {
             {41, 1.5f}, {42, 1.5f}, {43, 1.5f}, {44, 1.5f},
             {45, 1.5f}, {46, 1.5f}, {47, 1.5f}
         };
+
         // ⚠️ Belangrijk:
         // InitAssets() wordt NIET in de constructor aangeroepen,
         // omdat BaseModule::assets nog niet bestaat tijdens constructie.
@@ -138,8 +139,6 @@ namespace LibGame::Module {
             if (result) {
                 const DResult button = result.value();
                 const auto center = button.Center();
-
-                std::cout << "Dancing " << number << " found with score " << button.Score << std::endl;
 
                 mouse->MoveToAndClick(_header.X + center.X, _header.Y + center.Y);
 
