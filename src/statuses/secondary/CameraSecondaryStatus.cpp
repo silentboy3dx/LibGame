@@ -33,7 +33,7 @@ namespace LibGame::Statuses::Secondary {
             case Type::EyeCamera: return "EyeCamera";
             case Type::MovieCamera: return "MovieCamera";
         }
-        return "Unknown";
+        return "CharacterCam";
     }
 
     CameraSecondaryStatus::Type CameraSecondaryStatus::TypeFromString(const std::string &value) {

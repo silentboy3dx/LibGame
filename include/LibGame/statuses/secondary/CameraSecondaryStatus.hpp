@@ -30,7 +30,7 @@ namespace LibGame::Statuses::Secondary {
         static Type TypeFromString(const std::string& value);
 
     private:
-        Type type;
+        Type type = Type::CharacterCam;
 
         void fillContext() const;
     };
