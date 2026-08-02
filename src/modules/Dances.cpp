@@ -141,6 +141,11 @@ namespace LibGame::Module {
 
                 std::cout << "Dancing " << number << " found with score " << button.Score << std::endl;
 
+
+
+
+
+
                 mouse->MoveToAndClick(_header.X + center.X, _header.Y + center.Y);
 
                 core->GetInteraction<Context>()
