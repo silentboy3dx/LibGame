@@ -103,8 +103,12 @@ namespace LibGame::Module {
         while (attempt <= 10) {
 
             if (auto result = GetDanceLocation(dance); result.has_value()) {
+                auto r = result.value();
+
+                std::cout << "Dance " << dance << " found with score  " << r.Score << std::endl;
                 return result.value();
             }
+
 
             const int x = (_header.X - cornerOffset) + headerWidth - (scrollbarWidth / 2);
             const int y = _header.Y + headerHeight;
