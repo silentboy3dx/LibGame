@@ -9,7 +9,6 @@
 
 #include "../../../LibCore/include/LibCore/report/Reporter.hpp"
 
-
 using LibGame::Exceptions::AssetException;
 // using namespace LibGraphics;
 using LibCore::Report::Reporter;
