@@ -30,6 +30,7 @@ namespace LibGame::Module {
             {45, 1.5f}, {46, 1.5f}, {47, 1.5f}
         };
 
+
         // ⚠️ Belangrijk:
         // InitAssets() wordt NIET in de constructor aangeroepen,
         // omdat BaseModule::assets nog niet bestaat tijdens constructie.
