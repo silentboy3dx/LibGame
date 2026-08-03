@@ -16,11 +16,16 @@ namespace LibGame::Module {
         : BaseModule(core)
     {
         _confidences = {
-            {1, 0.97f}, {2, 1.5f}, {3, 1.5f}, {4, 1.5f},
-            {5, 1.5f}, {6, 1.5f}, {7, 1.5f}, {8, 1.5f},
-            {9, 1.5f}, {10, 1.5f}, {11, 1.5f}, {12, 1.5f},
-            {13, 1.5f}, {14, 1.5f}, {15, 1.5f}, {16, 1.5f},
-            {17, 1.5f}, {18, 1.5f}, {19, 1.5f}, {20, 1.5f},
+            {1, 0.97f}, {2, 0/.99f},
+{3, 1.5f}, // HMM
+
+            {4, 0.99},
+
+
+            {5, 0.97f}, {6, 0.98f}, {7, 0.97f}, {8, 0.99f},
+            {9, 0.97f}, {10, 0.98f}, {11,0.98f}, {12, 0.93f},
+            {13, 0.98f}, {14, 0.98f}, {15, 0.98f}, {16, 0.97f},
+            {17, 0.98f}, {18, 0.98f}, {19, 0.98f}, {20, 0.96f},
             {21, 1.5f}, {22, 1.5f}, {23, 1.5f}, {24, 1.5f},
             {25, 1.5f}, {26, 1.5f}, {27, 1.5f}, {28, 1.5f},
             {29, 1.5f}, {30, 1.5f}, {31, 1.5f}, {32, 1.5f},
@@ -116,7 +121,7 @@ namespace LibGame::Module {
             const int y = _header.Y + headerHeight;
 
             mouse->MoveTo(x, y);
-            mouse->ScrollDown();
+            // mouse->ScrollDown();
 
             sleepms(300);
 
@@ -137,7 +142,7 @@ namespace LibGame::Module {
             _header = result.value();
             _header.X -= cornerOffset;
 
-            ScrollToTop();
+            // ScrollToTop();
 
             result = FindDance(number);
 
