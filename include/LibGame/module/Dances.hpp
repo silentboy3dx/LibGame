@@ -11,6 +11,7 @@ namespace LibGame::Module {
         bool Dance(int number = 1);
         void ScrollToTop() const;
 
+        int c = 0;
     private:
         static std::unordered_map<int, float> _confidences;
         static std::unordered_map<int, Image> _assets;
@@ -25,9 +26,9 @@ namespace LibGame::Module {
 
         DResult _header;
 
-        [[nodiscard]] std::optional<DResult> GetDanceHeader() const;
-        [[nodiscard]] std::optional<DResult> GetDanceLocation(int dance = 1) const;
-        [[nodiscard]] std::optional<DResult> FindDance(int dance = 1) const;
+        [[nodiscard]] std::optional<DResult> GetDanceHeader();
+        [[nodiscard]] std::optional<DResult> GetDanceLocation(int dance = 1);
+        [[nodiscard]] std::optional<DResult> FindDance(int dance = 1);
 
         void InitAssets() const;
     };

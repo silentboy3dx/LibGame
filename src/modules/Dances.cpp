@@ -15,7 +15,7 @@ namespace LibGame::Module {
     Dances::Dances(Interactions *core)
         : BaseModule(core)
     {
-        // 43 is low
+        // 43,44 and 47 are low 40 is 1.5 because it would get picked before 43 / 47
         _confidences = {
             {1, 0.97f}, {2, 0/.99f}, {3, 0.98f}, {4, 0.99},
             {5, 0.97f}, {6, 0.98f}, {7, 0.97f}, {8, 0.99f},
@@ -24,10 +24,12 @@ namespace LibGame::Module {
             {17, 0.98f}, {18, 0.98f}, {19, 0.98f}, {20, 0.96f},
             {21, 0.95f}, {22, 0.95f}, {23, 0.95f}, {24, 0.95f},
             {25, 0.95f}, {26, 0.95f}, {27, 0.95f}, {28, 0.95f},
-            {29, 0.95f}, {30, 0.96f}, {31, 0.96f}, {32, 0.94f}, // Laatste hmm
+            {29, 0.95f}, {30, 0.96f}, {31, 0.96f}, {32, 0.94f},
             {33, 0.97f}, {34, 0.98f}, {35, 0.98f}, {36, 0.98f},
-            {37, 0.97f}, {38, 0.98f}, {39, 0.98f}, {40, 0.98f},
-            {41, 0.98f}, {42, 0.98f}, {43, 0.86f}, {44, 0.95f},
+            {37, 0.97f}, {38, 0.98f}, {39, 0.98f},       {40, 1.5f},
+            {41, 0.98f}, {42, 0.98f}, {43, 0.98f},
+
+{44, 0.95f},
             {45, 0.97f}, {46, 0.98f}, {47, 0.98f}
         };
 
@@ -63,14 +65,14 @@ namespace LibGame::Module {
         sleepms(900);
     }
 
-    std::optional<DResult> Dances::GetDanceHeader() const {
+    std::optional<DResult> Dances::GetDanceHeader() {
         return detector->Single(
             assets->AssetFile("dances/dance_panel_header.png"),
             DArgs(0.94f, true, true, true)
         );
     }
 
-    std::optional<DResult> Dances::GetDanceLocation(int dance) const {
+    std::optional<DResult> Dances::GetDanceLocation(int dance) {
 
         if (const auto shot = screenshots->Take(); shot.isValid()) {
 
@@ -83,6 +85,10 @@ namespace LibGame::Module {
                 dancesInnerWidth + 4,
                 dancesInnerHeight
             );
+
+            c +=1;
+            std::string file =  std::format("data/screenshots/{}-{}.png", dance, c);
+            (void)crop.save(file);
 
             if (crop.isValid()) {
                 auto args = DArgs(_confidences[dance], true, false, true);
@@ -98,7 +104,7 @@ namespace LibGame::Module {
         return std::nullopt;
     }
 
-    std::optional<DResult> Dances::FindDance(const int dance) const {
+    std::optional<DResult> Dances::FindDance(const int dance) {
 
         int attempt = 0;
         int amount = 0;
@@ -120,6 +126,7 @@ namespace LibGame::Module {
             mouse->ScrollDown();
 
             sleepms(300);
+            mouse->ScrollDown();
 
             attempt += 1;
             amount += 1;
