@@ -124,7 +124,7 @@ namespace LibGame::Module {
             const int y = _header.Y + headerHeight;
 
             mouse->MoveTo(x, y);
-            // mouse->ScrollDown();
+            mouse->ScrollDown();
 
             sleepms(300);
 
@@ -145,7 +145,7 @@ namespace LibGame::Module {
             _header = result.value();
             _header.X -= cornerOffset;
 
-            // ScrollToTop();
+            ScrollToTop();
 
             result = FindDance(number);
 
