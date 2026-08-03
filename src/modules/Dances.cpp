@@ -86,9 +86,9 @@ namespace LibGame::Module {
                 dancesInnerHeight
             );
 
-            c +=1;
-            std::string file =  std::format("data/screenshots/{}-{}.png", dance, c);
-            (void)crop.save(file);
+            // c +=1;
+            // std::string file =  std::format("data/screenshots/{}-{}.png", dance, c);
+            // (void)crop.save(file);
 
             if (crop.isValid()) {
                 auto args = DArgs(_confidences[dance], true, false, true);
@@ -126,7 +126,6 @@ namespace LibGame::Module {
             mouse->ScrollDown();
 
             sleepms(300);
-            mouse->ScrollDown();
 
             attempt += 1;
             amount += 1;
