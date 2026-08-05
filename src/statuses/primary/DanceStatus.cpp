@@ -4,7 +4,6 @@
 #include <format>
 #include <stdexcept>
 
-
 namespace LibGame::Statuses::Primary {
     DanceStatus::~DanceStatus() = default;
 
