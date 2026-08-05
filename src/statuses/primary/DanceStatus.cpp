@@ -23,15 +23,15 @@ namespace LibGame::Statuses::Primary {
 
     std::string DanceStatus::GetSecondaryActionValue(Type action) {
         switch (action) {
-            case Type::Dance1:  return "Dance 1 — Basic hip-hop groove";
-            case Type::Dance2:  return "Dance 2 — Casual club shuffle";
-            case Type::Dance3:  return "Dance 3 — Light pop dance";
-            case Type::Dance4:  return "Dance 4 — Energetic EDM festival dance";
-            case Type::Dance5:  return "Dance 5 — Sexy hip-hop body roll";
-            case Type::Dance6:  return "Dance 6 — Smooth Latin-inspired groove";
-            case Type::Dance7:  return "Dance 7 — Robotic popping dance";
-            case Type::Dance8:  return "Dance 8 — Hands-up club dance";
-            case Type::Dance9:  return "Dance 9 — Casual club sway";
+            case Type::Dance1: return "Dance 1 — Basic hip-hop groove";
+            case Type::Dance2: return "Dance 2 — Casual club shuffle";
+            case Type::Dance3: return "Dance 3 — Light pop dance";
+            case Type::Dance4: return "Dance 4 — Energetic EDM festival dance";
+            case Type::Dance5: return "Dance 5 — Sexy hip-hop body roll";
+            case Type::Dance6: return "Dance 6 — Smooth Latin-inspired groove";
+            case Type::Dance7: return "Dance 7 — Robotic popping dance";
+            case Type::Dance8: return "Dance 8 — Hands-up club dance";
+            case Type::Dance9: return "Dance 9 — Casual club sway";
             case Type::Dance10: return "Dance 10 — Pop step-touch dance";
             case Type::Dance11: return "Dance 11 — Hip-hop bounce rhythm";
             case Type::Dance12: return "Dance 12 — Slow sexy club dance";
@@ -70,7 +70,7 @@ namespace LibGame::Statuses::Primary {
             case Type::Dance45: return "Dance 45 — Latin hip movement dance";
             case Type::Dance46: return "Dance 46 — Upbeat pop dance";
             case Type::Dance47: return "Dance 47 — Fast shuffle with footwork";
-            default:            return "Unknown dance";
+            default: return "Unknown dance";
         }
     }
 
@@ -136,14 +136,14 @@ namespace LibGame::Statuses::Primary {
         return "Unknown";
     }
 
-
     DanceStatus::Type DanceStatus::TypeFromString(const std::string &value) {
         if (value == "Dance1") return Type::Dance1;
         if (value == "Dance2") return Type::Dance2;
         if (value == "Dance3") return Type::Dance3;
         if (value == "Dance4") return Type::Dance4;
         if (value == "Dance5") return Type::Dance5;
-        if (value == "Dance6") return Type::Dance7;
+        if (value == "Dance6") return Type::Dance6;
+        if (value == "Dance7") return Type::Dance7;
         if (value == "Dance8") return Type::Dance8;
         if (value == "Dance9") return Type::Dance9;
         if (value == "Dance10") return Type::Dance10;
@@ -185,7 +185,8 @@ namespace LibGame::Statuses::Primary {
         if (value == "Dance46") return Type::Dance46;
         if (value == "Dance47") return Type::Dance47;
 
-        return static_cast<Type>(Type::Dance1);
+
+        return Type::Dance1;
     }
 
     void DanceStatus::fillContext() const {
