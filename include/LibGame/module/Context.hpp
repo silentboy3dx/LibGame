@@ -32,6 +32,9 @@ namespace LibGame::Module {
 
         template <typename TStatus>
         TStatus& SetPrimaryStatus(TStatus::Type status) {
+
+            primaryInstances.clear();
+
             static_assert(std::is_base_of_v<Statuses::Primary::PrimaryStatus, TStatus>);
 
             using Base = Statuses::Primary::PrimaryStatus;
