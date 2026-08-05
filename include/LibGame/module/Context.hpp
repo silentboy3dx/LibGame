@@ -32,9 +32,6 @@ namespace LibGame::Module {
 
         template <typename TStatus>
         TStatus& SetPrimaryStatus(TStatus::Type status) {
-
-            primaryInstances.clear();
-
             static_assert(std::is_base_of_v<Statuses::Primary::PrimaryStatus, TStatus>);
 
             using Base = Statuses::Primary::PrimaryStatus;
@@ -42,6 +39,8 @@ namespace LibGame::Module {
 
             auto raw = new TStatus(*this, status);
             TStatus& ref = *raw;
+
+            RemovePrimaryStatus<TStatus>();
 
             primaryInstances[typeid(TStatus)] = BasePtr(raw);
             return ref;
@@ -61,12 +60,12 @@ namespace LibGame::Module {
             if (it == primaryInstances.end())
                 return *this;
 
-            primaryInstances[typeid(TStatus)]->clear();
+            it->second->clear();
             primaryInstances.erase(it);
-            primaryInstances.clear();
 
             return *this;
         }
+
 
         template<typename TStatus>
         bool HasPrimaryStatus() const {
