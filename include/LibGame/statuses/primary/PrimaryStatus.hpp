@@ -1,9 +1,7 @@
 #pragma once
 
-#include <string>
-
 namespace LibGame::Module {
-    class Context;   // ← forward declaration
+    class Context;
 }
 
 namespace LibGame::Statuses::Primary{
