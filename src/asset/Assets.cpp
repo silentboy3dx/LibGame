@@ -2,28 +2,26 @@
 #include "LibGame/asset/AssetCache.hpp"
 #include "LibGame/LibGame.hpp"
 
-#include <LibGraphics/LibGraphics.hpp>
-
-#include <filesystem>
 #include <string>
 
 #include "../../../LibCore/include/LibCore/report/Reporter.hpp"
 
 using LibGame::Exceptions::AssetException;
-// using namespace LibGraphics;
 using LibCore::Report::Reporter;
 using LibCore::Report::arg;
 
 namespace LibGame::Asset {
 
-    Image& Assets::AssetFile(const std::string& asset) {
+    Image& Assets::AssetFile(const std::string& asset) const {
         auto& cache = AssetCache::Instance();
 
         if (!cache.Has(asset)) {
-            // cache.PrintCache();
-            Reporter::Verbose("Asset not preloaded: {asset}",
-                typeid(Assets).name(),
-                arg("asset", asset));
+            if (_debug) {
+                // cache.PrintCache();
+                Reporter::Verbose("Asset not preloaded: {asset}",
+                    typeid(Assets).name(),
+                    arg("asset", asset));
+            }
         }
 
         auto imgPtr = cache.Load(asset);
@@ -35,4 +33,7 @@ namespace LibGame::Asset {
         return AssetCache::Instance().getAssetType();
     }
 
+    void Assets::setDebug(bool enable) {
+        _debug = enable;
+    }
 }

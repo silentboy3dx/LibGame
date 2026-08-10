@@ -18,9 +18,14 @@ namespace LibGame::Asset {
         ~Assets() override = default;
 
         // Returns a cached Image reference
-        static Image& AssetFile(const std::string& asset) ;
+        Image& AssetFile(const std::string& asset) const ;
 
         // void setAssetType(const std::string& type);
         static std::string getAssetType();
+
+        void setDebug(bool enable);
+
+    private:
+        bool _debug = false;
     };
 }
