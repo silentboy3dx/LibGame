@@ -1,5 +1,7 @@
 #include "LibGame/module/Chat.hpp"
 
+#include <iostream>
+
 namespace LibGame::Module {
     std::optional<DResult> Chat::GetLocalTab() const {
         auto screenshot = detector->GetLastTarget();

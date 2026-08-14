@@ -1,5 +1,7 @@
 #include "LibGame/module/Dances.hpp"
 
+#include <iostream>
+
 #include "LibGame/statuses/primary/DanceStatus.hpp"
 #include "LibGame/module/BaseModule.hpp"
 #include "LibGame/module/Context.hpp"

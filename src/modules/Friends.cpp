@@ -1,5 +1,7 @@
 #include "LibGame/module/Friends.hpp"
 
+#include <iostream>
+
 #include "LibGame/module/Profile.hpp"
 #include "LibGame/module/ImageReader.hpp"
 

@@ -10,7 +10,6 @@
 
 #include <thread>
 #include <chrono>
-#include <iostream>
 
 using namespace LibGame::Io;
 using namespace LibGame::Detect;
@@ -69,12 +68,8 @@ namespace LibGame::Module {
 
                 mouse->MoveToAndClick(center.X, center.Y);
 
-                std::cout << "Asset " << asset <<  " found" << std::endl;
-
                 sleepms(300);
                 return true;
-            } else {
-                std::cerr << "Could not find " << asset << std::endl;
             }
 
             return false;
