@@ -114,9 +114,8 @@ namespace LibGame::Module {
         while (attempt <= 10) {
 
             if (auto result = GetDanceLocation(dance); result.has_value()) {
-                auto r = result.value();
-
-                std::cout << "Dance " << dance << " found with score  " << r.Score << std::endl;
+                // auto r = result.value();
+                // std::cout << "Dance " << dance << " found with score  " << r.Score << std::endl;
                 return result.value();
             }
 
@@ -153,8 +152,6 @@ namespace LibGame::Module {
             if (result) {
                 const DResult button = result.value();
                 const auto center = button.Center();
-
-                std::cout << "Dancing " << number << " found with score " << button.Score << std::endl;
 
                 mouse->MoveToAndClick(_header.X + center.X, _header.Y + center.Y);
 
