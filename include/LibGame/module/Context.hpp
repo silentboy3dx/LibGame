@@ -106,11 +106,9 @@ namespace LibGame::Module {
 
         template<typename TStatus>
         bool HasSecondaryStatus() const {
-            static_assert(std::is_base_of_v<Statuses::Secondary::SecondaryStatus, TStatus>);
-
+            // static_assert(std::is_base_of_v<Statuses::Secondary::SecondaryStatus, TStatus>);
             auto it = secondaryInstances.find(typeid(TStatus));
             return  (it != secondaryInstances.end());
-
         }
 
         std::string toString() const;
