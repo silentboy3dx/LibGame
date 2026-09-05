@@ -23,6 +23,7 @@ namespace LibGame::Module {
 
         const bool profile_open = profile.OpenMyProfile();
 
+
         if (profile_open) {
             std::this_thread::sleep_for(std::chrono::microseconds(900));
             result = OpenAndReadLastGift();
@@ -102,7 +103,6 @@ namespace LibGame::Module {
     }
 
     std::optional<GiftSender> Gift::OpenAndReadLastGift() const {
-        const auto screenshot = core->GetInteraction<Screenshot>().Take();
 
         auto args = DArgs(0.97f, false, false, true); // 0.97f local
         args.match_target = screenshot;
@@ -117,16 +117,17 @@ namespace LibGame::Module {
         GiftSender sender{.Message = "No message found"};
 
         std::cerr << "btn_result.has_value() " << btn_result.has_value() << std::endl;
-        std::cerr << "screenshot.isValid() " << screenshot.isValid() << std::endl;
 
 
-        if (screenshot.isValid() && btn_result.has_value()) {
+        if (btn_result.has_value()) {
             const auto giftbutton = btn_result.value();
             const auto innerToLeft = Point(giftbutton.X - 192, giftbutton.Y + giftbutton.Height);
 
             mouse->MoveToAndClick(giftbutton.X, giftbutton.Y);
             // std::this_thread::sleep_for(std::chrono::microseconds(500));
             std::this_thread::sleep_for(std::chrono::seconds(1));
+            const auto screenshot = core->GetInteraction<Screenshot>().Take();
+
 
             if (auto const seperator_result = GetAsset("gift/gift_seperator.png"); seperator_result.has_value()) {
                 const auto seperator = seperator_result.value();
