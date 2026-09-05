@@ -125,8 +125,12 @@ namespace LibGame::Module {
             const auto innerToLeft = Point(giftbutton.X - 192, giftbutton.Y + giftbutton.Height);
 
             mouse->MoveToAndClick(giftbutton.X, giftbutton.Y);
-            // std::this_thread::sleep_for(std::chrono::microseconds(500));
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            // // std::this_thread::sleep_for(std::chrono::microseconds(500));
+            // std::this_thread::sleep_for(std::chrono::seconds(1));
+
+            /**
+             * Make a new screenshot now that my gifts is open.
+             */
             screenshot = core->GetInteraction<Screenshot>().Take();
             args.match_target = screenshot;
             if (auto const seperator_result = GetAsset("gift/gift_seperator.png"); seperator_result.has_value()) {
@@ -136,7 +140,7 @@ namespace LibGame::Module {
                 auto gift = screenshot.crop(innerToLeft.X, innerToLeft.Y, PROFILE_WINDOW_WIDTH - FRIENDS_LIST_WIDTH,
                                             seperator.Y - innerToLeft.Y);
 
-                args = DArgs(1.99f, true, false, true);
+                args = DArgs(0.99f, true, false, true);
                 args.match_target = gift;
 
                 auto const btnDelete = GetAsset("gift/button_delete.png", args);
