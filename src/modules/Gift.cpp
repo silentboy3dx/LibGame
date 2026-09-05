@@ -103,7 +103,7 @@ namespace LibGame::Module {
     }
 
     std::optional<GiftSender> Gift::OpenAndReadLastGift() const {
-        const auto screenshot = core->GetInteraction<Screenshot>().Take();
+        auto screenshot = core->GetInteraction<Screenshot>().Take();
 
         auto args = DArgs(0.97f, false, false, true); // 0.97f local
         args.match_target = screenshot;
