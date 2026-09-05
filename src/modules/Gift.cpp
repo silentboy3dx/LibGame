@@ -26,8 +26,6 @@ namespace LibGame::Module {
         if (profile_open) {
             std::this_thread::sleep_for(std::chrono::milliseconds(900));
             result = OpenAndReadLastGift();
-        } else {
-           std::cerr << "Cant open profile" << std::endl;
         }
 
         (void) profile.CloseProfile();
