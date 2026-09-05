@@ -130,6 +130,9 @@ namespace LibGame::Module {
                 auto const btnDelete = GetAsset("gift/button_delete.png", args);
                 auto const btnReport = GetAsset("gift/button_report.png", args);
 
+                std::cerr << "btnDelete.has_value() " << btnDelete.has_value() << std::endl;
+                std::cerr << "btnReport.has_value() " << btnReport.has_value() << std::endl;
+
                 if (btnDelete.has_value() && btnReport.has_value()) {
                     // const auto deleteButton = btnDelete.value();
                     const auto reportButton = btnReport.value();
