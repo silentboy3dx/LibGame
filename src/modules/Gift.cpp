@@ -134,7 +134,7 @@ namespace LibGame::Module {
                 auto gift = screenshot.crop(innerToLeft.X, innerToLeft.Y, PROFILE_WINDOW_WIDTH - FRIENDS_LIST_WIDTH,
                                             seperator.Y - innerToLeft.Y);
 
-                args = DArgs(0.99f, true);
+                args = DArgs(1.99f, true);
                 args.match_target = gift;
 
                 auto const btnDelete = GetAsset("gift/button_delete.png", args);
