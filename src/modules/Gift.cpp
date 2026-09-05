@@ -125,7 +125,8 @@ namespace LibGame::Module {
             const auto innerToLeft = Point(giftbutton.X - 192, giftbutton.Y + giftbutton.Height);
 
             mouse->MoveToAndClick(giftbutton.X, giftbutton.Y);
-            std::this_thread::sleep_for(std::chrono::microseconds(500));
+            // std::this_thread::sleep_for(std::chrono::microseconds(500));
+            std::this_thread::sleep_for(std::chrono::seconds(1));
 
             if (auto const seperator_result = GetAsset("gift/gift_seperator.png"); seperator_result.has_value()) {
                 const auto seperator = seperator_result.value();
