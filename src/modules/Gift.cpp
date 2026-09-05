@@ -106,7 +106,7 @@ namespace LibGame::Module {
     std::optional<GiftSender> Gift::OpenAndReadLastGift() const {
         const auto screenshot = core->GetInteraction<Screenshot>().Take();
 
-        auto args = DArgs(0.97f, false, false, true);
+        auto args = DArgs(0.94f, false, false, true);
         args.match_target = screenshot;
 
         const auto btn_result = GetAsset("gift/button_my_gifts.png", args);
