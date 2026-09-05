@@ -103,6 +103,7 @@ namespace LibGame::Module {
     }
 
     std::optional<GiftSender> Gift::OpenAndReadLastGift() const {
+        const auto screenshot = core->GetInteraction<Screenshot>().Take();
 
         auto args = DArgs(0.97f, false, false, true); // 0.97f local
         args.match_target = screenshot;
@@ -126,8 +127,7 @@ namespace LibGame::Module {
             mouse->MoveToAndClick(giftbutton.X, giftbutton.Y);
             // std::this_thread::sleep_for(std::chrono::microseconds(500));
             std::this_thread::sleep_for(std::chrono::seconds(1));
-            const auto screenshot = core->GetInteraction<Screenshot>().Take();
-
+            screenshot = core->GetInteraction<Screenshot>().Take();
 
             if (auto const seperator_result = GetAsset("gift/gift_seperator.png"); seperator_result.has_value()) {
                 const auto seperator = seperator_result.value();
