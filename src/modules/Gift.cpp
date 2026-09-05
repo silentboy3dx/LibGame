@@ -112,6 +112,7 @@ namespace LibGame::Module {
         GiftSender sender{.Message = "No message found"};
 
         std::cerr << "btn_result.has_value() " << btn_result.has_value() << std::endl;
+        std::cerr << "screenshot.isValid() " << screenshot.isValid() << std::endl;
         if (screenshot.isValid() && btn_result.has_value()) {
             const auto giftbutton = btn_result.value();
             const auto innerToLeft = Point(giftbutton.X - 192, giftbutton.Y + giftbutton.Height);
