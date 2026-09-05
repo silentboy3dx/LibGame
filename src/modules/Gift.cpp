@@ -109,16 +109,23 @@ namespace LibGame::Module {
 
         const auto btn_result = GetAsset("gift/button_my_gifts.png", args);
 
+
+        if (!btn_result.has_value()) {
+            return std::nullopt;
+        }
+
         GiftSender sender{.Message = "No message found"};
 
         std::cerr << "btn_result.has_value() " << btn_result.has_value() << std::endl;
         std::cerr << "screenshot.isValid() " << screenshot.isValid() << std::endl;
+
+
         if (screenshot.isValid() && btn_result.has_value()) {
             const auto giftbutton = btn_result.value();
             const auto innerToLeft = Point(giftbutton.X - 192, giftbutton.Y + giftbutton.Height);
 
-
             mouse->MoveToAndClick(giftbutton.X, giftbutton.Y);
+            std::this_thread::sleep_for(std::chrono::microseconds(150));
 
             if (auto const seperator_result = GetAsset("gift/gift_seperator.png"); seperator_result.has_value()) {
                 const auto seperator = seperator_result.value();
