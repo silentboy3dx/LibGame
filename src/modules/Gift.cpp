@@ -162,7 +162,7 @@ namespace LibGame::Module {
                 }
             }
         }
-
+        std::cerr << "Cant open gift tab" << std::endl;
         return std::nullopt;
     }
 }
