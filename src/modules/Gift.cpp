@@ -117,16 +117,13 @@ namespace LibGame::Module {
 
         GiftSender sender{.Message = "No message found"};
 
-        std::cerr << "btn_result.has_value() " << btn_result.has_value() << std::endl;
-
 
         if (btn_result.has_value()) {
             const auto giftbutton = btn_result.value();
             const auto innerToLeft = Point(giftbutton.X - 192, giftbutton.Y + giftbutton.Height);
 
             mouse->MoveToAndClick(giftbutton.X, giftbutton.Y);
-            // // std::this_thread::sleep_for(std::chrono::microseconds(500));
-            // std::this_thread::sleep_for(std::chrono::seconds(1));
+
 
             /**
              * Make a new screenshot now that my gifts is open.
@@ -146,14 +143,9 @@ namespace LibGame::Module {
                 auto const btnDelete = GetAsset("gift/button_delete.png", args);
                 auto const btnReport = GetAsset("gift/button_report.png", args);
 
-                std::cerr << "btnDelete.has_value() " << btnDelete.has_value() << std::endl;
-                std::cerr << "btnReport.has_value() " << btnReport.has_value() << std::endl;
-
                 if (btnDelete.has_value() && btnReport.has_value()) {
                     // const auto deleteButton = btnDelete.value();
                     const auto reportButton = btnReport.value();
-
-                    std::cerr << "Hier" << std::endl;
 
                     int nameWidth = 115;
                     int nameHeight = 37;
@@ -180,11 +172,7 @@ namespace LibGame::Module {
                     };;
 
                     return sender;
-                } else {
-                    std::cerr << "Cant btnDelete or btnReport" << std::endl;
                 }
-            } else {
-                std::cerr << "Found it" << std::endl;
             }
         }
 
