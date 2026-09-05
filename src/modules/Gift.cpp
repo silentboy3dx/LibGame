@@ -117,6 +117,7 @@ namespace LibGame::Module {
             const auto giftbutton = btn_result.value();
             const auto innerToLeft = Point(giftbutton.X - 192, giftbutton.Y + giftbutton.Height);
 
+
             if (auto const seperator_result = GetAsset("gift/gift_seperator.png"); seperator_result.has_value()) {
                 const auto seperator = seperator_result.value();
 
@@ -167,6 +168,8 @@ namespace LibGame::Module {
                 } else {
                     std::cerr << "Cant btnDelete or btnReport" << std::endl;
                 }
+            } else {
+                std::cerr << "Found it" << std::endl;
             }
         }
 
