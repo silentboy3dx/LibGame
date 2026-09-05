@@ -134,6 +134,8 @@ namespace LibGame::Module {
                     // const auto deleteButton = btnDelete.value();
                     const auto reportButton = btnReport.value();
 
+                    std::cerr << "Hier" << std::endl;
+
                     int nameWidth = 115;
                     int nameHeight = 37;
                     int padding = 10;
