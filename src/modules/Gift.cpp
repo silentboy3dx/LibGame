@@ -111,6 +111,11 @@ namespace LibGame::Module {
 
         const auto btn_result = GetAsset("gift/button_my_gifts.png", args);
 
+
+
+
+
+
         GiftSender sender{.Message = "No message found"};
 
         if (screenshot.isValid() && btn_result.has_value()) {
