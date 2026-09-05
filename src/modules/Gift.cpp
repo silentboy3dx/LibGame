@@ -1,5 +1,6 @@
 #include "LibGame/module/Gift.hpp"
 
+#include <iostream>
 #include <LibGraphics/type/Rect.hpp>
 
 #include "LibGame/misc/Point.hpp"
@@ -25,6 +26,8 @@ namespace LibGame::Module {
         if (profile_open) {
             std::this_thread::sleep_for(std::chrono::milliseconds(900));
             result = OpenAndReadLastGift();
+        } else {
+           std::cerr << "Cant open profile" << std::endl;
         }
 
         (void) profile.CloseProfile();
