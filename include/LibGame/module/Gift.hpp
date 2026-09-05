@@ -18,6 +18,7 @@ namespace LibGame::Module {
 
         std::optional<GiftSender> GetLatestGiftFromProfile() const;
         std::optional<GiftSender> ReadLastestGift() const;
+        std::optional<GiftSender> OpenAndReadLastGift() const;
 
     private:
         static constexpr int FRIENDS_LIST_WIDTH = 140;

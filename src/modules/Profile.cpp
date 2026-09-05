@@ -24,7 +24,7 @@ namespace LibGame::Module {
     }
 
     bool Profile::CloseMyProfile() const {
-        return ClickIfVisible("profile/button_profile.png", 0.99f, false, false, true);
+        return ClickIfVisible("profile/button_profile.png", 0.83f, false, false, true);
     }
 
     bool Profile::CloseProfile() const {

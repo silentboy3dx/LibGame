@@ -21,14 +21,15 @@ namespace LibGame::Module {
         std::optional<GiftSender> result = std::nullopt;
 
         const bool profile_open = profile.OpenMyProfile();
-        const bool open_gift = GoToMyGifts();
 
-        if (profile_open && open_gift) {
-            result = ReadLastestGift();
+        if (profile_open) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(900));
+            result = OpenAndReadLastGift();
         }
 
-        std::this_thread::sleep_for(std::chrono::microseconds(10));
-        (void) profile.CloseMyProfile();
+        (void) profile.CloseProfile();
+
+        std::this_thread::sleep_for(std::chrono::microseconds(350));
 
         return result;
     }
@@ -73,17 +74,6 @@ namespace LibGame::Module {
                     };
                     const Type::Rect imageRegion = {0, 62, 491, 268};
 
-                    // std::vector<Type::Rect> redaction = {
-                    //     /* Report button */
-                    //     {reportButton.X, reportButton.Y, reportButton.Width, reportButton.Height},
-                    //     /* Delete button */
-                    //     {deleteButton.X, deleteButton.Y, deleteButton.Width, deleteButton.Height},
-                    //     /* Name */
-                    //     {reportButton.X - (nameWidth + padding), reportButton.Y, nameWidth, nameHeight},
-                    //     /* Gift image */
-                    //     imageRegion
-                    // };
-
                     int calculatedHeight = gift.height - (imageRegion.Height + imageRegion.Y);
                     int calculatedWidth = (ProfileWidth - FriendsListWidth);
                     calculatedWidth += 5;
@@ -104,6 +94,69 @@ namespace LibGame::Module {
 
                 // gift.show();
                 // mouse->MoveTo(seperator.X, seperator.Y);
+            }
+        }
+
+        return std::nullopt;
+    }
+
+    std::optional<GiftSender> Gift::OpenAndReadLastGift() const {
+        const auto screenshot = core->GetInteraction<Screenshot>().Take();
+
+        auto args = DArgs(0.97f, false, false, true);
+        args.match_target = screenshot;
+
+        const auto btn_result = GetAsset("gift/button_my_gifts.png", args);
+
+        GiftSender sender{.Message = "No message found"};
+
+        if (screenshot.isValid() && btn_result.has_value()) {
+            const auto giftbutton = btn_result.value();
+            const auto innerToLeft = Point(giftbutton.X - 192, giftbutton.Y + giftbutton.Height);
+
+            if (auto const seperator_result = GetAsset("gift/gift_seperator.png"); seperator_result.has_value()) {
+                const auto seperator = seperator_result.value();
+
+
+                auto gift = screenshot.crop(innerToLeft.X, innerToLeft.Y, PROFILE_WINDOW_WIDTH - FRIENDS_LIST_WIDTH,
+                                            seperator.Y - innerToLeft.Y);
+
+                args = DArgs(0.99f, true);
+                args.match_target = gift;
+
+                auto const btnDelete = GetAsset("gift/button_delete.png", args);
+                auto const btnReport = GetAsset("gift/button_report.png", args);
+
+                if (btnDelete.has_value() && btnReport.has_value()) {
+                    // const auto deleteButton = btnDelete.value();
+                    const auto reportButton = btnReport.value();
+
+                    int nameWidth = 115;
+                    int nameHeight = 37;
+                    int padding = 10;
+
+                    const Type::Rect cropRegion = {
+                        reportButton.X - (nameWidth + padding), reportButton.Y, nameWidth, nameHeight
+                    };
+                    const Type::Rect imageRegion = {0, 62, 491, 268};
+
+                    int calculatedHeight = gift.height - (imageRegion.Height + imageRegion.Y);
+                    int calculatedWidth = (ProfileWidth - FriendsListWidth);
+                    calculatedWidth += 5;
+                    int calculatedY = gift.height - calculatedHeight;
+
+                    auto nameCrop = gift.crop(cropRegion.X, cropRegion.Y - 16, cropRegion.Width, cropRegion.Height);
+                    auto textCrop = gift.crop(0, calculatedY, calculatedWidth, calculatedHeight);
+
+                    auto messageText = core->GetInteraction<ImageReader>().ImageToText(textCrop, 0.8f, true);
+                    auto nameText = core->GetInteraction<ImageReader>().ImageToText(nameCrop, 0.8f, true);
+
+                    GiftSender sender{
+                        .Sender = nameText.value_or("Unknow"), .Message = messageText.value_or("No text found")
+                    };;
+
+                    return sender;
+                }
             }
         }
 
