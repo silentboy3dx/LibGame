@@ -104,13 +104,14 @@ namespace LibGame::Module {
     std::optional<GiftSender> Gift::OpenAndReadLastGift() const {
         const auto screenshot = core->GetInteraction<Screenshot>().Take();
 
-        auto args = DArgs(1.1f, false, false, true); // 0.97f local
+        auto args = DArgs(0.99f, false, false, true); // 0.97f local
         args.match_target = screenshot;
 
         const auto btn_result = GetAsset("gift/button_my_gifts.png", args);
 
         GiftSender sender{.Message = "No message found"};
 
+        std::cerr << "btn_result.has_value() " << btn_result.has_value() << std::endl;
         if (screenshot.isValid() && btn_result.has_value()) {
             const auto giftbutton = btn_result.value();
             const auto innerToLeft = Point(giftbutton.X - 192, giftbutton.Y + giftbutton.Height);
