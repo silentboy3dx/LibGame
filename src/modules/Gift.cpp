@@ -25,7 +25,7 @@ namespace LibGame::Module {
 
 
         if (profile_open) {
-            std::this_thread::sleep_for(std::chrono::microseconds(900));
+            std::this_thread::sleep_for(std::chrono::seconds(1));
             result = OpenAndReadLastGift();
         }
 
