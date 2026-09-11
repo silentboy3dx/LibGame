@@ -64,7 +64,6 @@ namespace LibGame::Module {
                 auto const btnReport = GetAsset("gift/button_report.png", args);
 
                 if (btnDelete.has_value() && btnReport.has_value()) {
-                    // const auto deleteButton = btnDelete.value();
                     const auto reportButton = btnReport.value();
 
                     int nameWidth = 115;
@@ -93,9 +92,6 @@ namespace LibGame::Module {
 
                     return sender;
                 }
-
-                // gift.show();
-                // mouse->MoveTo(seperator.X, seperator.Y);
             }
         }
 
@@ -123,7 +119,6 @@ namespace LibGame::Module {
             const auto innerToLeft = Point(giftbutton.X - 192, giftbutton.Y + giftbutton.Height);
 
             mouse->MoveToAndClick(giftbutton.X, giftbutton.Y);
-
 
             /**
              * Make a new screenshot now that my gifts is open.
