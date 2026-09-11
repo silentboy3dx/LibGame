@@ -106,7 +106,6 @@ namespace LibGame::Module {
 
         const auto btn_result = GetAsset("gift/button_my_gifts.png", args);
 
-
         if (!btn_result.has_value()) {
             return std::nullopt;
         }
