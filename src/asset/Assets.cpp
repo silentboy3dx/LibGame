@@ -12,6 +12,7 @@ namespace LibGame::Asset {
 
         std::cerr << "AssetFile" <<std::endl;
         if (!cache.Has(asset)) {
+            std::cerr << "Not in cache" << std::endl;
             Verbose("Asset not preloaded: " + asset);
         }
 
