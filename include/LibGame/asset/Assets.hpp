@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include "LibGame/Interactions.hpp"
 
 #include <LibGraphics/LibGraphics.hpp>
@@ -7,9 +9,10 @@
 
 using namespace LibGraphics;
 
+using LibGame::BaseInteraction;
+using LibGame::Interactions;
+
 namespace LibGame::Asset {
-
-
 
     class Assets final : public BaseInteraction {
     public:
@@ -17,15 +20,13 @@ namespace LibGame::Asset {
 
         ~Assets() override = default;
 
-        // Returns a cached Image reference
         Image& AssetFile(const std::string& asset) const ;
 
-        // void setAssetType(const std::string& type);
         static std::string getAssetType();
 
         void setDebug(bool enable);
 
     private:
-        bool _debug = false;
+        bool _debug = true;
     };
 }

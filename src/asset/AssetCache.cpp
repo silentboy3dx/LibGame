@@ -1,4 +1,5 @@
 #include "LibGame/asset/AssetCache.hpp"
+
 #include <LibGraphics/LibGraphics.hpp>
 #include "LibGame/LibGame.hpp"
 #include <LibOS/LibOS.hpp>
@@ -122,4 +123,4 @@ namespace LibGame::Asset {
     std::string AssetCache::getAssetType() const {
         return assetType;
     }
-} // namespace LibGame::Asset
+}

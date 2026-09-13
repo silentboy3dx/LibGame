@@ -13,7 +13,7 @@ namespace LibGame::Module {
     std::unordered_map<int, float> Dances::_confidences;
     std::unordered_map<int, Image> Dances::_assets;
     bool Dances::_assetsInitialized = false;
-//ELTF5zYXqQ7iAbXMp5nC
+
     Dances::Dances(Interactions *core)
         : BaseModule(core)
     {

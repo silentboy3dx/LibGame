@@ -4,11 +4,7 @@
 
 #include <string>
 
-#include "../../../LibCore/include/LibCore/report/Reporter.hpp"
-
 using LibGame::Exceptions::AssetException;
-using LibCore::Report::Reporter;
-using LibCore::Report::arg;
 
 namespace LibGame::Asset {
 
@@ -17,10 +13,7 @@ namespace LibGame::Asset {
 
         if (!cache.Has(asset)) {
             if (_debug) {
-                // cache.PrintCache();
-                Reporter::Verbose("Asset not preloaded: {asset}",
-                    typeid(Assets).name(),
-                    arg("asset", asset));
+                Verbose("Asset not preloaded: " + asset);
             }
         }
 

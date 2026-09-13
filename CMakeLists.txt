@@ -19,12 +19,12 @@ add_library(${PROJECT_NAME} STATIC
         include/LibGame/io/Keyboard.hpp
         include/LibGame/io/Mouse.hpp
 
+        include/LibGame/asset/AssetCache.hpp
+        include/LibGame/asset/Assets.hpp
+
         include/LibGame/detect/DArgs.hpp
         include/LibGame/detect/Detector.hpp
         include/LibGame/detect/DResult.hpp
-
-        include/LibGame/asset/Assets.hpp
-        include/LibGame/asset/AssetCache.hpp
 
         include/LibGame/Interactions.hpp
         include/LibGame/LibGame.hpp
@@ -88,10 +88,11 @@ add_library(${PROJECT_NAME} STATIC
         src/modules/Item.cpp
         src/modules/Gift.cpp
 
-        src/detect/Detector.cpp
 
         src/asset/AssetCache.cpp
         src/asset/Assets.cpp
+
+        src/detect/Detector.cpp
 
         src/statuses/primary/IdlePrimaryStatus.cpp
         src/statuses/primary/SlowDanceStatus.cpp
