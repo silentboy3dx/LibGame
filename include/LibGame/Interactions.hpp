@@ -114,7 +114,7 @@ namespace LibGame {
             }
 
             std::ostringstream oss;
-            oss << "Interaction " << name << " not found";
+
             throw std::runtime_error(oss.str());
         }
 

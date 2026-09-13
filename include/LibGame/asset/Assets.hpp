@@ -27,6 +27,6 @@ namespace LibGame::Asset {
         void setDebug(bool enable);
 
     private:
-        bool _debug = true;
+        bool _debug = false;
     };
 }
