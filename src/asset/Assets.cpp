@@ -7,14 +7,11 @@
 using LibGame::Exceptions::AssetException;
 
 namespace LibGame::Asset {
-
-    Image& Assets::AssetFile(const std::string& asset) const {
-        auto& cache = AssetCache::Instance();
+    Image &Assets::AssetFile(const std::string &asset) const {
+        auto &cache = AssetCache::Instance();
 
         if (!cache.Has(asset)) {
-            if (_debug) {
-                Verbose("Asset not preloaded: " + asset);
-            }
+            Verbose("Asset not preloaded: " + asset);
         }
 
         auto imgPtr = cache.Load(asset);
@@ -24,9 +21,5 @@ namespace LibGame::Asset {
 
     std::string Assets::getAssetType() {
         return AssetCache::Instance().getAssetType();
-    }
-
-    void Assets::setDebug(bool enable) {
-        _debug = enable;
     }
 }

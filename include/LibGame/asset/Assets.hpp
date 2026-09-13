@@ -23,10 +23,5 @@ namespace LibGame::Asset {
         Image& AssetFile(const std::string& asset) const ;
 
         static std::string getAssetType();
-
-        void setDebug(bool enable);
-
-    private:
-        bool _debug = false;
     };
 }
