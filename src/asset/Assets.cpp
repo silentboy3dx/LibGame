@@ -10,6 +10,7 @@ namespace LibGame::Asset {
     Image &Assets::AssetFile(const std::string &asset) const {
         auto &cache = AssetCache::Instance();
 
+        std::cerr << "AssetFile" <<std::endl;
         if (!cache.Has(asset)) {
             Verbose("Asset not preloaded: " + asset);
         }
