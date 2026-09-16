@@ -1,8 +1,6 @@
 #include "LibGame/statuses/secondary/ItemSecondaryStatus.hpp"
 
-
 namespace LibGame::Statuses::Secondary {
-
     ItemSecondaryStatus::~ItemSecondaryStatus() = default;
 
     void ItemSecondaryStatus::clear() {
@@ -10,14 +8,14 @@ namespace LibGame::Statuses::Secondary {
     }
 
     std::string ItemSecondaryStatus::GetPrimaryActionName() {
-        return "Consuming Item";
+        return "Consuming item";
     }
 
     std::string ItemSecondaryStatus::GetPrimaryActionValue(Type action) {
-        switch(action) {
+        switch (action) {
             case Type::None: return "Nothing";
             case Type::Food_Drink: return "Food/Drink";
-            default: return "unknown";
+            default: return "Nothing";
         }
     }
 
@@ -26,7 +24,7 @@ namespace LibGame::Statuses::Secondary {
     }
 
     ItemSecondaryStatus::Type ItemSecondaryStatus::TypeFromString(const std::string &value) {
-        if (value == "Food/Drink")     return Type::Food_Drink;
+        if (value == "Food/Drink") return Type::Food_Drink;
         return Type::None;
     }
 
