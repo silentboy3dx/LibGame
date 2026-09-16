@@ -38,6 +38,7 @@ add_library(${PROJECT_NAME} STATIC
         include/LibGame/statuses/secondary/MovementSpeedSecondaryStatus.hpp
         include/LibGame/statuses/secondary/StraponSecondaryStatus.hpp
         include/LibGame/statuses/secondary/CameraSecondaryStatus.hpp
+        include/LibGame/statuses/secondary/ItemSecondaryStatus.hpp
         include/LibGame/statuses/secondary/PartnerSecondaryStatus.hpp
         include/LibGame/statuses/secondary/NakedSecondaryStatus.hpp
         include/LibGame/statuses/secondary/SecondaryStatus.hpp
@@ -103,6 +104,7 @@ add_library(${PROJECT_NAME} STATIC
         src/statuses/secondary/StraponSecondaryStatus.cpp
         src/statuses/secondary/CameraSecondaryStatus.cpp
         src/statuses/secondary/PartnerSecondaryStatus.cpp
+        src/statuses/secondary/ItemSecondaryStatus.cpp
         src/statuses/secondary/NakedSecondaryStatus.cpp
 
 
@@ -115,8 +117,6 @@ add_library(${PROJECT_NAME} STATIC
 
         src/Interactions.cpp
         src/main.cpp
-
-
 )
 
 target_include_directories(${PROJECT_NAME}

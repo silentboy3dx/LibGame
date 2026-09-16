@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 
 namespace LibGame::Module {
     class Context;   // ← forward declaration
