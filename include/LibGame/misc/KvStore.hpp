@@ -14,7 +14,12 @@ namespace LibGame::Misc {
         }
 
         virtual std::string get(const std::string &key) const {
-            return store.at(key);
+            try {
+                return store.at(key);
+            } catch (const std::exception &) {
+                // silence is golden
+            }
+            return "";
         }
 
         virtual KvStore &remove(const std::string &key) {
