@@ -32,6 +32,7 @@ namespace LibGame::Statuses::Primary {
         Type t = enumValue;
 
         switch (t) {
+            case Type::Unknown:     return "Unknown";
             case Type::Stop:     return "Stop";
             case Type::Facing:   return "Facing";
             case Type::Behind:   return "Behind";
@@ -41,12 +42,13 @@ namespace LibGame::Statuses::Primary {
     }
 
     SlowDanceStatus::Type SlowDanceStatus::TypeFromString(const std::string& value) {
+        if (value == "Unknown")  return Type::Unknown;
         if (value == "Stop")     return Type::Stop;
         if (value == "Facing")   return Type::Facing;
         if (value == "Behind")   return Type::Behind;
         if (value == "Kiss")     return Type::Kiss;
 
-        return Type::Stop;
+        return Type::Unknown;
     }
 
     void SlowDanceStatus::SetPartner(const std::string &name)  {

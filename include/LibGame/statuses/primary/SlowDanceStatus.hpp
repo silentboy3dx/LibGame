@@ -11,7 +11,7 @@ namespace LibGame::Module {
 namespace LibGame::Statuses::Primary {
     class SlowDanceStatus : public PrimaryStatus {
     public:
-        enum class Type { Stop, Facing, Behind, Kiss };
+        enum class Type { Unknown, Stop, Facing, Behind, Kiss };
 
         explicit SlowDanceStatus(Module::Context &ctx, Type t) : PrimaryStatus(ctx), type(t) {
             fillContext();
